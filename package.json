@@ -1,0 +1,17 @@
+{
+  "name": "jam_playground",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "concurrently 'tsc --noEmit --watch' 'node ./build.mjs --watch'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^9.1.0",
+    "esbuild": "^0.24.0",
+    "esbuild-copy-static-files": "^0.1.0",
+    "typescript": "^5.6.3"
+  }
+}

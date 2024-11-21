@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+:root {
+	--clr-primary: #286983;
+
+	--clr-key: #56949f;
+	--clr-str: #d7827e;
+	--clr-number: #b4637a;
+}
+
+body {
+	background-color: #eaeef3;
+}
+
+.jsonObject {
+	font-family: 'JetBrains Mono', helvetica, sans-serif;
+}
+
+.jsonObject__header {
+	display: flex;
+	gap: 0.5em;
+}
+
+.jsonObject__header__name {
+	color: var(--clr-primary);
+	font-size: 1em;
+	font-weight: 600;
+}
+
+.jsonObject__header__toggle_open {
+	color: var(--clr-key);
+	display: flex;
+	font-weight: 600;
+	align-items: center;
+}
+
+.jsonObject__trivia {
+	color: grey;
+}
+
+.jsonObject__header__name:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.jsonObject__keyButton:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.jsonObject__content {
+	margin-left: 1.75em;
+}
+
+.jsonObject__content__item {
+	gap: 0.5em;
+}
+
+.jsonObject__content__item_oneline {
+	display: flex;
+	gap: 0.5em;
+}
+
+.jsonObject__content__item__key {
+	color: var(--clr-key);
+	font-weight: 600;
+}
+
+.jsonObject__content__item__value {
+	display: block;
+}
+
+.jsonObject__content__item__key::after {
+	content: ':';
+	color: grey;
+	margin-right: 0.5rem; 
+}
+
+.jsonString {
+	color: var(--clr-str);
+}
+
+.jsonString::before {
+	content: '"'
+}
+
+.jsonString::after {
+	content: '"'
+}
+
+
+.jsonNumber {
+	color: var(--clr-number);
+}
