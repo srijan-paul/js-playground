@@ -32,7 +32,11 @@ export class JsonViewKvPair implements JsonViewItem {
 	key: string;
 	value: JsonViewItem;
 
-	constructor(key: string, value: JsonViewItem) {
+	constructor(
+		key: string,
+		value: JsonViewItem,
+		public callback?: JsonCallback,
+	) {
 		this.key = key;
 		this.value = value;
 	}
@@ -41,6 +45,16 @@ export class JsonViewKvPair implements JsonViewItem {
 		const container = div("jsonObject__content__item");
 		const key_element = span("jsonObject__content__item__key", this.key);
 		container.appendChild(key_element);
+		container.onmouseenter = () => {
+			if (this.value instanceof JsonViewObject) {
+				this.callback?.(this.value.object, "enter");
+			}
+		};
+		container.onmouseleave = () => {
+			if (this.value instanceof JsonViewObject) {
+				this.callback?.(this.value.object, "exit");
+			}
+		};
 
 		const value_container = span("jsonObject__content__item__value");
 		if (
@@ -55,7 +69,10 @@ export class JsonViewKvPair implements JsonViewItem {
 			const is_empty_array =
 				this.value instanceof JsonViewArray && this.value.items.length === 0;
 
-			if ((is_array && !is_empty_array) || (is_object && !is_object_with_header_name)) {
+			if (
+				(is_array && !is_empty_array) ||
+				(is_object && !is_object_with_header_name)
+			) {
 				const lbrace = makeTrivia(is_object ? "{" : "[");
 				const rbrace = makeTrivia(is_object ? "}" : "]");
 				value_container.appendChild(lbrace);
@@ -83,24 +100,33 @@ export class JsonViewKvPair implements JsonViewItem {
 	}
 }
 
+export type JsonCallback = (item: any, event: "enter" | "exit") => void;
+
 export class JsonViewObject implements JsonViewItem {
 	header_name?: string;
 	is_open = true;
 	kv_pairs: JsonViewKvPair[];
 	container_el: HTMLElement = div("jsonObject");
 	keyvalue_container_el = div("jsonObject__content");
-
 	open_brace: HTMLElement | null = null;
 	close_brace: HTMLElement | null = null;
 	toggle_div: HTMLElement | null = null;
 	dotdotdot = span("jsonObject__trivia", "...");
 
-	constructor(object: Record<string, any>) {
+	constructor(
+		public object: Record<string, any>,
+		private callback?: JsonCallback,
+	) {
 		const header_name = object.__name;
 		const kv_pairs: JsonViewKvPair[] = Object.entries(object)
 			.filter(([key]) => !key.startsWith("__"))
 			.map(
-				([key, value]) => new JsonViewKvPair(key, constructJsonViewItem(value)),
+				([key, value]) =>
+					new JsonViewKvPair(
+						key,
+						constructJsonViewItem(value, callback),
+						callback,
+					),
 			);
 
 		this.header_name = header_name;
@@ -121,6 +147,9 @@ export class JsonViewObject implements JsonViewItem {
 
 			const header_name = span("jsonObject__header__name", this.header_name);
 			header_name.onclick = this.toggle.bind(this);
+			header_name.onmouseenter = () => this.callback?.(this.object, "enter");
+			header_name.onmouseleave = () => this.callback?.(this.object, "exit");
+
 			header.appendChild(header_name);
 
 			const lbrace = makeTrivia("{");
@@ -129,6 +158,9 @@ export class JsonViewObject implements JsonViewItem {
 
 			container.appendChild(header);
 		}
+
+		container.onmouseenter = () => this.callback?.(this.object, "enter");
+		container.onmouseleave = () => this.callback?.(this.object, "exit");
 
 		const kv_el = this.keyvalue_container_el;
 
@@ -196,8 +228,11 @@ export class JsonViewArray implements JsonViewItem {
 	is_open: boolean = true;
 	dotdotdot = span("jsonObject__trivia", "...");
 
-	constructor(array: Array<any>) {
-		this.items = array.map(constructJsonViewItem);
+	constructor(
+		array: Array<any>,
+		private callback?: JsonCallback,
+	) {
+		this.items = array.map((x) => constructJsonViewItem(x, callback));
 	}
 
 	render(root: HTMLElement, braces = true) {
@@ -327,11 +362,14 @@ export class JsonViewPrimitive {
 	}
 }
 
-function constructJsonViewItem(value: any): JsonViewItem {
+function constructJsonViewItem(
+	value: any,
+	callback?: JsonCallback,
+): JsonViewItem {
 	if (typeof value === "object") {
-		if (Array.isArray(value)) return new JsonViewArray(value);
+		if (Array.isArray(value)) return new JsonViewArray(value, callback);
 
-		if (value !== null) return new JsonViewObject(value);
+		if (value !== null) return new JsonViewObject(value, callback);
 	}
 
 	switch (typeof value) {
@@ -347,7 +385,11 @@ function constructJsonViewItem(value: any): JsonViewItem {
 	}
 }
 
-export function renderJsonToHtml(json: any, root: HTMLElement) {
-	const viewItem = constructJsonViewItem(json);
+export function renderJsonToHtml(
+	json: any,
+	root: HTMLElement,
+	callback?: JsonCallback,
+) {
+	const viewItem = constructJsonViewItem(json, callback);
 	viewItem.render(root);
 }

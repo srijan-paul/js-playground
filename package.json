@@ -15,11 +15,12 @@
     "typescript": "^5.6.3"
   },
   "dependencies": {
+    "@babel/runtime": "latest",
     "@codemirror/commands": "^6.7.1",
     "@codemirror/lang-javascript": "^6.2.2",
+    "@codemirror/state": "^6.4.1",
     "@codemirror/view": "^6.34.3",
     "@uiw/codemirror-theme-tokyo-night": "^4.23.6",
-    "codemirror": "^6.0.1",
-    "@babel/runtime": "latest"
+    "codemirror": "^6.0.1"
   }
 }

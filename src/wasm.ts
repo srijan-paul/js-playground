@@ -35,7 +35,7 @@ export class Wasm {
 			"free not found in wasm instance",
 		);
 		assert(
-			wasm_instance.exports.parseModule!== undefined,
+			wasm_instance.exports.parseModule !== undefined,
 			"parseModule not found in wasm instance",
 		);
 		assert(
@@ -87,10 +87,7 @@ export class Wasm {
 			return null;
 		}
 
-		const parsed_str_addr = this.wasm.parseModule(
-			wasm_str.ptr,
-			wasm_str.len,
-		);
+		const parsed_str_addr = this.wasm.parseModule(wasm_str.ptr, wasm_str.len);
 		if (parsed_str_addr == 0) return null;
 
 		const parsed_str_len = this.strlen(parsed_str_addr);

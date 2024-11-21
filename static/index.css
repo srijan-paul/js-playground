@@ -10,8 +10,12 @@
 	--clr-null: #bb9af7;
 }
 
+* {
+	box-sizing: border-box;
+}
 
-body {
+
+body, html {
 	margin: 0;
 	padding: 0;
 }
@@ -20,8 +24,15 @@ body {
 	display: flex;
 	flex-direction: row;
 	min-width: 100%;
-	height: 100svh;
+	padding-top: 20px;
+	height: 100vh;
 	background-color: var(--clr-bg);
+}
+
+@media screen and (max-width: 768px) {
+	.playground {
+		flex-direction: column;
+	}
 }
 
 .playground__editor,

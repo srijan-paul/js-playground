@@ -1,18 +1,29 @@
 import { Wasm } from "./wasm";
 import { renderJsonToHtml } from "./json-view";
-import { EditorView, keymap } from "@codemirror/view";
-import { defaultKeymap } from "@codemirror/commands";
+import {
+	Decoration,
+	DecorationSet,
+	EditorView,
+	highlightActiveLineGutter,
+	keymap,
+} from "@codemirror/view";
+import { defaultKeymap, indentWithTab } from "@codemirror/commands";
 import { basicSetup } from "codemirror";
 import { javascript as js_code_mirror } from "@codemirror/lang-javascript";
 import { tokyoNight } from "@uiw/codemirror-theme-tokyo-night";
+import {
+	EditorSelection,
+	Range,
+	SelectionRange,
+	StateEffect,
+	StateField,
+} from "@codemirror/state";
 
 // convert 'variable_declarator' to 'VariableDeclarator'
 function snakeCaseToPascalCase(snake_case: string): string {
 	const words = snake_case.split("_");
 	const camel_case = words
-		.map((word, i) => {
-			return word[0].toUpperCase() + word.slice(1);
-		})
+		.map((word) => word[0].toUpperCase() + word.slice(1))
 		.join("");
 	return camel_case;
 }
@@ -55,7 +66,7 @@ function transformJsonAst(ast: any): any {
 
 	if (typeof ast.start == "number" && typeof ast.end === "number") {
 		if (ast.data.none) {
-			return null 
+			return null;
 		}
 
 		const o = transformJsonAst(ast.data);
@@ -102,8 +113,7 @@ function transformJsonAst(ast: any): any {
 	return transformed;
 }
 
-const source = `
-/**
+const source = `/**
  * Copyright (c) 2024, Srijan Paul – https://injuly.in
  *
  * Playground for [The Jam JS parser](https://github.com/srijan-paul/jam).
@@ -135,17 +145,67 @@ async function main() {
 	const jam = new Wasm(instance);
 
 	const custom_theme = EditorView.theme({
-		"&": { fontSize: "13pt", backgroundColor: "#eaeef3" },
+		"&": { fontSize: "13pt", backgroundColor: "#eaeef3", height: "100%" },
 	});
+
+	// code mirror effect for highlighting selected nodes
+	const highlight_effect = StateEffect.define<[Range<Decoration>]>();
+	// code mirror extension to trigger (and clear) highlight on hover. 
+	const highlight_extension = StateField.define({
+		create() {
+			return Decoration.none;
+		},
+		update(value, transaction) {
+			for (let effect of transaction.effects) {
+				if (effect.is(highlight_effect)) {
+					value = value.update({
+						filter() {
+							return false;
+						},
+					});
+					value = value.update({ add: effect.value, sort: false });
+				} else if (effect.is(clear_highlight_effect)) {
+					value = value.update({
+						filter() {
+							return false;
+						},
+					});
+				}
+			}
+			return value;
+		},
+		provide: (f) => EditorView.decorations.from(f),
+	});
+	
+  // code mirror effect to clear syntax highlights
+	const clear_highlight_effect = StateEffect.define();
+	// this is your decoration where you can define the change you want : a css class or directly css attributes
+	const highlight_decoration = Decoration.mark({
+		attributes: { style: "background-color: rgba(255, 250, 112, 0.2);" },
+	});
+
+	function highlightRange(view: EditorView, from: number, to: number) {
+		const range = highlight_decoration.range(from, to);
+		view.dispatch({
+			effects: highlight_effect.of([range]),
+		});
+		return true;
+	}
+
+	function clearHighlights(view: EditorView) {
+		view.dispatch({ effects: clear_highlight_effect.of(null) });
+		return true;
+	}
 
 	const editor_view = new EditorView({
 		doc: source,
 		extensions: [
-			keymap.of(defaultKeymap),
+			keymap.of([...defaultKeymap, indentWithTab]),
 			basicSetup,
 			js_code_mirror(),
 			tokyoNight,
 			custom_theme,
+			highlight_extension,
 		],
 		parent: document.getElementById("editorRoot")!,
 	});
@@ -163,7 +223,6 @@ async function main() {
 		}
 
 		const parse_result = transformJsonAst(JSON.parse(json_s));
-		console.log(parse_result);
 
 		const root = document.getElementById("root");
 		if (root == null) {
@@ -172,7 +231,17 @@ async function main() {
 		}
 
 		root.innerHTML = "";
-		renderJsonToHtml(parse_result, root);
+
+		renderJsonToHtml(parse_result, root, (x, e) => {
+			if (e === "enter") {
+				if (x.__start && x.__end)
+					highlightRange(editor_view, x.__start - 2, x.__end - 2);
+				else console.log(x);
+			} else {
+				clearHighlights(editor_view);
+			}
+		});
+		//
 	}, 50);
 
 	setInterval(renderCode, 100);
