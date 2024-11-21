@@ -236,7 +236,6 @@ async function main() {
 			if (e === "enter") {
 				if (x.__start && x.__end)
 					highlightRange(editor_view, x.__start - 2, x.__end - 2);
-				else console.log(x);
 			} else {
 				clearHighlights(editor_view);
 			}
