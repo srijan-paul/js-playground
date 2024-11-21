@@ -5,10 +5,10 @@ const ctx = await esbuild
   .context({
     entryPoints: ["src/index.ts"],
     bundle: true,
-    outdir: "dist",
+    outdir: "docs",
     plugins: [
       // copy everything under `src` to `dist`.
-      copyStaticFiles({ src: "./static", dest: "./dist" })
+      copyStaticFiles({ src: "./static", dest: "./docs" })
     ],
     logLevel: "debug"
   })
@@ -17,8 +17,5 @@ const ctx = await esbuild
     process.exit(1)
   });
 
-// you can use a CLI flag for this, 
-// instead of unconditionally calling `watch` every time.
 await ctx.watch()
-// same applies to `serve`.
-await ctx.serve({ servedir: "./dist", port: 3000 })
+await ctx.serve({ servedir: "./docs", port: 3000 })
