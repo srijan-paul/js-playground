@@ -1,20 +1,16 @@
 import { Wasm } from "./wasm";
-import { renderJsonToHtml } from "./json-view";
+import { renderJson } from "./json-view";
 import {
 	Decoration,
-	DecorationSet,
 	EditorView,
-	highlightActiveLineGutter,
-	keymap,
+	keymap
 } from "@codemirror/view";
 import { defaultKeymap, indentWithTab } from "@codemirror/commands";
 import { basicSetup } from "codemirror";
 import { javascript as js_code_mirror } from "@codemirror/lang-javascript";
 import { tokyoNight } from "@uiw/codemirror-theme-tokyo-night";
 import {
-	EditorSelection,
 	Range,
-	SelectionRange,
 	StateEffect,
 	StateField,
 } from "@codemirror/state";
@@ -33,14 +29,13 @@ const debounce = (callback: (...x: any[]) => void, wait = 50) => {
 
 	return (...args: any[]) => {
 		if (typeof timeoutId === "number") window.clearTimeout(timeoutId);
-
-		timeoutId = window.setTimeout(() => {
-			callback.apply(null, args);
-		}, wait);
+		timeoutId = window.setTimeout(() => callback.apply(null, args), wait);
 	};
 };
 
-// convert `{ foo: { bar: { <properties> } } }` to { foo: { __name: "bar", <properties> } }
+// Convert Jam's AST format to be more pleasing to the eye.
+// I'm not really going to explain myself here, because this is admittedly weird
+// and not something that would need many changes.
 function transformJsonAst(ast: any): any {
 	if (typeof ast === "string") {
 		if (ast === "true") return true;
@@ -114,18 +109,22 @@ function transformJsonAst(ast: any): any {
 }
 
 const source = `/**
- * Copyright (c) 2024, Srijan Paul – https://injuly.in
+ * Copyright (c) 2024, Srijan Paul 
+ * (https://injuly.in)
  *
- * Playground for [The Jam JS parser](https://github.com/srijan-paul/jam).
- * Jam is a high performance JavaScript toolchain written in Zig.
- * This playground uses a WASM build of the parser.
+ * Playground for The Jam JS parser.
+ * Jam is a high performance JavaScript toolchain written 
+ * in Zig. This playground uses a WASM build of the parser.
  *
  * Write javascript code on this pane, and the AST 
- * will be displayed on the right.
+ * will be updated on the right. Hover on an AST node
+ * to see it highlighted in the source.
+ *
+ * https://github.com/srijan-paul/jam	
  **/
 
-async function parseScript() {
-  const json_s = jam.parseModule(new_code);
+async function parseAndRender() {
+  const json_s = jam.parseModule(source);
   if (json_s == null) 
     return;
 
@@ -134,9 +133,32 @@ async function parseScript() {
   if (root == null)  return;
 
   root.innerHTML = "";
-  renderJsonToHtml(parse_result, root);
+  renderJson(parse_result, root);
 }
 `;
+
+type ByteOffsetMap = { utf8Bytes: Uint8Array; offsetMap: number[] };
+
+/**
+	* Prepare a map from byte offsets to the corresponding character offsets in a string.
+	* @param str A regular JavaScript string
+	*/
+function prepareByteOffsetMap(str: string): ByteOffsetMap {
+	const encoder = new TextEncoder();
+	const utf8Bytes = encoder.encode(str);
+	const offsetMap = [];
+
+	let currentIndex = 0;
+	for (let i = 0; i < utf8Bytes.length; i++) {
+		if (i === 0 || utf8Bytes[i] >= 0b10000000) {
+			offsetMap.push(currentIndex);
+		} else {
+			offsetMap.push(currentIndex++);
+		}
+	}
+
+	return { utf8Bytes, offsetMap };
+}
 
 async function main() {
 	const jam_wasm_source = await fetch("jam_js.wasm");
@@ -145,7 +167,11 @@ async function main() {
 	const jam = new Wasm(instance);
 
 	const custom_theme = EditorView.theme({
-		"&": { fontSize: "13pt", backgroundColor: "#eaeef3", height: "100%" },
+		"&": {
+			fontSize: "13pt",
+			backgroundColor: "#eaeef3",
+			height: "100%",
+		},
 	});
 
 	// code mirror effect for highlighting selected nodes
@@ -176,8 +202,8 @@ async function main() {
 		},
 		provide: (f) => EditorView.decorations.from(f),
 	});
-	
-  // code mirror effect to clear syntax highlights
+
+	// code mirror effect to clear syntax highlights
 	const clear_highlight_effect = StateEffect.define();
 	// this is your decoration where you can define the change you want : a css class or directly css attributes
 	const highlight_decoration = Decoration.mark({
@@ -210,40 +236,44 @@ async function main() {
 		parent: document.getElementById("editorRoot")!,
 	});
 
-	let prev_code = "";
-	const renderCode = debounce(() => {
-		const new_code = editor_view.state.doc.toString();
-		if (new_code == "" || new_code == prev_code) return;
-		prev_code = new_code;
+	let default_source = "";
+	let byte_offset_map = prepareByteOffsetMap(default_source);
+	const renderCode = () => {
+		const updated_code = editor_view.state.doc.toString();
+		if (updated_code == "" || updated_code == default_source) return;
 
-		const json_s = jam.parseModule(new_code);
+		default_source = updated_code;
+		byte_offset_map = prepareByteOffsetMap(updated_code);
+
+		const json_s = jam.parseModule(updated_code);
 		if (json_s == null) {
-			console.log("Failed to parse module");
+			console.error("Failed to parse as module");
 			return;
 		}
 
 		const parse_result = transformJsonAst(JSON.parse(json_s));
-
 		const root = document.getElementById("root");
 		if (root == null) {
-			console.log("Root element not found");
+			console.error("Root element not found");
 			return;
 		}
 
 		root.innerHTML = "";
-
-		renderJsonToHtml(parse_result, root, (x, e) => {
-			if (e === "enter") {
-				if (x.__start && x.__end)
-					highlightRange(editor_view, x.__start - 2, x.__end - 2);
+		renderJson(parse_result, root, (ast_node, event_type) => {
+			if (event_type === "enter") {
+				if (ast_node.__start && ast_node.__end) {
+					const start_index = byte_offset_map.offsetMap[ast_node.__start] + 1;
+					const end_index = byte_offset_map.offsetMap[ast_node.__end] + 1;
+					highlightRange(editor_view, start_index, end_index);
+				}
 			} else {
 				clearHighlights(editor_view);
 			}
 		});
-		//
-	}, 50);
+	}
 
-	setInterval(renderCode, 100);
+	const renderCodeDebounced = debounce(renderCode, 50);
+	setInterval(renderCodeDebounced, 100);
 }
 
 main();

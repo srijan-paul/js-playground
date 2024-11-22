@@ -79,10 +79,7 @@
 
   // src/json-view.ts
   function makeTrivia(content2) {
-    const rbrace = document.createElement("span");
-    rbrace.classList.add("jsonObject__trivia");
-    rbrace.textContent = content2;
-    return rbrace;
+    return span("jsonObject__trivia", content2);
   }
   function span(klass, text) {
     const el = document.createElement("span");
@@ -240,6 +237,7 @@
   };
   var JsonViewArray = class {
     constructor(array, callback) {
+      this.array = array;
       this.callback = callback;
       this.items = array.map((x) => constructJsonViewItem(x, callback));
     }
@@ -266,6 +264,8 @@
         this.open_brace = lbrace;
       }
       const items_container = div("jsonArray__content");
+      items_container.onmouseenter = () => this.callback?.(this.array, "enter");
+      items_container.onmouseleave = () => this.callback?.(this.array, "exit");
       for (const item of this.items) {
         item.render(items_container);
       }
@@ -375,7 +375,7 @@
         throw new Error(`Unknown value type: ${typeof value}`);
     }
   }
-  function renderJsonToHtml(json, root, callback) {
+  function renderJson(json, root, callback) {
     const viewItem = constructJsonViewItem(json, callback);
     viewItem.render(root);
   }
@@ -24728,9 +24728,7 @@
     let timeoutId = null;
     return (...args) => {
       if (typeof timeoutId === "number") window.clearTimeout(timeoutId);
-      timeoutId = window.setTimeout(() => {
-        callback.apply(null, args);
-      }, wait);
+      timeoutId = window.setTimeout(() => callback.apply(null, args), wait);
     };
   };
   function transformJsonAst(ast) {
@@ -24792,18 +24790,22 @@
     return transformed;
   }
   var source = `/**
- * Copyright (c) 2024, Srijan Paul \u2013 https://injuly.in
+ * Copyright (c) 2024, Srijan Paul 
+ * (https://injuly.in)
  *
- * Playground for [The Jam JS parser](https://github.com/srijan-paul/jam).
- * Jam is a high performance JavaScript toolchain written in Zig.
- * This playground uses a WASM build of the parser.
+ * Playground for The Jam JS parser.
+ * Jam is a high performance JavaScript toolchain written 
+ * in Zig. This playground uses a WASM build of the parser.
  *
  * Write javascript code on this pane, and the AST 
- * will be displayed on the right.
+ * will be updated on the right. Hover on an AST node
+ * to see it highlighted in the source.
+ *
+ * https://github.com/srijan-paul/jam	
  **/
 
-async function parseScript() {
-  const json_s = jam.parseModule(new_code);
+async function parseAndRender() {
+  const json_s = jam.parseModule(source);
   if (json_s == null) 
     return;
 
@@ -24812,16 +24814,34 @@ async function parseScript() {
   if (root == null)  return;
 
   root.innerHTML = "";
-  renderJsonToHtml(parse_result, root);
+  renderJson(parse_result, root);
 }
 `;
+  function prepareByteOffsetMap(str) {
+    const encoder = new TextEncoder();
+    const utf8Bytes = encoder.encode(str);
+    const offsetMap = [];
+    let currentIndex = 0;
+    for (let i = 0; i < utf8Bytes.length; i++) {
+      if (i === 0 || utf8Bytes[i] >= 128) {
+        offsetMap.push(currentIndex);
+      } else {
+        offsetMap.push(currentIndex++);
+      }
+    }
+    return { utf8Bytes, offsetMap };
+  }
   async function main() {
     const jam_wasm_source = await fetch("jam_js.wasm");
     const jam_wasm_binary = await jam_wasm_source.arrayBuffer();
     const { instance } = await WebAssembly.instantiate(jam_wasm_binary);
     const jam = new Wasm(instance);
     const custom_theme = EditorView.theme({
-      "&": { fontSize: "13pt", backgroundColor: "#eaeef3", height: "100%" }
+      "&": {
+        fontSize: "13pt",
+        backgroundColor: "#eaeef3",
+        height: "100%"
+      }
     });
     const highlight_effect = StateEffect.define();
     const highlight_extension = StateField.define({
@@ -24876,33 +24896,39 @@ async function parseScript() {
       ],
       parent: document.getElementById("editorRoot")
     });
-    let prev_code = "";
-    const renderCode = debounce(() => {
-      const new_code = editor_view.state.doc.toString();
-      if (new_code == "" || new_code == prev_code) return;
-      prev_code = new_code;
-      const json_s = jam.parseModule(new_code);
+    let default_source = "";
+    let byte_offset_map = prepareByteOffsetMap(default_source);
+    const renderCode = () => {
+      const updated_code = editor_view.state.doc.toString();
+      if (updated_code == "" || updated_code == default_source) return;
+      default_source = updated_code;
+      byte_offset_map = prepareByteOffsetMap(updated_code);
+      const json_s = jam.parseModule(updated_code);
       if (json_s == null) {
-        console.log("Failed to parse module");
+        console.error("Failed to parse as module");
         return;
       }
       const parse_result = transformJsonAst(JSON.parse(json_s));
       const root = document.getElementById("root");
       if (root == null) {
-        console.log("Root element not found");
+        console.error("Root element not found");
         return;
       }
       root.innerHTML = "";
-      renderJsonToHtml(parse_result, root, (x, e) => {
-        if (e === "enter") {
-          if (x.__start && x.__end)
-            highlightRange(editor_view, x.__start - 2, x.__end - 2);
+      renderJson(parse_result, root, (ast_node, event_type) => {
+        if (event_type === "enter") {
+          if (ast_node.__start && ast_node.__end) {
+            const start_index = byte_offset_map.offsetMap[ast_node.__start] + 1;
+            const end_index = byte_offset_map.offsetMap[ast_node.__end] + 1;
+            highlightRange(editor_view, start_index, end_index);
+          }
         } else {
           clearHighlights(editor_view);
         }
       });
-    }, 50);
-    setInterval(renderCode, 100);
+    };
+    const renderCodeDebounced = debounce(renderCode, 50);
+    setInterval(renderCodeDebounced, 100);
   }
   main();
 })();

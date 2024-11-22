@@ -2,11 +2,9 @@ interface JsonViewItem {
 	render(root: HTMLElement): void;
 }
 
+/// Create a span with the class "jsonObject__trivia" and the given content.
 function makeTrivia(content: string): HTMLElement {
-	const rbrace = document.createElement("span");
-	rbrace.classList.add("jsonObject__trivia");
-	rbrace.textContent = content;
-	return rbrace;
+	return span("jsonObject__trivia", content);
 }
 
 function span(klass: string, text?: string): HTMLSpanElement {
@@ -219,7 +217,7 @@ export class JsonViewObject implements JsonViewItem {
 }
 
 export class JsonViewArray implements JsonViewItem {
-	items: Array<JsonViewItem>;
+	items: JsonViewItem[];
 	open_brace: HTMLElement | null = null;
 	close_brace: HTMLElement | null = null;
 	container_el: HTMLElement | null = null;
@@ -229,7 +227,7 @@ export class JsonViewArray implements JsonViewItem {
 	dotdotdot = span("jsonObject__trivia", "...");
 
 	constructor(
-		array: Array<any>,
+		public array: any[],
 		private callback?: JsonCallback,
 	) {
 		this.items = array.map((x) => constructJsonViewItem(x, callback));
@@ -255,6 +253,9 @@ export class JsonViewArray implements JsonViewItem {
 		}
 
 		const items_container = div("jsonArray__content");
+		items_container.onmouseenter = () => this.callback?.(this.array, "enter");
+		items_container.onmouseleave = () => this.callback?.(this.array, "exit");
+
 		for (const item of this.items) {
 			item.render(items_container);
 		}
@@ -385,7 +386,7 @@ function constructJsonViewItem(
 	}
 }
 
-export function renderJsonToHtml(
+export function renderJson(
 	json: any,
 	root: HTMLElement,
 	callback?: JsonCallback,
