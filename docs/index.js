@@ -24917,9 +24917,11 @@ async function parseAndRender() {
       root.innerHTML = "";
       renderJson(parse_result, root, (ast_node, event_type) => {
         if (event_type === "enter") {
-          if (ast_node.__start && ast_node.__end) {
-            const start_index = byte_offset_map.offsetMap[ast_node.__start] + 1;
-            const end_index = byte_offset_map.offsetMap[ast_node.__end] + 1;
+          if (typeof ast_node.__start === "number" && typeof ast_node.__end === "number") {
+            let start_index = byte_offset_map.offsetMap[ast_node.__start];
+            if (start_index > 0) start_index += 1;
+            let end_index = byte_offset_map.offsetMap[ast_node.__end] + 1;
+            if (Number.isNaN(end_index)) end_index = updated_code.length;
             highlightRange(editor_view, start_index, end_index);
           }
         } else {
