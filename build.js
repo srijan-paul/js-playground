@@ -1,14 +1,17 @@
-import esbuild from "esbuild"
-import copyStaticFiles from "esbuild-copy-static-files"
+const esbuild = require("esbuild");
+const copyStaticFiles = require("esbuild-copy-static-files");
+const cssModulesPlugin = require("esbuild-css-modules-plugin");
 
-const ctx = await esbuild
+async function build() {
+ const ctx = await esbuild
   .context({
     entryPoints: ["src/index.ts"],
     bundle: true,
     outdir: "docs",
     plugins: [
       // copy everything under `src` to `dist`.
-      copyStaticFiles({ src: "./static", dest: "./docs" })
+      copyStaticFiles({ src: "./static", dest: "./docs" }),
+      cssModulesPlugin({}),
     ],
     logLevel: "debug"
   })
@@ -19,3 +22,7 @@ const ctx = await esbuild
 
 await ctx.watch()
 await ctx.serve({ servedir: "./docs", port: 3000 })
+ 
+}
+
+build();

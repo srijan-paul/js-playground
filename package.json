@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "concurrently 'tsc --noEmit --watch' 'node ./build.mjs --watch'"
+    "dev": "concurrently 'tsc --noEmit --watch' 'node ./build.js --watch' 'tcm -w src'"
   },
   "keywords": [],
   "author": "",
@@ -12,6 +12,8 @@
     "concurrently": "^9.1.0",
     "esbuild": "^0.24.0",
     "esbuild-copy-static-files": "^0.1.0",
+    "esbuild-css-modules-plugin": "^3.1.2",
+    "typed-css-modules": "^0.9.1",
     "typescript": "^5.6.3"
   },
   "dependencies": {
@@ -21,6 +23,8 @@
     "@codemirror/state": "^6.4.1",
     "@codemirror/view": "^6.34.3",
     "@uiw/codemirror-theme-tokyo-night": "^4.23.6",
-    "codemirror": "^6.0.1"
+    "codemirror": "^6.0.1",
+    "jss": "^10.10.0",
+    "jss-preset-default": "^10.10.0"
   }
 }
