@@ -1,17 +1,17 @@
 {
-  "compilerOptions": {
-    "target": "esnext",
-    "module": "commonjs",
-    "lib": ["es2021", "DOM", "DOM.Iterable"],
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "alwaysStrict": true,
-    "noImplicitReturns": true,
-    "skipLibCheck": true
-  },
-  "include": ["src/**/*.ts"],
-  "outDir": "./dist"
+	"compilerOptions": {
+		"target": "esnext",
+		"module": "commonjs",
+		"lib": ["es2021", "DOM", "DOM.Iterable"],
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"strict": true,
+		"strictNullChecks": true,
+		"strictFunctionTypes": true,
+		"alwaysStrict": true,
+		"noImplicitReturns": true,
+		"skipLibCheck": true
+	},
+	"include": ["src/**/*.ts"],
+	"outDir": "./dist"
 }

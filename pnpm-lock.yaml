@@ -17,20 +17,23 @@ dependencies:
     specifier: ^6.34.3
     version: 6.35.0
   '@jam-tools/json-tree-view':
-    specifier: ^1.0.4
-    version: 1.0.4
+    specifier: ^1.0.7
+    version: 1.0.7
+  '@uiw/codemirror-theme-dracula':
+    specifier: ^4.23.6
+    version: 4.23.6(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.35.0)
+  '@uiw/codemirror-theme-github':
+    specifier: ^4.23.6
+    version: 4.23.6(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.35.0)
   '@uiw/codemirror-theme-tokyo-night':
+    specifier: ^4.23.6
+    version: 4.23.6(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.35.0)
+  '@uiw/codemirror-theme-tokyo-night-day':
     specifier: ^4.23.6
     version: 4.23.6(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.35.0)
   codemirror:
     specifier: ^6.0.1
     version: 6.0.1(@lezer/common@1.2.3)
-  jss:
-    specifier: ^10.10.0
-    version: 10.10.0
-  jss-preset-default:
-    specifier: ^10.10.0
-    version: 10.10.0
 
 devDependencies:
   concurrently:
@@ -363,8 +366,8 @@ packages:
       wrap-ansi-cjs: /wrap-ansi@7.0.0
     dev: true
 
-  /@jam-tools/json-tree-view@1.0.4:
-    resolution: {integrity: sha512-w1mK1hw8owu1/TWPmoQ6dUlxPKyIQVn3qNOsGolaAqRiwKLyhGrzvBuKrHYNGxIUNJlr47Csem7Xpssb0sNMMA==}
+  /@jam-tools/json-tree-view@1.0.7:
+    resolution: {integrity: sha512-yrgDnI4VyYqGowN4XUc3O6cqfIODKxdE4zf26KDA6dBS7wy6m9/WRhuaIUlpimeSFogybUcXr5YvRAyWF+uJ7Q==}
     dependencies:
       jss: 10.10.0
       jss-preset-default: 10.10.0
@@ -400,6 +403,36 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@uiw/codemirror-theme-dracula@4.23.6(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.35.0):
+    resolution: {integrity: sha512-G6XMgumD5ccbwgW/hATZtG3mAGwTA4pHaFQFIXOvbrTmqKeJyDyDFW6POtTjkQDk2221lsL1M4AXnrO/4WyyEQ==}
+    dependencies:
+      '@uiw/codemirror-themes': 4.23.6(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.35.0)
+    transitivePeerDependencies:
+      - '@codemirror/language'
+      - '@codemirror/state'
+      - '@codemirror/view'
+    dev: false
+
+  /@uiw/codemirror-theme-github@4.23.6(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.35.0):
+    resolution: {integrity: sha512-p74sbyuDo7JsYlGWNtyNyJSyr9N4niCPGqYreQhoAk2C6c4JXi0sGwZRlHd8KyynsxCdSA9L727SADOuukD1Ug==}
+    dependencies:
+      '@uiw/codemirror-themes': 4.23.6(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.35.0)
+    transitivePeerDependencies:
+      - '@codemirror/language'
+      - '@codemirror/state'
+      - '@codemirror/view'
+    dev: false
+
+  /@uiw/codemirror-theme-tokyo-night-day@4.23.6(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.35.0):
+    resolution: {integrity: sha512-9qVLLd/gUn6eAqSQwctgxsDKr6aNs4nZ5Sac+aQN7L92NKg5tpnfHaCWot323a0FUTc6jKC52TeUyxJGJlp6AA==}
+    dependencies:
+      '@uiw/codemirror-themes': 4.23.6(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.35.0)
+    transitivePeerDependencies:
+      - '@codemirror/language'
+      - '@codemirror/state'
+      - '@codemirror/view'
+    dev: false
 
   /@uiw/codemirror-theme-tokyo-night@4.23.6(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.35.0):
     resolution: {integrity: sha512-AS7dwUEVPUo31W36eoABz3S8Y6e0bpqpprAeZ3J5JqTKwPgA9M66l3pfilZnoNHZm5KZIasH/a7guFWfUmG3Rw==}
