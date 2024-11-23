@@ -22,6 +22,7 @@
     "@codemirror/lang-javascript": "^6.2.2",
     "@codemirror/state": "^6.4.1",
     "@codemirror/view": "^6.34.3",
+    "@jam-tools/json-tree-view": "^1.0.4",
     "@uiw/codemirror-theme-tokyo-night": "^4.23.6",
     "codemirror": "^6.0.1",
     "jss": "^10.10.0",

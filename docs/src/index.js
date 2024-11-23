@@ -77,3399 +77,6 @@
     }
   };
 
-  // node_modules/.pnpm/@babel+runtime@7.26.0/node_modules/@babel/runtime/helpers/esm/extends.js
-  function _extends() {
-    return _extends = Object.assign ? Object.assign.bind() : function(n) {
-      for (var e = 1; e < arguments.length; e++) {
-        var t2 = arguments[e];
-        for (var r in t2) ({}).hasOwnProperty.call(t2, r) && (n[r] = t2[r]);
-      }
-      return n;
-    }, _extends.apply(null, arguments);
-  }
-
-  // node_modules/.pnpm/is-in-browser@1.1.3/node_modules/is-in-browser/dist/module.js
-  var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function(obj) {
-    return typeof obj;
-  } : function(obj) {
-    return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-  };
-  var isBrowser = (typeof window === "undefined" ? "undefined" : _typeof(window)) === "object" && (typeof document === "undefined" ? "undefined" : _typeof(document)) === "object" && document.nodeType === 9;
-  var module_default = isBrowser;
-
-  // node_modules/.pnpm/tiny-warning@1.0.3/node_modules/tiny-warning/dist/tiny-warning.esm.js
-  var isProduction = false;
-  function warning(condition, message) {
-    if (!isProduction) {
-      if (condition) {
-        return;
-      }
-      var text = "Warning: " + message;
-      if (typeof console !== "undefined") {
-        console.warn(text);
-      }
-      try {
-        throw Error(text);
-      } catch (x) {
-      }
-    }
-  }
-  var tiny_warning_esm_default = warning;
-
-  // node_modules/.pnpm/@babel+runtime@7.26.0/node_modules/@babel/runtime/helpers/esm/typeof.js
-  function _typeof2(o) {
-    "@babel/helpers - typeof";
-    return _typeof2 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(o2) {
-      return typeof o2;
-    } : function(o2) {
-      return o2 && "function" == typeof Symbol && o2.constructor === Symbol && o2 !== Symbol.prototype ? "symbol" : typeof o2;
-    }, _typeof2(o);
-  }
-
-  // node_modules/.pnpm/@babel+runtime@7.26.0/node_modules/@babel/runtime/helpers/esm/toPrimitive.js
-  function toPrimitive(t2, r) {
-    if ("object" != _typeof2(t2) || !t2) return t2;
-    var e = t2[Symbol.toPrimitive];
-    if (void 0 !== e) {
-      var i = e.call(t2, r || "default");
-      if ("object" != _typeof2(i)) return i;
-      throw new TypeError("@@toPrimitive must return a primitive value.");
-    }
-    return ("string" === r ? String : Number)(t2);
-  }
-
-  // node_modules/.pnpm/@babel+runtime@7.26.0/node_modules/@babel/runtime/helpers/esm/toPropertyKey.js
-  function toPropertyKey(t2) {
-    var i = toPrimitive(t2, "string");
-    return "symbol" == _typeof2(i) ? i : i + "";
-  }
-
-  // node_modules/.pnpm/@babel+runtime@7.26.0/node_modules/@babel/runtime/helpers/esm/createClass.js
-  function _defineProperties(e, r) {
-    for (var t2 = 0; t2 < r.length; t2++) {
-      var o = r[t2];
-      o.enumerable = o.enumerable || false, o.configurable = true, "value" in o && (o.writable = true), Object.defineProperty(e, toPropertyKey(o.key), o);
-    }
-  }
-  function _createClass(e, r, t2) {
-    return r && _defineProperties(e.prototype, r), t2 && _defineProperties(e, t2), Object.defineProperty(e, "prototype", {
-      writable: false
-    }), e;
-  }
-
-  // node_modules/.pnpm/@babel+runtime@7.26.0/node_modules/@babel/runtime/helpers/esm/setPrototypeOf.js
-  function _setPrototypeOf(t2, e) {
-    return _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function(t3, e2) {
-      return t3.__proto__ = e2, t3;
-    }, _setPrototypeOf(t2, e);
-  }
-
-  // node_modules/.pnpm/@babel+runtime@7.26.0/node_modules/@babel/runtime/helpers/esm/inheritsLoose.js
-  function _inheritsLoose(t2, o) {
-    t2.prototype = Object.create(o.prototype), t2.prototype.constructor = t2, _setPrototypeOf(t2, o);
-  }
-
-  // node_modules/.pnpm/@babel+runtime@7.26.0/node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js
-  function _assertThisInitialized(e) {
-    if (void 0 === e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-    return e;
-  }
-
-  // node_modules/.pnpm/@babel+runtime@7.26.0/node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js
-  function _objectWithoutPropertiesLoose(r, e) {
-    if (null == r) return {};
-    var t2 = {};
-    for (var n in r) if ({}.hasOwnProperty.call(r, n)) {
-      if (e.includes(n)) continue;
-      t2[n] = r[n];
-    }
-    return t2;
-  }
-
-  // node_modules/.pnpm/jss@10.10.0/node_modules/jss/dist/jss.esm.js
-  var plainObjectConstrurctor = {}.constructor;
-  function cloneStyle(style) {
-    if (style == null || typeof style !== "object") return style;
-    if (Array.isArray(style)) return style.map(cloneStyle);
-    if (style.constructor !== plainObjectConstrurctor) return style;
-    var newStyle = {};
-    for (var name2 in style) {
-      newStyle[name2] = cloneStyle(style[name2]);
-    }
-    return newStyle;
-  }
-  function createRule(name2, decl, options) {
-    if (name2 === void 0) {
-      name2 = "unnamed";
-    }
-    var jss = options.jss;
-    var declCopy = cloneStyle(decl);
-    var rule = jss.plugins.onCreateRule(name2, declCopy, options);
-    if (rule) return rule;
-    if (name2[0] === "@") {
-      true ? tiny_warning_esm_default(false, "[JSS] Unknown rule " + name2) : void 0;
-    }
-    return null;
-  }
-  var join = function join2(value, by) {
-    var result2 = "";
-    for (var i = 0; i < value.length; i++) {
-      if (value[i] === "!important") break;
-      if (result2) result2 += by;
-      result2 += value[i];
-    }
-    return result2;
-  };
-  var toCssValue = function toCssValue2(value) {
-    if (!Array.isArray(value)) return value;
-    var cssValue = "";
-    if (Array.isArray(value[0])) {
-      for (var i = 0; i < value.length; i++) {
-        if (value[i] === "!important") break;
-        if (cssValue) cssValue += ", ";
-        cssValue += join(value[i], " ");
-      }
-    } else cssValue = join(value, ", ");
-    if (value[value.length - 1] === "!important") {
-      cssValue += " !important";
-    }
-    return cssValue;
-  };
-  function getWhitespaceSymbols(options) {
-    if (options && options.format === false) {
-      return {
-        linebreak: "",
-        space: ""
-      };
-    }
-    return {
-      linebreak: "\n",
-      space: " "
-    };
-  }
-  function indentStr(str, indent) {
-    var result2 = "";
-    for (var index2 = 0; index2 < indent; index2++) {
-      result2 += "  ";
-    }
-    return result2 + str;
-  }
-  function toCss(selector, style, options) {
-    if (options === void 0) {
-      options = {};
-    }
-    var result2 = "";
-    if (!style) return result2;
-    var _options = options, _options$indent = _options.indent, indent = _options$indent === void 0 ? 0 : _options$indent;
-    var fallbacks = style.fallbacks;
-    if (options.format === false) {
-      indent = -Infinity;
-    }
-    var _getWhitespaceSymbols = getWhitespaceSymbols(options), linebreak = _getWhitespaceSymbols.linebreak, space2 = _getWhitespaceSymbols.space;
-    if (selector) indent++;
-    if (fallbacks) {
-      if (Array.isArray(fallbacks)) {
-        for (var index2 = 0; index2 < fallbacks.length; index2++) {
-          var fallback = fallbacks[index2];
-          for (var prop in fallback) {
-            var value = fallback[prop];
-            if (value != null) {
-              if (result2) result2 += linebreak;
-              result2 += indentStr(prop + ":" + space2 + toCssValue(value) + ";", indent);
-            }
-          }
-        }
-      } else {
-        for (var _prop in fallbacks) {
-          var _value = fallbacks[_prop];
-          if (_value != null) {
-            if (result2) result2 += linebreak;
-            result2 += indentStr(_prop + ":" + space2 + toCssValue(_value) + ";", indent);
-          }
-        }
-      }
-    }
-    for (var _prop2 in style) {
-      var _value2 = style[_prop2];
-      if (_value2 != null && _prop2 !== "fallbacks") {
-        if (result2) result2 += linebreak;
-        result2 += indentStr(_prop2 + ":" + space2 + toCssValue(_value2) + ";", indent);
-      }
-    }
-    if (!result2 && !options.allowEmpty) return result2;
-    if (!selector) return result2;
-    indent--;
-    if (result2) result2 = "" + linebreak + result2 + linebreak;
-    return indentStr("" + selector + space2 + "{" + result2, indent) + indentStr("}", indent);
-  }
-  var escapeRegex = /([[\].#*$><+~=|^:(),"'`\s])/g;
-  var nativeEscape = typeof CSS !== "undefined" && CSS.escape;
-  var escape = function(str) {
-    return nativeEscape ? nativeEscape(str) : str.replace(escapeRegex, "\\$1");
-  };
-  var BaseStyleRule = /* @__PURE__ */ function() {
-    function BaseStyleRule2(key, style, options) {
-      this.type = "style";
-      this.isProcessed = false;
-      var sheet = options.sheet, Renderer = options.Renderer;
-      this.key = key;
-      this.options = options;
-      this.style = style;
-      if (sheet) this.renderer = sheet.renderer;
-      else if (Renderer) this.renderer = new Renderer();
-    }
-    var _proto = BaseStyleRule2.prototype;
-    _proto.prop = function prop(name2, value, options) {
-      if (value === void 0) return this.style[name2];
-      var force = options ? options.force : false;
-      if (!force && this.style[name2] === value) return this;
-      var newValue = value;
-      if (!options || options.process !== false) {
-        newValue = this.options.jss.plugins.onChangeValue(value, name2, this);
-      }
-      var isEmpty = newValue == null || newValue === false;
-      var isDefined = name2 in this.style;
-      if (isEmpty && !isDefined && !force) return this;
-      var remove2 = isEmpty && isDefined;
-      if (remove2) delete this.style[name2];
-      else this.style[name2] = newValue;
-      if (this.renderable && this.renderer) {
-        if (remove2) this.renderer.removeProperty(this.renderable, name2);
-        else this.renderer.setProperty(this.renderable, name2, newValue);
-        return this;
-      }
-      var sheet = this.options.sheet;
-      if (sheet && sheet.attached) {
-        true ? tiny_warning_esm_default(false, '[JSS] Rule is not linked. Missing sheet option "link: true".') : void 0;
-      }
-      return this;
-    };
-    return BaseStyleRule2;
-  }();
-  var StyleRule = /* @__PURE__ */ function(_BaseStyleRule) {
-    _inheritsLoose(StyleRule2, _BaseStyleRule);
-    function StyleRule2(key, style, options) {
-      var _this;
-      _this = _BaseStyleRule.call(this, key, style, options) || this;
-      var selector = options.selector, scoped = options.scoped, sheet = options.sheet, generateId = options.generateId;
-      if (selector) {
-        _this.selectorText = selector;
-      } else if (scoped !== false) {
-        _this.id = generateId(_assertThisInitialized(_assertThisInitialized(_this)), sheet);
-        _this.selectorText = "." + escape(_this.id);
-      }
-      return _this;
-    }
-    var _proto2 = StyleRule2.prototype;
-    _proto2.applyTo = function applyTo(renderable) {
-      var renderer = this.renderer;
-      if (renderer) {
-        var json = this.toJSON();
-        for (var prop in json) {
-          renderer.setProperty(renderable, prop, json[prop]);
-        }
-      }
-      return this;
-    };
-    _proto2.toJSON = function toJSON() {
-      var json = {};
-      for (var prop in this.style) {
-        var value = this.style[prop];
-        if (typeof value !== "object") json[prop] = value;
-        else if (Array.isArray(value)) json[prop] = toCssValue(value);
-      }
-      return json;
-    };
-    _proto2.toString = function toString(options) {
-      var sheet = this.options.sheet;
-      var link = sheet ? sheet.options.link : false;
-      var opts = link ? _extends({}, options, {
-        allowEmpty: true
-      }) : options;
-      return toCss(this.selectorText, this.style, opts);
-    };
-    _createClass(StyleRule2, [{
-      key: "selector",
-      set: function set(selector) {
-        if (selector === this.selectorText) return;
-        this.selectorText = selector;
-        var renderer = this.renderer, renderable = this.renderable;
-        if (!renderable || !renderer) return;
-        var hasChanged = renderer.setSelector(renderable, selector);
-        if (!hasChanged) {
-          renderer.replaceRule(renderable, this);
-        }
-      },
-      get: function get() {
-        return this.selectorText;
-      }
-    }]);
-    return StyleRule2;
-  }(BaseStyleRule);
-  var pluginStyleRule = {
-    onCreateRule: function onCreateRule(key, style, options) {
-      if (key[0] === "@" || options.parent && options.parent.type === "keyframes") {
-        return null;
-      }
-      return new StyleRule(key, style, options);
-    }
-  };
-  var defaultToStringOptions = {
-    indent: 1,
-    children: true
-  };
-  var atRegExp = /@([\w-]+)/;
-  var ConditionalRule = /* @__PURE__ */ function() {
-    function ConditionalRule2(key, styles, options) {
-      this.type = "conditional";
-      this.isProcessed = false;
-      this.key = key;
-      var atMatch = key.match(atRegExp);
-      this.at = atMatch ? atMatch[1] : "unknown";
-      this.query = options.name || "@" + this.at;
-      this.options = options;
-      this.rules = new RuleList(_extends({}, options, {
-        parent: this
-      }));
-      for (var name2 in styles) {
-        this.rules.add(name2, styles[name2]);
-      }
-      this.rules.process();
-    }
-    var _proto = ConditionalRule2.prototype;
-    _proto.getRule = function getRule(name2) {
-      return this.rules.get(name2);
-    };
-    _proto.indexOf = function indexOf(rule) {
-      return this.rules.indexOf(rule);
-    };
-    _proto.addRule = function addRule(name2, style, options) {
-      var rule = this.rules.add(name2, style, options);
-      if (!rule) return null;
-      this.options.jss.plugins.onProcessRule(rule);
-      return rule;
-    };
-    _proto.replaceRule = function replaceRule(name2, style, options) {
-      var newRule = this.rules.replace(name2, style, options);
-      if (newRule) this.options.jss.plugins.onProcessRule(newRule);
-      return newRule;
-    };
-    _proto.toString = function toString(options) {
-      if (options === void 0) {
-        options = defaultToStringOptions;
-      }
-      var _getWhitespaceSymbols = getWhitespaceSymbols(options), linebreak = _getWhitespaceSymbols.linebreak;
-      if (options.indent == null) options.indent = defaultToStringOptions.indent;
-      if (options.children == null) options.children = defaultToStringOptions.children;
-      if (options.children === false) {
-        return this.query + " {}";
-      }
-      var children = this.rules.toString(options);
-      return children ? this.query + " {" + linebreak + children + linebreak + "}" : "";
-    };
-    return ConditionalRule2;
-  }();
-  var keyRegExp = /@container|@media|@supports\s+/;
-  var pluginConditionalRule = {
-    onCreateRule: function onCreateRule2(key, styles, options) {
-      return keyRegExp.test(key) ? new ConditionalRule(key, styles, options) : null;
-    }
-  };
-  var defaultToStringOptions$1 = {
-    indent: 1,
-    children: true
-  };
-  var nameRegExp = /@keyframes\s+([\w-]+)/;
-  var KeyframesRule = /* @__PURE__ */ function() {
-    function KeyframesRule2(key, frames, options) {
-      this.type = "keyframes";
-      this.at = "@keyframes";
-      this.isProcessed = false;
-      var nameMatch = key.match(nameRegExp);
-      if (nameMatch && nameMatch[1]) {
-        this.name = nameMatch[1];
-      } else {
-        this.name = "noname";
-        true ? tiny_warning_esm_default(false, "[JSS] Bad keyframes name " + key) : void 0;
-      }
-      this.key = this.type + "-" + this.name;
-      this.options = options;
-      var scoped = options.scoped, sheet = options.sheet, generateId = options.generateId;
-      this.id = scoped === false ? this.name : escape(generateId(this, sheet));
-      this.rules = new RuleList(_extends({}, options, {
-        parent: this
-      }));
-      for (var name2 in frames) {
-        this.rules.add(name2, frames[name2], _extends({}, options, {
-          parent: this
-        }));
-      }
-      this.rules.process();
-    }
-    var _proto = KeyframesRule2.prototype;
-    _proto.toString = function toString(options) {
-      if (options === void 0) {
-        options = defaultToStringOptions$1;
-      }
-      var _getWhitespaceSymbols = getWhitespaceSymbols(options), linebreak = _getWhitespaceSymbols.linebreak;
-      if (options.indent == null) options.indent = defaultToStringOptions$1.indent;
-      if (options.children == null) options.children = defaultToStringOptions$1.children;
-      if (options.children === false) {
-        return this.at + " " + this.id + " {}";
-      }
-      var children = this.rules.toString(options);
-      if (children) children = "" + linebreak + children + linebreak;
-      return this.at + " " + this.id + " {" + children + "}";
-    };
-    return KeyframesRule2;
-  }();
-  var keyRegExp$1 = /@keyframes\s+/;
-  var refRegExp = /\$([\w-]+)/g;
-  var findReferencedKeyframe = function findReferencedKeyframe2(val, keyframes) {
-    if (typeof val === "string") {
-      return val.replace(refRegExp, function(match, name2) {
-        if (name2 in keyframes) {
-          return keyframes[name2];
-        }
-        true ? tiny_warning_esm_default(false, '[JSS] Referenced keyframes rule "' + name2 + '" is not defined.') : void 0;
-        return match;
-      });
-    }
-    return val;
-  };
-  var replaceRef = function replaceRef2(style, prop, keyframes) {
-    var value = style[prop];
-    var refKeyframe = findReferencedKeyframe(value, keyframes);
-    if (refKeyframe !== value) {
-      style[prop] = refKeyframe;
-    }
-  };
-  var pluginKeyframesRule = {
-    onCreateRule: function onCreateRule3(key, frames, options) {
-      return typeof key === "string" && keyRegExp$1.test(key) ? new KeyframesRule(key, frames, options) : null;
-    },
-    // Animation name ref replacer.
-    onProcessStyle: function onProcessStyle(style, rule, sheet) {
-      if (rule.type !== "style" || !sheet) return style;
-      if ("animation-name" in style) replaceRef(style, "animation-name", sheet.keyframes);
-      if ("animation" in style) replaceRef(style, "animation", sheet.keyframes);
-      return style;
-    },
-    onChangeValue: function onChangeValue(val, prop, rule) {
-      var sheet = rule.options.sheet;
-      if (!sheet) {
-        return val;
-      }
-      switch (prop) {
-        case "animation":
-          return findReferencedKeyframe(val, sheet.keyframes);
-        case "animation-name":
-          return findReferencedKeyframe(val, sheet.keyframes);
-        default:
-          return val;
-      }
-    }
-  };
-  var KeyframeRule = /* @__PURE__ */ function(_BaseStyleRule) {
-    _inheritsLoose(KeyframeRule2, _BaseStyleRule);
-    function KeyframeRule2() {
-      return _BaseStyleRule.apply(this, arguments) || this;
-    }
-    var _proto = KeyframeRule2.prototype;
-    _proto.toString = function toString(options) {
-      var sheet = this.options.sheet;
-      var link = sheet ? sheet.options.link : false;
-      var opts = link ? _extends({}, options, {
-        allowEmpty: true
-      }) : options;
-      return toCss(this.key, this.style, opts);
-    };
-    return KeyframeRule2;
-  }(BaseStyleRule);
-  var pluginKeyframeRule = {
-    onCreateRule: function onCreateRule4(key, style, options) {
-      if (options.parent && options.parent.type === "keyframes") {
-        return new KeyframeRule(key, style, options);
-      }
-      return null;
-    }
-  };
-  var FontFaceRule = /* @__PURE__ */ function() {
-    function FontFaceRule2(key, style, options) {
-      this.type = "font-face";
-      this.at = "@font-face";
-      this.isProcessed = false;
-      this.key = key;
-      this.style = style;
-      this.options = options;
-    }
-    var _proto = FontFaceRule2.prototype;
-    _proto.toString = function toString(options) {
-      var _getWhitespaceSymbols = getWhitespaceSymbols(options), linebreak = _getWhitespaceSymbols.linebreak;
-      if (Array.isArray(this.style)) {
-        var str = "";
-        for (var index2 = 0; index2 < this.style.length; index2++) {
-          str += toCss(this.at, this.style[index2]);
-          if (this.style[index2 + 1]) str += linebreak;
-        }
-        return str;
-      }
-      return toCss(this.at, this.style, options);
-    };
-    return FontFaceRule2;
-  }();
-  var keyRegExp$2 = /@font-face/;
-  var pluginFontFaceRule = {
-    onCreateRule: function onCreateRule5(key, style, options) {
-      return keyRegExp$2.test(key) ? new FontFaceRule(key, style, options) : null;
-    }
-  };
-  var ViewportRule = /* @__PURE__ */ function() {
-    function ViewportRule2(key, style, options) {
-      this.type = "viewport";
-      this.at = "@viewport";
-      this.isProcessed = false;
-      this.key = key;
-      this.style = style;
-      this.options = options;
-    }
-    var _proto = ViewportRule2.prototype;
-    _proto.toString = function toString(options) {
-      return toCss(this.key, this.style, options);
-    };
-    return ViewportRule2;
-  }();
-  var pluginViewportRule = {
-    onCreateRule: function onCreateRule6(key, style, options) {
-      return key === "@viewport" || key === "@-ms-viewport" ? new ViewportRule(key, style, options) : null;
-    }
-  };
-  var SimpleRule = /* @__PURE__ */ function() {
-    function SimpleRule2(key, value, options) {
-      this.type = "simple";
-      this.isProcessed = false;
-      this.key = key;
-      this.value = value;
-      this.options = options;
-    }
-    var _proto = SimpleRule2.prototype;
-    _proto.toString = function toString(options) {
-      if (Array.isArray(this.value)) {
-        var str = "";
-        for (var index2 = 0; index2 < this.value.length; index2++) {
-          str += this.key + " " + this.value[index2] + ";";
-          if (this.value[index2 + 1]) str += "\n";
-        }
-        return str;
-      }
-      return this.key + " " + this.value + ";";
-    };
-    return SimpleRule2;
-  }();
-  var keysMap = {
-    "@charset": true,
-    "@import": true,
-    "@namespace": true
-  };
-  var pluginSimpleRule = {
-    onCreateRule: function onCreateRule7(key, value, options) {
-      return key in keysMap ? new SimpleRule(key, value, options) : null;
-    }
-  };
-  var plugins = [pluginStyleRule, pluginConditionalRule, pluginKeyframesRule, pluginKeyframeRule, pluginFontFaceRule, pluginViewportRule, pluginSimpleRule];
-  var defaultUpdateOptions = {
-    process: true
-  };
-  var forceUpdateOptions = {
-    force: true,
-    process: true
-    /**
-     * Contains rules objects and allows adding/removing etc.
-     * Is used for e.g. by `StyleSheet` or `ConditionalRule`.
-     */
-  };
-  var RuleList = /* @__PURE__ */ function() {
-    function RuleList2(options) {
-      this.map = {};
-      this.raw = {};
-      this.index = [];
-      this.counter = 0;
-      this.options = options;
-      this.classes = options.classes;
-      this.keyframes = options.keyframes;
-    }
-    var _proto = RuleList2.prototype;
-    _proto.add = function add2(name2, decl, ruleOptions) {
-      var _this$options = this.options, parent = _this$options.parent, sheet = _this$options.sheet, jss = _this$options.jss, Renderer = _this$options.Renderer, generateId = _this$options.generateId, scoped = _this$options.scoped;
-      var options = _extends({
-        classes: this.classes,
-        parent,
-        sheet,
-        jss,
-        Renderer,
-        generateId,
-        scoped,
-        name: name2,
-        keyframes: this.keyframes,
-        selector: void 0
-      }, ruleOptions);
-      var key = name2;
-      if (name2 in this.raw) {
-        key = name2 + "-d" + this.counter++;
-      }
-      this.raw[key] = decl;
-      if (key in this.classes) {
-        options.selector = "." + escape(this.classes[key]);
-      }
-      var rule = createRule(key, decl, options);
-      if (!rule) return null;
-      this.register(rule);
-      var index2 = options.index === void 0 ? this.index.length : options.index;
-      this.index.splice(index2, 0, rule);
-      return rule;
-    };
-    _proto.replace = function replace2(name2, decl, ruleOptions) {
-      var oldRule = this.get(name2);
-      var oldIndex = this.index.indexOf(oldRule);
-      if (oldRule) {
-        this.remove(oldRule);
-      }
-      var options = ruleOptions;
-      if (oldIndex !== -1) options = _extends({}, ruleOptions, {
-        index: oldIndex
-      });
-      return this.add(name2, decl, options);
-    };
-    _proto.get = function get(nameOrSelector) {
-      return this.map[nameOrSelector];
-    };
-    _proto.remove = function remove2(rule) {
-      this.unregister(rule);
-      delete this.raw[rule.key];
-      this.index.splice(this.index.indexOf(rule), 1);
-    };
-    _proto.indexOf = function indexOf(rule) {
-      return this.index.indexOf(rule);
-    };
-    _proto.process = function process2() {
-      var plugins3 = this.options.jss.plugins;
-      this.index.slice(0).forEach(plugins3.onProcessRule, plugins3);
-    };
-    _proto.register = function register(rule) {
-      this.map[rule.key] = rule;
-      if (rule instanceof StyleRule) {
-        this.map[rule.selector] = rule;
-        if (rule.id) this.classes[rule.key] = rule.id;
-      } else if (rule instanceof KeyframesRule && this.keyframes) {
-        this.keyframes[rule.name] = rule.id;
-      }
-    };
-    _proto.unregister = function unregister(rule) {
-      delete this.map[rule.key];
-      if (rule instanceof StyleRule) {
-        delete this.map[rule.selector];
-        delete this.classes[rule.key];
-      } else if (rule instanceof KeyframesRule) {
-        delete this.keyframes[rule.name];
-      }
-    };
-    _proto.update = function update() {
-      var name2;
-      var data;
-      var options;
-      if (typeof (arguments.length <= 0 ? void 0 : arguments[0]) === "string") {
-        name2 = arguments.length <= 0 ? void 0 : arguments[0];
-        data = arguments.length <= 1 ? void 0 : arguments[1];
-        options = arguments.length <= 2 ? void 0 : arguments[2];
-      } else {
-        data = arguments.length <= 0 ? void 0 : arguments[0];
-        options = arguments.length <= 1 ? void 0 : arguments[1];
-        name2 = null;
-      }
-      if (name2) {
-        this.updateOne(this.get(name2), data, options);
-      } else {
-        for (var index2 = 0; index2 < this.index.length; index2++) {
-          this.updateOne(this.index[index2], data, options);
-        }
-      }
-    };
-    _proto.updateOne = function updateOne(rule, data, options) {
-      if (options === void 0) {
-        options = defaultUpdateOptions;
-      }
-      var _this$options2 = this.options, plugins3 = _this$options2.jss.plugins, sheet = _this$options2.sheet;
-      if (rule.rules instanceof RuleList2) {
-        rule.rules.update(data, options);
-        return;
-      }
-      var style = rule.style;
-      plugins3.onUpdate(data, rule, sheet, options);
-      if (options.process && style && style !== rule.style) {
-        plugins3.onProcessStyle(rule.style, rule, sheet);
-        for (var prop in rule.style) {
-          var nextValue = rule.style[prop];
-          var prevValue = style[prop];
-          if (nextValue !== prevValue) {
-            rule.prop(prop, nextValue, forceUpdateOptions);
-          }
-        }
-        for (var _prop in style) {
-          var _nextValue = rule.style[_prop];
-          var _prevValue = style[_prop];
-          if (_nextValue == null && _nextValue !== _prevValue) {
-            rule.prop(_prop, null, forceUpdateOptions);
-          }
-        }
-      }
-    };
-    _proto.toString = function toString(options) {
-      var str = "";
-      var sheet = this.options.sheet;
-      var link = sheet ? sheet.options.link : false;
-      var _getWhitespaceSymbols = getWhitespaceSymbols(options), linebreak = _getWhitespaceSymbols.linebreak;
-      for (var index2 = 0; index2 < this.index.length; index2++) {
-        var rule = this.index[index2];
-        var css2 = rule.toString(options);
-        if (!css2 && !link) continue;
-        if (str) str += linebreak;
-        str += css2;
-      }
-      return str;
-    };
-    return RuleList2;
-  }();
-  var StyleSheet = /* @__PURE__ */ function() {
-    function StyleSheet3(styles, options) {
-      this.attached = false;
-      this.deployed = false;
-      this.classes = {};
-      this.keyframes = {};
-      this.options = _extends({}, options, {
-        sheet: this,
-        parent: this,
-        classes: this.classes,
-        keyframes: this.keyframes
-      });
-      if (options.Renderer) {
-        this.renderer = new options.Renderer(this);
-      }
-      this.rules = new RuleList(this.options);
-      for (var name2 in styles) {
-        this.rules.add(name2, styles[name2]);
-      }
-      this.rules.process();
-    }
-    var _proto = StyleSheet3.prototype;
-    _proto.attach = function attach() {
-      if (this.attached) return this;
-      if (this.renderer) this.renderer.attach();
-      this.attached = true;
-      if (!this.deployed) this.deploy();
-      return this;
-    };
-    _proto.detach = function detach() {
-      if (!this.attached) return this;
-      if (this.renderer) this.renderer.detach();
-      this.attached = false;
-      return this;
-    };
-    _proto.addRule = function addRule(name2, decl, options) {
-      var queue = this.queue;
-      if (this.attached && !queue) this.queue = [];
-      var rule = this.rules.add(name2, decl, options);
-      if (!rule) return null;
-      this.options.jss.plugins.onProcessRule(rule);
-      if (this.attached) {
-        if (!this.deployed) return rule;
-        if (queue) queue.push(rule);
-        else {
-          this.insertRule(rule);
-          if (this.queue) {
-            this.queue.forEach(this.insertRule, this);
-            this.queue = void 0;
-          }
-        }
-        return rule;
-      }
-      this.deployed = false;
-      return rule;
-    };
-    _proto.replaceRule = function replaceRule(nameOrSelector, decl, options) {
-      var oldRule = this.rules.get(nameOrSelector);
-      if (!oldRule) return this.addRule(nameOrSelector, decl, options);
-      var newRule = this.rules.replace(nameOrSelector, decl, options);
-      if (newRule) {
-        this.options.jss.plugins.onProcessRule(newRule);
-      }
-      if (this.attached) {
-        if (!this.deployed) return newRule;
-        if (this.renderer) {
-          if (!newRule) {
-            this.renderer.deleteRule(oldRule);
-          } else if (oldRule.renderable) {
-            this.renderer.replaceRule(oldRule.renderable, newRule);
-          }
-        }
-        return newRule;
-      }
-      this.deployed = false;
-      return newRule;
-    };
-    _proto.insertRule = function insertRule2(rule) {
-      if (this.renderer) {
-        this.renderer.insertRule(rule);
-      }
-    };
-    _proto.addRules = function addRules(styles, options) {
-      var added = [];
-      for (var name2 in styles) {
-        var rule = this.addRule(name2, styles[name2], options);
-        if (rule) added.push(rule);
-      }
-      return added;
-    };
-    _proto.getRule = function getRule(nameOrSelector) {
-      return this.rules.get(nameOrSelector);
-    };
-    _proto.deleteRule = function deleteRule(name2) {
-      var rule = typeof name2 === "object" ? name2 : this.rules.get(name2);
-      if (!rule || // Style sheet was created without link: true and attached, in this case we
-      // won't be able to remove the CSS rule from the DOM.
-      this.attached && !rule.renderable) {
-        return false;
-      }
-      this.rules.remove(rule);
-      if (this.attached && rule.renderable && this.renderer) {
-        return this.renderer.deleteRule(rule.renderable);
-      }
-      return true;
-    };
-    _proto.indexOf = function indexOf(rule) {
-      return this.rules.indexOf(rule);
-    };
-    _proto.deploy = function deploy() {
-      if (this.renderer) this.renderer.deploy();
-      this.deployed = true;
-      return this;
-    };
-    _proto.update = function update() {
-      var _this$rules;
-      (_this$rules = this.rules).update.apply(_this$rules, arguments);
-      return this;
-    };
-    _proto.updateOne = function updateOne(rule, data, options) {
-      this.rules.updateOne(rule, data, options);
-      return this;
-    };
-    _proto.toString = function toString(options) {
-      return this.rules.toString(options);
-    };
-    return StyleSheet3;
-  }();
-  var PluginsRegistry = /* @__PURE__ */ function() {
-    function PluginsRegistry2() {
-      this.plugins = {
-        internal: [],
-        external: []
-      };
-      this.registry = {};
-    }
-    var _proto = PluginsRegistry2.prototype;
-    _proto.onCreateRule = function onCreateRule8(name2, decl, options) {
-      for (var i = 0; i < this.registry.onCreateRule.length; i++) {
-        var rule = this.registry.onCreateRule[i](name2, decl, options);
-        if (rule) return rule;
-      }
-      return null;
-    };
-    _proto.onProcessRule = function onProcessRule3(rule) {
-      if (rule.isProcessed) return;
-      var sheet = rule.options.sheet;
-      for (var i = 0; i < this.registry.onProcessRule.length; i++) {
-        this.registry.onProcessRule[i](rule, sheet);
-      }
-      if (rule.style) this.onProcessStyle(rule.style, rule, sheet);
-      rule.isProcessed = true;
-    };
-    _proto.onProcessStyle = function onProcessStyle2(style, rule, sheet) {
-      for (var i = 0; i < this.registry.onProcessStyle.length; i++) {
-        rule.style = this.registry.onProcessStyle[i](rule.style, rule, sheet);
-      }
-    };
-    _proto.onProcessSheet = function onProcessSheet(sheet) {
-      for (var i = 0; i < this.registry.onProcessSheet.length; i++) {
-        this.registry.onProcessSheet[i](sheet);
-      }
-    };
-    _proto.onUpdate = function onUpdate(data, rule, sheet, options) {
-      for (var i = 0; i < this.registry.onUpdate.length; i++) {
-        this.registry.onUpdate[i](data, rule, sheet, options);
-      }
-    };
-    _proto.onChangeValue = function onChangeValue2(value, prop, rule) {
-      var processedValue = value;
-      for (var i = 0; i < this.registry.onChangeValue.length; i++) {
-        processedValue = this.registry.onChangeValue[i](processedValue, prop, rule);
-      }
-      return processedValue;
-    };
-    _proto.use = function use(newPlugin, options) {
-      if (options === void 0) {
-        options = {
-          queue: "external"
-        };
-      }
-      var plugins3 = this.plugins[options.queue];
-      if (plugins3.indexOf(newPlugin) !== -1) {
-        return;
-      }
-      plugins3.push(newPlugin);
-      this.registry = [].concat(this.plugins.external, this.plugins.internal).reduce(function(registry, plugin) {
-        for (var name2 in plugin) {
-          if (name2 in registry) {
-            registry[name2].push(plugin[name2]);
-          } else {
-            true ? tiny_warning_esm_default(false, '[JSS] Unknown hook "' + name2 + '".') : void 0;
-          }
-        }
-        return registry;
-      }, {
-        onCreateRule: [],
-        onProcessRule: [],
-        onProcessStyle: [],
-        onProcessSheet: [],
-        onChangeValue: [],
-        onUpdate: []
-      });
-    };
-    return PluginsRegistry2;
-  }();
-  var SheetsRegistry = /* @__PURE__ */ function() {
-    function SheetsRegistry2() {
-      this.registry = [];
-    }
-    var _proto = SheetsRegistry2.prototype;
-    _proto.add = function add2(sheet) {
-      var registry = this.registry;
-      var index2 = sheet.options.index;
-      if (registry.indexOf(sheet) !== -1) return;
-      if (registry.length === 0 || index2 >= this.index) {
-        registry.push(sheet);
-        return;
-      }
-      for (var i = 0; i < registry.length; i++) {
-        if (registry[i].options.index > index2) {
-          registry.splice(i, 0, sheet);
-          return;
-        }
-      }
-    };
-    _proto.reset = function reset() {
-      this.registry = [];
-    };
-    _proto.remove = function remove2(sheet) {
-      var index2 = this.registry.indexOf(sheet);
-      this.registry.splice(index2, 1);
-    };
-    _proto.toString = function toString(_temp) {
-      var _ref = _temp === void 0 ? {} : _temp, attached = _ref.attached, options = _objectWithoutPropertiesLoose(_ref, ["attached"]);
-      var _getWhitespaceSymbols = getWhitespaceSymbols(options), linebreak = _getWhitespaceSymbols.linebreak;
-      var css2 = "";
-      for (var i = 0; i < this.registry.length; i++) {
-        var sheet = this.registry[i];
-        if (attached != null && sheet.attached !== attached) {
-          continue;
-        }
-        if (css2) css2 += linebreak;
-        css2 += sheet.toString(options);
-      }
-      return css2;
-    };
-    _createClass(SheetsRegistry2, [{
-      key: "index",
-      /**
-       * Current highest index number.
-       */
-      get: function get() {
-        return this.registry.length === 0 ? 0 : this.registry[this.registry.length - 1].options.index;
-      }
-    }]);
-    return SheetsRegistry2;
-  }();
-  var sheets = new SheetsRegistry();
-  var globalThis$1 = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" && window.Math === Math ? window : typeof self !== "undefined" && self.Math === Math ? self : Function("return this")();
-  var ns = "2f1acc6c3a606b082e5eef5e54414ffb";
-  if (globalThis$1[ns] == null) globalThis$1[ns] = 0;
-  var moduleId = globalThis$1[ns]++;
-  var maxRules = 1e10;
-  var createGenerateId = function createGenerateId2(options) {
-    if (options === void 0) {
-      options = {};
-    }
-    var ruleCounter = 0;
-    var generateId = function generateId2(rule, sheet) {
-      ruleCounter += 1;
-      if (ruleCounter > maxRules) {
-        true ? tiny_warning_esm_default(false, "[JSS] You might have a memory leak. Rule counter is at " + ruleCounter + ".") : void 0;
-      }
-      var jssId = "";
-      var prefix2 = "";
-      if (sheet) {
-        if (sheet.options.classNamePrefix) {
-          prefix2 = sheet.options.classNamePrefix;
-        }
-        if (sheet.options.jss.id != null) {
-          jssId = String(sheet.options.jss.id);
-        }
-      }
-      if (options.minify) {
-        return "" + (prefix2 || "c") + moduleId + jssId + ruleCounter;
-      }
-      return prefix2 + rule.key + "-" + moduleId + (jssId ? "-" + jssId : "") + "-" + ruleCounter;
-    };
-    return generateId;
-  };
-  var memoize = function memoize2(fn) {
-    var value;
-    return function() {
-      if (!value) value = fn();
-      return value;
-    };
-  };
-  var getPropertyValue = function getPropertyValue2(cssRule, prop) {
-    try {
-      if (cssRule.attributeStyleMap) {
-        return cssRule.attributeStyleMap.get(prop);
-      }
-      return cssRule.style.getPropertyValue(prop);
-    } catch (err) {
-      return "";
-    }
-  };
-  var setProperty = function setProperty2(cssRule, prop, value) {
-    try {
-      var cssValue = value;
-      if (Array.isArray(value)) {
-        cssValue = toCssValue(value);
-      }
-      if (cssRule.attributeStyleMap) {
-        cssRule.attributeStyleMap.set(prop, cssValue);
-      } else {
-        var indexOfImportantFlag = cssValue ? cssValue.indexOf("!important") : -1;
-        var cssValueWithoutImportantFlag = indexOfImportantFlag > -1 ? cssValue.substr(0, indexOfImportantFlag - 1) : cssValue;
-        cssRule.style.setProperty(prop, cssValueWithoutImportantFlag, indexOfImportantFlag > -1 ? "important" : "");
-      }
-    } catch (err) {
-      return false;
-    }
-    return true;
-  };
-  var removeProperty = function removeProperty2(cssRule, prop) {
-    try {
-      if (cssRule.attributeStyleMap) {
-        cssRule.attributeStyleMap.delete(prop);
-      } else {
-        cssRule.style.removeProperty(prop);
-      }
-    } catch (err) {
-      true ? tiny_warning_esm_default(false, '[JSS] DOMException "' + err.message + '" was thrown. Tried to remove property "' + prop + '".') : void 0;
-    }
-  };
-  var setSelector = function setSelector2(cssRule, selectorText) {
-    cssRule.selectorText = selectorText;
-    return cssRule.selectorText === selectorText;
-  };
-  var getHead = memoize(function() {
-    return document.querySelector("head");
-  });
-  function findHigherSheet(registry, options) {
-    for (var i = 0; i < registry.length; i++) {
-      var sheet = registry[i];
-      if (sheet.attached && sheet.options.index > options.index && sheet.options.insertionPoint === options.insertionPoint) {
-        return sheet;
-      }
-    }
-    return null;
-  }
-  function findHighestSheet(registry, options) {
-    for (var i = registry.length - 1; i >= 0; i--) {
-      var sheet = registry[i];
-      if (sheet.attached && sheet.options.insertionPoint === options.insertionPoint) {
-        return sheet;
-      }
-    }
-    return null;
-  }
-  function findCommentNode(text) {
-    var head = getHead();
-    for (var i = 0; i < head.childNodes.length; i++) {
-      var node = head.childNodes[i];
-      if (node.nodeType === 8 && node.nodeValue.trim() === text) {
-        return node;
-      }
-    }
-    return null;
-  }
-  function findPrevNode(options) {
-    var registry = sheets.registry;
-    if (registry.length > 0) {
-      var sheet = findHigherSheet(registry, options);
-      if (sheet && sheet.renderer) {
-        return {
-          parent: sheet.renderer.element.parentNode,
-          node: sheet.renderer.element
-        };
-      }
-      sheet = findHighestSheet(registry, options);
-      if (sheet && sheet.renderer) {
-        return {
-          parent: sheet.renderer.element.parentNode,
-          node: sheet.renderer.element.nextSibling
-        };
-      }
-    }
-    var insertionPoint = options.insertionPoint;
-    if (insertionPoint && typeof insertionPoint === "string") {
-      var comment2 = findCommentNode(insertionPoint);
-      if (comment2) {
-        return {
-          parent: comment2.parentNode,
-          node: comment2.nextSibling
-        };
-      }
-      true ? tiny_warning_esm_default(false, '[JSS] Insertion point "' + insertionPoint + '" not found.') : void 0;
-    }
-    return false;
-  }
-  function insertStyle(style, options) {
-    var insertionPoint = options.insertionPoint;
-    var nextNode = findPrevNode(options);
-    if (nextNode !== false && nextNode.parent) {
-      nextNode.parent.insertBefore(style, nextNode.node);
-      return;
-    }
-    if (insertionPoint && typeof insertionPoint.nodeType === "number") {
-      var insertionPointElement = insertionPoint;
-      var parentNode = insertionPointElement.parentNode;
-      if (parentNode) parentNode.insertBefore(style, insertionPointElement.nextSibling);
-      else true ? tiny_warning_esm_default(false, "[JSS] Insertion point is not in the DOM.") : void 0;
-      return;
-    }
-    getHead().appendChild(style);
-  }
-  var getNonce = memoize(function() {
-    var node = document.querySelector('meta[property="csp-nonce"]');
-    return node ? node.getAttribute("content") : null;
-  });
-  var _insertRule = function insertRule(container, rule, index2) {
-    try {
-      if ("insertRule" in container) {
-        container.insertRule(rule, index2);
-      } else if ("appendRule" in container) {
-        container.appendRule(rule);
-      }
-    } catch (err) {
-      true ? tiny_warning_esm_default(false, "[JSS] " + err.message) : void 0;
-      return false;
-    }
-    return container.cssRules[index2];
-  };
-  var getValidRuleInsertionIndex = function getValidRuleInsertionIndex2(container, index2) {
-    var maxIndex = container.cssRules.length;
-    if (index2 === void 0 || index2 > maxIndex) {
-      return maxIndex;
-    }
-    return index2;
-  };
-  var createStyle = function createStyle2() {
-    var el2 = document.createElement("style");
-    el2.textContent = "\n";
-    return el2;
-  };
-  var DomRenderer = /* @__PURE__ */ function() {
-    function DomRenderer2(sheet) {
-      this.getPropertyValue = getPropertyValue;
-      this.setProperty = setProperty;
-      this.removeProperty = removeProperty;
-      this.setSelector = setSelector;
-      this.hasInsertedRules = false;
-      this.cssRules = [];
-      if (sheet) sheets.add(sheet);
-      this.sheet = sheet;
-      var _ref = this.sheet ? this.sheet.options : {}, media = _ref.media, meta2 = _ref.meta, element = _ref.element;
-      this.element = element || createStyle();
-      this.element.setAttribute("data-jss", "");
-      if (media) this.element.setAttribute("media", media);
-      if (meta2) this.element.setAttribute("data-meta", meta2);
-      var nonce = getNonce();
-      if (nonce) this.element.setAttribute("nonce", nonce);
-    }
-    var _proto = DomRenderer2.prototype;
-    _proto.attach = function attach() {
-      if (this.element.parentNode || !this.sheet) return;
-      insertStyle(this.element, this.sheet.options);
-      var deployed = Boolean(this.sheet && this.sheet.deployed);
-      if (this.hasInsertedRules && deployed) {
-        this.hasInsertedRules = false;
-        this.deploy();
-      }
-    };
-    _proto.detach = function detach() {
-      if (!this.sheet) return;
-      var parentNode = this.element.parentNode;
-      if (parentNode) parentNode.removeChild(this.element);
-      if (this.sheet.options.link) {
-        this.cssRules = [];
-        this.element.textContent = "\n";
-      }
-    };
-    _proto.deploy = function deploy() {
-      var sheet = this.sheet;
-      if (!sheet) return;
-      if (sheet.options.link) {
-        this.insertRules(sheet.rules);
-        return;
-      }
-      this.element.textContent = "\n" + sheet.toString() + "\n";
-    };
-    _proto.insertRules = function insertRules(rules, nativeParent) {
-      for (var i = 0; i < rules.index.length; i++) {
-        this.insertRule(rules.index[i], i, nativeParent);
-      }
-    };
-    _proto.insertRule = function insertRule2(rule, index2, nativeParent) {
-      if (nativeParent === void 0) {
-        nativeParent = this.element.sheet;
-      }
-      if (rule.rules) {
-        var parent = rule;
-        var latestNativeParent = nativeParent;
-        if (rule.type === "conditional" || rule.type === "keyframes") {
-          var _insertionIndex = getValidRuleInsertionIndex(nativeParent, index2);
-          latestNativeParent = _insertRule(nativeParent, parent.toString({
-            children: false
-          }), _insertionIndex);
-          if (latestNativeParent === false) {
-            return false;
-          }
-          this.refCssRule(rule, _insertionIndex, latestNativeParent);
-        }
-        this.insertRules(parent.rules, latestNativeParent);
-        return latestNativeParent;
-      }
-      var ruleStr = rule.toString();
-      if (!ruleStr) return false;
-      var insertionIndex = getValidRuleInsertionIndex(nativeParent, index2);
-      var nativeRule = _insertRule(nativeParent, ruleStr, insertionIndex);
-      if (nativeRule === false) {
-        return false;
-      }
-      this.hasInsertedRules = true;
-      this.refCssRule(rule, insertionIndex, nativeRule);
-      return nativeRule;
-    };
-    _proto.refCssRule = function refCssRule(rule, index2, cssRule) {
-      rule.renderable = cssRule;
-      if (rule.options.parent instanceof StyleSheet) {
-        this.cssRules.splice(index2, 0, cssRule);
-      }
-    };
-    _proto.deleteRule = function deleteRule(cssRule) {
-      var sheet = this.element.sheet;
-      var index2 = this.indexOf(cssRule);
-      if (index2 === -1) return false;
-      sheet.deleteRule(index2);
-      this.cssRules.splice(index2, 1);
-      return true;
-    };
-    _proto.indexOf = function indexOf(cssRule) {
-      return this.cssRules.indexOf(cssRule);
-    };
-    _proto.replaceRule = function replaceRule(cssRule, rule) {
-      var index2 = this.indexOf(cssRule);
-      if (index2 === -1) return false;
-      this.element.sheet.deleteRule(index2);
-      this.cssRules.splice(index2, 1);
-      return this.insertRule(rule, index2);
-    };
-    _proto.getRules = function getRules() {
-      return this.element.sheet.cssRules;
-    };
-    return DomRenderer2;
-  }();
-  var instanceCounter = 0;
-  var Jss = /* @__PURE__ */ function() {
-    function Jss2(options) {
-      this.id = instanceCounter++;
-      this.version = "10.10.0";
-      this.plugins = new PluginsRegistry();
-      this.options = {
-        id: {
-          minify: false
-        },
-        createGenerateId,
-        Renderer: module_default ? DomRenderer : null,
-        plugins: []
-      };
-      this.generateId = createGenerateId({
-        minify: false
-      });
-      for (var i = 0; i < plugins.length; i++) {
-        this.plugins.use(plugins[i], {
-          queue: "internal"
-        });
-      }
-      this.setup(options);
-    }
-    var _proto = Jss2.prototype;
-    _proto.setup = function setup(options) {
-      if (options === void 0) {
-        options = {};
-      }
-      if (options.createGenerateId) {
-        this.options.createGenerateId = options.createGenerateId;
-      }
-      if (options.id) {
-        this.options.id = _extends({}, this.options.id, options.id);
-      }
-      if (options.createGenerateId || options.id) {
-        this.generateId = this.options.createGenerateId(this.options.id);
-      }
-      if (options.insertionPoint != null) this.options.insertionPoint = options.insertionPoint;
-      if ("Renderer" in options) {
-        this.options.Renderer = options.Renderer;
-      }
-      if (options.plugins) this.use.apply(this, options.plugins);
-      return this;
-    };
-    _proto.createStyleSheet = function createStyleSheet(styles, options) {
-      if (options === void 0) {
-        options = {};
-      }
-      var _options = options, index2 = _options.index;
-      if (typeof index2 !== "number") {
-        index2 = sheets.index === 0 ? 0 : sheets.index + 1;
-      }
-      var sheet = new StyleSheet(styles, _extends({}, options, {
-        jss: this,
-        generateId: options.generateId || this.generateId,
-        insertionPoint: this.options.insertionPoint,
-        Renderer: this.options.Renderer,
-        index: index2
-      }));
-      this.plugins.onProcessSheet(sheet);
-      return sheet;
-    };
-    _proto.removeStyleSheet = function removeStyleSheet(sheet) {
-      sheet.detach();
-      sheets.remove(sheet);
-      return this;
-    };
-    _proto.createRule = function createRule$1(name2, style, options) {
-      if (style === void 0) {
-        style = {};
-      }
-      if (options === void 0) {
-        options = {};
-      }
-      if (typeof name2 === "object") {
-        return this.createRule(void 0, name2, style);
-      }
-      var ruleOptions = _extends({}, options, {
-        name: name2,
-        jss: this,
-        Renderer: this.options.Renderer
-      });
-      if (!ruleOptions.generateId) ruleOptions.generateId = this.generateId;
-      if (!ruleOptions.classes) ruleOptions.classes = {};
-      if (!ruleOptions.keyframes) ruleOptions.keyframes = {};
-      var rule = createRule(name2, style, ruleOptions);
-      if (rule) this.plugins.onProcessRule(rule);
-      return rule;
-    };
-    _proto.use = function use() {
-      var _this = this;
-      for (var _len = arguments.length, plugins3 = new Array(_len), _key = 0; _key < _len; _key++) {
-        plugins3[_key] = arguments[_key];
-      }
-      plugins3.forEach(function(plugin) {
-        _this.plugins.use(plugin);
-      });
-      return this;
-    };
-    return Jss2;
-  }();
-  var createJss = function createJss2(options) {
-    return new Jss(options);
-  };
-  var hasCSSTOMSupport = typeof CSS === "object" && CSS != null && "number" in CSS;
-  var index = createJss();
-  var jss_esm_default = index;
-
-  // node_modules/.pnpm/jss-plugin-rule-value-function@10.10.0/node_modules/jss-plugin-rule-value-function/dist/jss-plugin-rule-value-function.esm.js
-  var now = Date.now();
-  var fnValuesNs = "fnValues" + now;
-  var fnRuleNs = "fnStyle" + ++now;
-  var functionPlugin = function functionPlugin2() {
-    return {
-      onCreateRule: function onCreateRule8(name2, decl, options) {
-        if (typeof decl !== "function") return null;
-        var rule = createRule(name2, {}, options);
-        rule[fnRuleNs] = decl;
-        return rule;
-      },
-      onProcessStyle: function onProcessStyle2(style, rule) {
-        if (fnValuesNs in rule || fnRuleNs in rule) return style;
-        var fnValues = {};
-        for (var prop in style) {
-          var value = style[prop];
-          if (typeof value !== "function") continue;
-          delete style[prop];
-          fnValues[prop] = value;
-        }
-        rule[fnValuesNs] = fnValues;
-        return style;
-      },
-      onUpdate: function onUpdate(data, rule, sheet, options) {
-        var styleRule = rule;
-        var fnRule = styleRule[fnRuleNs];
-        if (fnRule) {
-          styleRule.style = fnRule(data) || {};
-          if (true) {
-            for (var prop in styleRule.style) {
-              if (typeof styleRule.style[prop] === "function") {
-                true ? tiny_warning_esm_default(false, "[JSS] Function values inside function rules are not supported.") : void 0;
-                break;
-              }
-            }
-          }
-        }
-        var fnValues = styleRule[fnValuesNs];
-        if (fnValues) {
-          for (var _prop in fnValues) {
-            styleRule.prop(_prop, fnValues[_prop](data), options);
-          }
-        }
-      }
-    };
-  };
-  var jss_plugin_rule_value_function_esm_default = functionPlugin;
-
-  // node_modules/.pnpm/symbol-observable@1.2.0/node_modules/symbol-observable/es/ponyfill.js
-  function symbolObservablePonyfill(root2) {
-    var result2;
-    var Symbol2 = root2.Symbol;
-    if (typeof Symbol2 === "function") {
-      if (Symbol2.observable) {
-        result2 = Symbol2.observable;
-      } else {
-        result2 = Symbol2("observable");
-        Symbol2.observable = result2;
-      }
-    } else {
-      result2 = "@@observable";
-    }
-    return result2;
-  }
-
-  // node_modules/.pnpm/symbol-observable@1.2.0/node_modules/symbol-observable/es/index.js
-  var root;
-  if (typeof self !== "undefined") {
-    root = self;
-  } else if (typeof window !== "undefined") {
-    root = window;
-  } else if (typeof global !== "undefined") {
-    root = global;
-  } else if (typeof module !== "undefined") {
-    root = module;
-  } else {
-    root = Function("return this")();
-  }
-  var result = symbolObservablePonyfill(root);
-  var es_default = result;
-
-  // node_modules/.pnpm/jss-plugin-rule-value-observable@10.10.0/node_modules/jss-plugin-rule-value-observable/dist/jss-plugin-rule-value-observable.esm.js
-  var isObservable = function isObservable2(value) {
-    return value && value[es_default] && value === value[es_default]();
-  };
-  var observablePlugin = function observablePlugin2(updateOptions) {
-    return {
-      onCreateRule: function onCreateRule8(name2, decl, options) {
-        if (!isObservable(decl)) return null;
-        var style$ = decl;
-        var rule = createRule(name2, {}, options);
-        style$.subscribe(function(style) {
-          for (var prop in style) {
-            rule.prop(prop, style[prop], updateOptions);
-          }
-        });
-        return rule;
-      },
-      onProcessRule: function onProcessRule3(rule) {
-        if (rule && rule.type !== "style") return;
-        var styleRule = rule;
-        var style = styleRule.style;
-        var _loop = function _loop2(prop2) {
-          var value = style[prop2];
-          if (!isObservable(value)) return "continue";
-          delete style[prop2];
-          value.subscribe({
-            next: function next(nextValue) {
-              styleRule.prop(prop2, nextValue, updateOptions);
-            }
-          });
-        };
-        for (var prop in style) {
-          var _ret = _loop(prop);
-          if (_ret === "continue") continue;
-        }
-      }
-    };
-  };
-  var jss_plugin_rule_value_observable_esm_default = observablePlugin;
-
-  // node_modules/.pnpm/jss-plugin-template@10.10.0/node_modules/jss-plugin-template/dist/jss-plugin-template.esm.js
-  var semiWithNl = /;\n/;
-  var parse = function parse2(cssText) {
-    var style = {};
-    var split = cssText.split(semiWithNl);
-    for (var i = 0; i < split.length; i++) {
-      var decl = (split[i] || "").trim();
-      if (!decl) continue;
-      var colonIndex = decl.indexOf(":");
-      if (colonIndex === -1) {
-        true ? tiny_warning_esm_default(false, '[JSS] Malformed CSS string "' + decl + '"') : void 0;
-        continue;
-      }
-      var prop = decl.substr(0, colonIndex).trim();
-      var value = decl.substr(colonIndex + 1).trim();
-      style[prop] = value;
-    }
-    return style;
-  };
-  var onProcessRule = function onProcessRule2(rule) {
-    if (typeof rule.style === "string") {
-      rule.style = parse(rule.style);
-    }
-  };
-  function templatePlugin() {
-    return {
-      onProcessRule
-    };
-  }
-  var jss_plugin_template_esm_default = templatePlugin;
-
-  // node_modules/.pnpm/jss-plugin-global@10.10.0/node_modules/jss-plugin-global/dist/jss-plugin-global.esm.js
-  var at = "@global";
-  var atPrefix = "@global ";
-  var GlobalContainerRule = /* @__PURE__ */ function() {
-    function GlobalContainerRule2(key, styles, options) {
-      this.type = "global";
-      this.at = at;
-      this.isProcessed = false;
-      this.key = key;
-      this.options = options;
-      this.rules = new RuleList(_extends({}, options, {
-        parent: this
-      }));
-      for (var selector in styles) {
-        this.rules.add(selector, styles[selector]);
-      }
-      this.rules.process();
-    }
-    var _proto = GlobalContainerRule2.prototype;
-    _proto.getRule = function getRule(name2) {
-      return this.rules.get(name2);
-    };
-    _proto.addRule = function addRule(name2, style, options) {
-      var rule = this.rules.add(name2, style, options);
-      if (rule) this.options.jss.plugins.onProcessRule(rule);
-      return rule;
-    };
-    _proto.replaceRule = function replaceRule(name2, style, options) {
-      var newRule = this.rules.replace(name2, style, options);
-      if (newRule) this.options.jss.plugins.onProcessRule(newRule);
-      return newRule;
-    };
-    _proto.indexOf = function indexOf(rule) {
-      return this.rules.indexOf(rule);
-    };
-    _proto.toString = function toString(options) {
-      return this.rules.toString(options);
-    };
-    return GlobalContainerRule2;
-  }();
-  var GlobalPrefixedRule = /* @__PURE__ */ function() {
-    function GlobalPrefixedRule2(key, style, options) {
-      this.type = "global";
-      this.at = at;
-      this.isProcessed = false;
-      this.key = key;
-      this.options = options;
-      var selector = key.substr(atPrefix.length);
-      this.rule = options.jss.createRule(selector, style, _extends({}, options, {
-        parent: this
-      }));
-    }
-    var _proto2 = GlobalPrefixedRule2.prototype;
-    _proto2.toString = function toString(options) {
-      return this.rule ? this.rule.toString(options) : "";
-    };
-    return GlobalPrefixedRule2;
-  }();
-  var separatorRegExp = /\s*,\s*/g;
-  function addScope(selector, scope) {
-    var parts = selector.split(separatorRegExp);
-    var scoped = "";
-    for (var i = 0; i < parts.length; i++) {
-      scoped += scope + " " + parts[i].trim();
-      if (parts[i + 1]) scoped += ", ";
-    }
-    return scoped;
-  }
-  function handleNestedGlobalContainerRule(rule, sheet) {
-    var options = rule.options, style = rule.style;
-    var rules = style ? style[at] : null;
-    if (!rules) return;
-    for (var name2 in rules) {
-      sheet.addRule(name2, rules[name2], _extends({}, options, {
-        selector: addScope(name2, rule.selector)
-      }));
-    }
-    delete style[at];
-  }
-  function handlePrefixedGlobalRule(rule, sheet) {
-    var options = rule.options, style = rule.style;
-    for (var prop in style) {
-      if (prop[0] !== "@" || prop.substr(0, at.length) !== at) continue;
-      var selector = addScope(prop.substr(at.length), rule.selector);
-      sheet.addRule(selector, style[prop], _extends({}, options, {
-        selector
-      }));
-      delete style[prop];
-    }
-  }
-  function jssGlobal() {
-    function onCreateRule8(name2, styles, options) {
-      if (!name2) return null;
-      if (name2 === at) {
-        return new GlobalContainerRule(name2, styles, options);
-      }
-      if (name2[0] === "@" && name2.substr(0, atPrefix.length) === atPrefix) {
-        return new GlobalPrefixedRule(name2, styles, options);
-      }
-      var parent = options.parent;
-      if (parent) {
-        if (parent.type === "global" || parent.options.parent && parent.options.parent.type === "global") {
-          options.scoped = false;
-        }
-      }
-      if (!options.selector && options.scoped === false) {
-        options.selector = name2;
-      }
-      return null;
-    }
-    function onProcessRule3(rule, sheet) {
-      if (rule.type !== "style" || !sheet) return;
-      handleNestedGlobalContainerRule(rule, sheet);
-      handlePrefixedGlobalRule(rule, sheet);
-    }
-    return {
-      onCreateRule: onCreateRule8,
-      onProcessRule: onProcessRule3
-    };
-  }
-  var jss_plugin_global_esm_default = jssGlobal;
-
-  // node_modules/.pnpm/jss-plugin-extend@10.10.0/node_modules/jss-plugin-extend/dist/jss-plugin-extend.esm.js
-  var isObject = function isObject2(obj) {
-    return obj && typeof obj === "object" && !Array.isArray(obj);
-  };
-  var valueNs = "extendCurrValue" + Date.now();
-  function mergeExtend(style, rule, sheet, newStyle) {
-    var extendType = typeof style.extend;
-    if (extendType === "string") {
-      if (!sheet) return;
-      var refRule = sheet.getRule(style.extend);
-      if (!refRule) return;
-      if (refRule === rule) {
-        true ? tiny_warning_esm_default(false, "[JSS] A rule tries to extend itself \n" + rule.toString()) : void 0;
-        return;
-      }
-      var parent = refRule.options.parent;
-      if (parent) {
-        var originalStyle = parent.rules.raw[style.extend];
-        extend(originalStyle, rule, sheet, newStyle);
-      }
-      return;
-    }
-    if (Array.isArray(style.extend)) {
-      for (var index2 = 0; index2 < style.extend.length; index2++) {
-        var singleExtend = style.extend[index2];
-        var singleStyle = typeof singleExtend === "string" ? _extends({}, style, {
-          extend: singleExtend
-        }) : style.extend[index2];
-        extend(singleStyle, rule, sheet, newStyle);
-      }
-      return;
-    }
-    for (var prop in style.extend) {
-      if (prop === "extend") {
-        extend(style.extend.extend, rule, sheet, newStyle);
-        continue;
-      }
-      if (isObject(style.extend[prop])) {
-        if (!(prop in newStyle)) newStyle[prop] = {};
-        extend(style.extend[prop], rule, sheet, newStyle[prop]);
-        continue;
-      }
-      newStyle[prop] = style.extend[prop];
-    }
-  }
-  function mergeRest(style, rule, sheet, newStyle) {
-    for (var prop in style) {
-      if (prop === "extend") continue;
-      if (isObject(newStyle[prop]) && isObject(style[prop])) {
-        extend(style[prop], rule, sheet, newStyle[prop]);
-        continue;
-      }
-      if (isObject(style[prop])) {
-        newStyle[prop] = extend(style[prop], rule, sheet);
-        continue;
-      }
-      newStyle[prop] = style[prop];
-    }
-  }
-  function extend(style, rule, sheet, newStyle) {
-    if (newStyle === void 0) {
-      newStyle = {};
-    }
-    mergeExtend(style, rule, sheet, newStyle);
-    mergeRest(style, rule, sheet, newStyle);
-    return newStyle;
-  }
-  function jssExtend() {
-    function onProcessStyle2(style, rule, sheet) {
-      if ("extend" in style) return extend(style, rule, sheet);
-      return style;
-    }
-    function onChangeValue2(value, prop, rule) {
-      if (prop !== "extend") return value;
-      if (value == null || value === false) {
-        for (var key in rule[valueNs]) {
-          rule.prop(key, null);
-        }
-        rule[valueNs] = null;
-        return null;
-      }
-      if (typeof value === "object") {
-        for (var _key in value) {
-          rule.prop(_key, value[_key]);
-        }
-        rule[valueNs] = value;
-      }
-      return null;
-    }
-    return {
-      onProcessStyle: onProcessStyle2,
-      onChangeValue: onChangeValue2
-    };
-  }
-  var jss_plugin_extend_esm_default = jssExtend;
-
-  // node_modules/.pnpm/jss-plugin-nested@10.10.0/node_modules/jss-plugin-nested/dist/jss-plugin-nested.esm.js
-  var separatorRegExp2 = /\s*,\s*/g;
-  var parentRegExp = /&/g;
-  var refRegExp2 = /\$([\w-]+)/g;
-  function jssNested() {
-    function getReplaceRef(container, sheet) {
-      return function(match, key) {
-        var rule = container.getRule(key) || sheet && sheet.getRule(key);
-        if (rule) {
-          return rule.selector;
-        }
-        true ? tiny_warning_esm_default(false, '[JSS] Could not find the referenced rule "' + key + '" in "' + (container.options.meta || container.toString()) + '".') : void 0;
-        return key;
-      };
-    }
-    function replaceParentRefs(nestedProp, parentProp) {
-      var parentSelectors = parentProp.split(separatorRegExp2);
-      var nestedSelectors = nestedProp.split(separatorRegExp2);
-      var result2 = "";
-      for (var i = 0; i < parentSelectors.length; i++) {
-        var parent = parentSelectors[i];
-        for (var j = 0; j < nestedSelectors.length; j++) {
-          var nested = nestedSelectors[j];
-          if (result2) result2 += ", ";
-          result2 += nested.indexOf("&") !== -1 ? nested.replace(parentRegExp, parent) : parent + " " + nested;
-        }
-      }
-      return result2;
-    }
-    function getOptions(rule, container, prevOptions) {
-      if (prevOptions) return _extends({}, prevOptions, {
-        index: prevOptions.index + 1
-      });
-      var nestingLevel = rule.options.nestingLevel;
-      nestingLevel = nestingLevel === void 0 ? 1 : nestingLevel + 1;
-      var options = _extends({}, rule.options, {
-        nestingLevel,
-        index: container.indexOf(rule) + 1
-        // We don't need the parent name to be set options for chlid.
-      });
-      delete options.name;
-      return options;
-    }
-    function onProcessStyle2(style, rule, sheet) {
-      if (rule.type !== "style") return style;
-      var styleRule = rule;
-      var container = styleRule.options.parent;
-      var options;
-      var replaceRef3;
-      for (var prop in style) {
-        var isNested = prop.indexOf("&") !== -1;
-        var isNestedConditional = prop[0] === "@";
-        if (!isNested && !isNestedConditional) continue;
-        options = getOptions(styleRule, container, options);
-        if (isNested) {
-          var selector = replaceParentRefs(prop, styleRule.selector);
-          if (!replaceRef3) replaceRef3 = getReplaceRef(container, sheet);
-          selector = selector.replace(refRegExp2, replaceRef3);
-          var name2 = styleRule.key + "-" + prop;
-          if ("replaceRule" in container) {
-            container.replaceRule(name2, style[prop], _extends({}, options, {
-              selector
-            }));
-          } else {
-            container.addRule(name2, style[prop], _extends({}, options, {
-              selector
-            }));
-          }
-        } else if (isNestedConditional) {
-          container.addRule(prop, {}, options).addRule(styleRule.key, style[prop], {
-            selector: styleRule.selector
-          });
-        }
-        delete style[prop];
-      }
-      return style;
-    }
-    return {
-      onProcessStyle: onProcessStyle2
-    };
-  }
-  var jss_plugin_nested_esm_default = jssNested;
-
-  // node_modules/.pnpm/jss-plugin-compose@10.10.0/node_modules/jss-plugin-compose/dist/jss-plugin-compose.esm.js
-  function registerClass(rule, className) {
-    if (!className) return true;
-    if (Array.isArray(className)) {
-      for (var index2 = 0; index2 < className.length; index2++) {
-        var isSetted = registerClass(rule, className[index2]);
-        if (!isSetted) return false;
-      }
-      return true;
-    }
-    if (className.indexOf(" ") > -1) {
-      return registerClass(rule, className.split(" "));
-    }
-    var parent = rule.options.parent;
-    if (className[0] === "$") {
-      var refRule = parent.getRule(className.substr(1));
-      if (!refRule) {
-        true ? tiny_warning_esm_default(false, "[JSS] Referenced rule is not defined. \n" + rule.toString()) : void 0;
-        return false;
-      }
-      if (refRule === rule) {
-        true ? tiny_warning_esm_default(false, "[JSS] Cyclic composition detected. \n" + rule.toString()) : void 0;
-        return false;
-      }
-      parent.classes[rule.key] += " " + parent.classes[refRule.key];
-      return true;
-    }
-    parent.classes[rule.key] += " " + className;
-    return true;
-  }
-  function jssCompose() {
-    function onProcessStyle2(style, rule) {
-      if (!("composes" in style)) return style;
-      registerClass(rule, style.composes);
-      delete style.composes;
-      return style;
-    }
-    return {
-      onProcessStyle: onProcessStyle2
-    };
-  }
-  var jss_plugin_compose_esm_default = jssCompose;
-
-  // node_modules/.pnpm/hyphenate-style-name@1.1.0/node_modules/hyphenate-style-name/index.js
-  var uppercasePattern = /[A-Z]/g;
-  var msPattern = /^ms-/;
-  var cache = {};
-  function toHyphenLower(match) {
-    return "-" + match.toLowerCase();
-  }
-  function hyphenateStyleName(name2) {
-    if (cache.hasOwnProperty(name2)) {
-      return cache[name2];
-    }
-    var hName = name2.replace(uppercasePattern, toHyphenLower);
-    return cache[name2] = msPattern.test(hName) ? "-" + hName : hName;
-  }
-  var hyphenate_style_name_default = hyphenateStyleName;
-
-  // node_modules/.pnpm/jss-plugin-camel-case@10.10.0/node_modules/jss-plugin-camel-case/dist/jss-plugin-camel-case.esm.js
-  function convertCase(style) {
-    var converted = {};
-    for (var prop in style) {
-      var key = prop.indexOf("--") === 0 ? prop : hyphenate_style_name_default(prop);
-      converted[key] = style[prop];
-    }
-    if (style.fallbacks) {
-      if (Array.isArray(style.fallbacks)) converted.fallbacks = style.fallbacks.map(convertCase);
-      else converted.fallbacks = convertCase(style.fallbacks);
-    }
-    return converted;
-  }
-  function camelCase() {
-    function onProcessStyle2(style) {
-      if (Array.isArray(style)) {
-        for (var index2 = 0; index2 < style.length; index2++) {
-          style[index2] = convertCase(style[index2]);
-        }
-        return style;
-      }
-      return convertCase(style);
-    }
-    function onChangeValue2(value, prop, rule) {
-      if (prop.indexOf("--") === 0) {
-        return value;
-      }
-      var hyphenatedProp = hyphenate_style_name_default(prop);
-      if (prop === hyphenatedProp) return value;
-      rule.prop(hyphenatedProp, value);
-      return null;
-    }
-    return {
-      onProcessStyle: onProcessStyle2,
-      onChangeValue: onChangeValue2
-    };
-  }
-  var jss_plugin_camel_case_esm_default = camelCase;
-
-  // node_modules/.pnpm/jss-plugin-default-unit@10.10.0/node_modules/jss-plugin-default-unit/dist/jss-plugin-default-unit.esm.js
-  var px = hasCSSTOMSupport && CSS ? CSS.px : "px";
-  var ms = hasCSSTOMSupport && CSS ? CSS.ms : "ms";
-  var percent = hasCSSTOMSupport && CSS ? CSS.percent : "%";
-  var defaultUnits = {
-    // Animation properties
-    "animation-delay": ms,
-    "animation-duration": ms,
-    // Background properties
-    "background-position": px,
-    "background-position-x": px,
-    "background-position-y": px,
-    "background-size": px,
-    // Border Properties
-    border: px,
-    "border-bottom": px,
-    "border-bottom-left-radius": px,
-    "border-bottom-right-radius": px,
-    "border-bottom-width": px,
-    "border-left": px,
-    "border-left-width": px,
-    "border-radius": px,
-    "border-right": px,
-    "border-right-width": px,
-    "border-top": px,
-    "border-top-left-radius": px,
-    "border-top-right-radius": px,
-    "border-top-width": px,
-    "border-width": px,
-    "border-block": px,
-    "border-block-end": px,
-    "border-block-end-width": px,
-    "border-block-start": px,
-    "border-block-start-width": px,
-    "border-block-width": px,
-    "border-inline": px,
-    "border-inline-end": px,
-    "border-inline-end-width": px,
-    "border-inline-start": px,
-    "border-inline-start-width": px,
-    "border-inline-width": px,
-    "border-start-start-radius": px,
-    "border-start-end-radius": px,
-    "border-end-start-radius": px,
-    "border-end-end-radius": px,
-    // Margin properties
-    margin: px,
-    "margin-bottom": px,
-    "margin-left": px,
-    "margin-right": px,
-    "margin-top": px,
-    "margin-block": px,
-    "margin-block-end": px,
-    "margin-block-start": px,
-    "margin-inline": px,
-    "margin-inline-end": px,
-    "margin-inline-start": px,
-    // Padding properties
-    padding: px,
-    "padding-bottom": px,
-    "padding-left": px,
-    "padding-right": px,
-    "padding-top": px,
-    "padding-block": px,
-    "padding-block-end": px,
-    "padding-block-start": px,
-    "padding-inline": px,
-    "padding-inline-end": px,
-    "padding-inline-start": px,
-    // Mask properties
-    "mask-position-x": px,
-    "mask-position-y": px,
-    "mask-size": px,
-    // Width and height properties
-    height: px,
-    width: px,
-    "min-height": px,
-    "max-height": px,
-    "min-width": px,
-    "max-width": px,
-    // Position properties
-    bottom: px,
-    left: px,
-    top: px,
-    right: px,
-    inset: px,
-    "inset-block": px,
-    "inset-block-end": px,
-    "inset-block-start": px,
-    "inset-inline": px,
-    "inset-inline-end": px,
-    "inset-inline-start": px,
-    // Shadow properties
-    "box-shadow": px,
-    "text-shadow": px,
-    // Column properties
-    "column-gap": px,
-    "column-rule": px,
-    "column-rule-width": px,
-    "column-width": px,
-    // Font and text properties
-    "font-size": px,
-    "font-size-delta": px,
-    "letter-spacing": px,
-    "text-decoration-thickness": px,
-    "text-indent": px,
-    "text-stroke": px,
-    "text-stroke-width": px,
-    "word-spacing": px,
-    // Motion properties
-    motion: px,
-    "motion-offset": px,
-    // Outline properties
-    outline: px,
-    "outline-offset": px,
-    "outline-width": px,
-    // Perspective properties
-    perspective: px,
-    "perspective-origin-x": percent,
-    "perspective-origin-y": percent,
-    // Transform properties
-    "transform-origin": percent,
-    "transform-origin-x": percent,
-    "transform-origin-y": percent,
-    "transform-origin-z": percent,
-    // Transition properties
-    "transition-delay": ms,
-    "transition-duration": ms,
-    // Alignment properties
-    "vertical-align": px,
-    "flex-basis": px,
-    // Some random properties
-    "shape-margin": px,
-    size: px,
-    gap: px,
-    // Grid properties
-    grid: px,
-    "grid-gap": px,
-    "row-gap": px,
-    "grid-row-gap": px,
-    "grid-column-gap": px,
-    "grid-template-rows": px,
-    "grid-template-columns": px,
-    "grid-auto-rows": px,
-    "grid-auto-columns": px,
-    // Not existing properties.
-    // Used to avoid issues with jss-plugin-expand integration.
-    "box-shadow-x": px,
-    "box-shadow-y": px,
-    "box-shadow-blur": px,
-    "box-shadow-spread": px,
-    "font-line-height": px,
-    "text-shadow-x": px,
-    "text-shadow-y": px,
-    "text-shadow-blur": px
-  };
-  function addCamelCasedVersion(obj) {
-    var regExp2 = /(-[a-z])/g;
-    var replace2 = function replace3(str) {
-      return str[1].toUpperCase();
-    };
-    var newObj = {};
-    for (var key in obj) {
-      newObj[key] = obj[key];
-      newObj[key.replace(regExp2, replace2)] = obj[key];
-    }
-    return newObj;
-  }
-  var units = addCamelCasedVersion(defaultUnits);
-  function iterate(prop, value, options) {
-    if (value == null) return value;
-    if (Array.isArray(value)) {
-      for (var i = 0; i < value.length; i++) {
-        value[i] = iterate(prop, value[i], options);
-      }
-    } else if (typeof value === "object") {
-      if (prop === "fallbacks") {
-        for (var innerProp in value) {
-          value[innerProp] = iterate(innerProp, value[innerProp], options);
-        }
-      } else {
-        for (var _innerProp in value) {
-          value[_innerProp] = iterate(prop + "-" + _innerProp, value[_innerProp], options);
-        }
-      }
-    } else if (typeof value === "number" && isNaN(value) === false) {
-      var unit = options[prop] || units[prop];
-      if (unit && !(value === 0 && unit === px)) {
-        return typeof unit === "function" ? unit(value).toString() : "" + value + unit;
-      }
-      return value.toString();
-    }
-    return value;
-  }
-  function defaultUnit(options) {
-    if (options === void 0) {
-      options = {};
-    }
-    var camelCasedOptions = addCamelCasedVersion(options);
-    function onProcessStyle2(style, rule) {
-      if (rule.type !== "style") return style;
-      for (var prop in style) {
-        style[prop] = iterate(prop, style[prop], camelCasedOptions);
-      }
-      return style;
-    }
-    function onChangeValue2(value, prop) {
-      return iterate(prop, value, camelCasedOptions);
-    }
-    return {
-      onProcessStyle: onProcessStyle2,
-      onChangeValue: onChangeValue2
-    };
-  }
-  var jss_plugin_default_unit_esm_default = defaultUnit;
-
-  // node_modules/.pnpm/jss-plugin-expand@10.10.0/node_modules/jss-plugin-expand/dist/jss-plugin-expand.esm.js
-  var propArray = {
-    "background-size": true,
-    "background-position": true,
-    border: true,
-    "border-bottom": true,
-    "border-left": true,
-    "border-top": true,
-    "border-right": true,
-    "border-radius": true,
-    "border-image": true,
-    "border-width": true,
-    "border-style": true,
-    "border-color": true,
-    "box-shadow": true,
-    flex: true,
-    margin: true,
-    padding: true,
-    outline: true,
-    "transform-origin": true,
-    transform: true,
-    transition: true
-    /**
-     * A scheme for converting arrays to regular styles inside of objects.
-     * For e.g.: "{position: [0, 0]}" => "background-position: 0 0;".
-     */
-  };
-  var propArrayInObj = {
-    position: true,
-    // background-position
-    size: true
-    // background-size
-    /**
-     * A scheme for parsing and building correct styles from passed objects.
-     */
-  };
-  var propObj = {
-    padding: {
-      top: 0,
-      right: 0,
-      bottom: 0,
-      left: 0
-    },
-    margin: {
-      top: 0,
-      right: 0,
-      bottom: 0,
-      left: 0
-    },
-    background: {
-      attachment: null,
-      color: null,
-      image: null,
-      position: null,
-      repeat: null
-    },
-    border: {
-      width: null,
-      style: null,
-      color: null
-    },
-    "border-top": {
-      width: null,
-      style: null,
-      color: null
-    },
-    "border-right": {
-      width: null,
-      style: null,
-      color: null
-    },
-    "border-bottom": {
-      width: null,
-      style: null,
-      color: null
-    },
-    "border-left": {
-      width: null,
-      style: null,
-      color: null
-    },
-    outline: {
-      width: null,
-      style: null,
-      color: null
-    },
-    "list-style": {
-      type: null,
-      position: null,
-      image: null
-    },
-    transition: {
-      property: null,
-      duration: null,
-      "timing-function": null,
-      timingFunction: null,
-      // Needed for avoiding comilation issues with jss-plugin-camel-case
-      delay: null
-    },
-    animation: {
-      name: null,
-      duration: null,
-      "timing-function": null,
-      timingFunction: null,
-      // Needed to avoid compilation issues with jss-plugin-camel-case
-      delay: null,
-      "iteration-count": null,
-      iterationCount: null,
-      // Needed to avoid compilation issues with jss-plugin-camel-case
-      direction: null,
-      "fill-mode": null,
-      fillMode: null,
-      // Needed to avoid compilation issues with jss-plugin-camel-case
-      "play-state": null,
-      playState: null
-      // Needed to avoid compilation issues with jss-plugin-camel-case
-    },
-    "box-shadow": {
-      x: 0,
-      y: 0,
-      blur: 0,
-      spread: 0,
-      color: null,
-      inset: null
-    },
-    "text-shadow": {
-      x: 0,
-      y: 0,
-      blur: null,
-      color: null
-    }
-    /**
-     * A scheme for converting non-standart properties inside object.
-     * For e.g.: include 'border-radius' property inside 'border' object.
-     */
-  };
-  var customPropObj = {
-    border: {
-      radius: "border-radius",
-      image: "border-image",
-      width: "border-width",
-      style: "border-style",
-      color: "border-color"
-    },
-    "border-bottom": {
-      width: "border-bottom-width",
-      style: "border-bottom-style",
-      color: "border-bottom-color"
-    },
-    "border-top": {
-      width: "border-top-width",
-      style: "border-top-style",
-      color: "border-top-color"
-    },
-    "border-left": {
-      width: "border-left-width",
-      style: "border-left-style",
-      color: "border-left-color"
-    },
-    "border-right": {
-      width: "border-right-width",
-      style: "border-right-style",
-      color: "border-right-color"
-    },
-    background: {
-      size: "background-size",
-      image: "background-image"
-    },
-    font: {
-      style: "font-style",
-      variant: "font-variant",
-      weight: "font-weight",
-      stretch: "font-stretch",
-      size: "font-size",
-      family: "font-family",
-      lineHeight: "line-height",
-      // Needed to avoid compilation issues with jss-plugin-camel-case
-      "line-height": "line-height"
-    },
-    flex: {
-      grow: "flex-grow",
-      basis: "flex-basis",
-      direction: "flex-direction",
-      wrap: "flex-wrap",
-      flow: "flex-flow",
-      shrink: "flex-shrink"
-    },
-    align: {
-      self: "align-self",
-      items: "align-items",
-      content: "align-content"
-    },
-    grid: {
-      "template-columns": "grid-template-columns",
-      templateColumns: "grid-template-columns",
-      "template-rows": "grid-template-rows",
-      templateRows: "grid-template-rows",
-      "template-areas": "grid-template-areas",
-      templateAreas: "grid-template-areas",
-      template: "grid-template",
-      "auto-columns": "grid-auto-columns",
-      autoColumns: "grid-auto-columns",
-      "auto-rows": "grid-auto-rows",
-      autoRows: "grid-auto-rows",
-      "auto-flow": "grid-auto-flow",
-      autoFlow: "grid-auto-flow",
-      row: "grid-row",
-      column: "grid-column",
-      "row-start": "grid-row-start",
-      rowStart: "grid-row-start",
-      "row-end": "grid-row-end",
-      rowEnd: "grid-row-end",
-      "column-start": "grid-column-start",
-      columnStart: "grid-column-start",
-      "column-end": "grid-column-end",
-      columnEnd: "grid-column-end",
-      area: "grid-area",
-      gap: "grid-gap",
-      "row-gap": "grid-row-gap",
-      rowGap: "grid-row-gap",
-      "column-gap": "grid-column-gap",
-      columnGap: "grid-column-gap"
-    }
-  };
-  function mapValuesByProp(value, prop, rule) {
-    return value.map(function(item) {
-      return objectToArray(item, prop, rule, false, true);
-    });
-  }
-  function processArray(value, prop, scheme, rule) {
-    if (scheme[prop] == null) return value;
-    if (value.length === 0) return [];
-    if (Array.isArray(value[0])) return processArray(value[0], prop, scheme, rule);
-    if (typeof value[0] === "object") {
-      return mapValuesByProp(value, prop, rule);
-    }
-    return [value];
-  }
-  function objectToArray(value, prop, rule, isFallback, isInArray) {
-    if (!(propObj[prop] || customPropObj[prop])) return [];
-    var result2 = [];
-    if (customPropObj[prop]) {
-      value = customPropsToStyle(value, rule, customPropObj[prop], isFallback);
-    }
-    if (Object.keys(value).length) {
-      for (var baseProp in propObj[prop]) {
-        if (value[baseProp]) {
-          if (Array.isArray(value[baseProp])) {
-            result2.push(propArrayInObj[baseProp] === null ? value[baseProp] : value[baseProp].join(" "));
-          } else result2.push(value[baseProp]);
-          continue;
-        }
-        if (propObj[prop][baseProp] != null) {
-          result2.push(propObj[prop][baseProp]);
-        }
-      }
-    }
-    if (!result2.length || isInArray) return result2;
-    return [result2];
-  }
-  function customPropsToStyle(value, rule, customProps, isFallback) {
-    for (var prop in customProps) {
-      var propName = customProps[prop];
-      if (typeof value[prop] !== "undefined" && (isFallback || !rule.prop(propName))) {
-        var _styleDetector;
-        var appendedValue = styleDetector((_styleDetector = {}, _styleDetector[propName] = value[prop], _styleDetector), rule)[propName];
-        if (isFallback) rule.style.fallbacks[propName] = appendedValue;
-        else rule.style[propName] = appendedValue;
-      }
-      delete value[prop];
-    }
-    return value;
-  }
-  function styleDetector(style, rule, isFallback) {
-    for (var prop in style) {
-      var value = style[prop];
-      if (Array.isArray(value)) {
-        if (!Array.isArray(value[0])) {
-          if (prop === "fallbacks") {
-            for (var index2 = 0; index2 < style.fallbacks.length; index2++) {
-              style.fallbacks[index2] = styleDetector(style.fallbacks[index2], rule, true);
-            }
-            continue;
-          }
-          style[prop] = processArray(value, prop, propArray, rule);
-          if (!style[prop].length) delete style[prop];
-        }
-      } else if (typeof value === "object") {
-        if (prop === "fallbacks") {
-          style.fallbacks = styleDetector(style.fallbacks, rule, true);
-          continue;
-        }
-        style[prop] = objectToArray(value, prop, rule, isFallback);
-        if (!style[prop].length) delete style[prop];
-      } else if (style[prop] === "") delete style[prop];
-    }
-    return style;
-  }
-  function jssExpand() {
-    function onProcessStyle2(style, rule) {
-      if (!style || rule.type !== "style") return style;
-      if (Array.isArray(style)) {
-        for (var index2 = 0; index2 < style.length; index2++) {
-          style[index2] = styleDetector(style[index2], rule);
-        }
-        return style;
-      }
-      return styleDetector(style, rule);
-    }
-    return {
-      onProcessStyle: onProcessStyle2
-    };
-  }
-  var jss_plugin_expand_esm_default = jssExpand;
-
-  // node_modules/.pnpm/@babel+runtime@7.26.0/node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js
-  function _arrayLikeToArray(r, a) {
-    (null == a || a > r.length) && (a = r.length);
-    for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e];
-    return n;
-  }
-
-  // node_modules/.pnpm/@babel+runtime@7.26.0/node_modules/@babel/runtime/helpers/esm/arrayWithoutHoles.js
-  function _arrayWithoutHoles(r) {
-    if (Array.isArray(r)) return _arrayLikeToArray(r);
-  }
-
-  // node_modules/.pnpm/@babel+runtime@7.26.0/node_modules/@babel/runtime/helpers/esm/iterableToArray.js
-  function _iterableToArray(r) {
-    if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r);
-  }
-
-  // node_modules/.pnpm/@babel+runtime@7.26.0/node_modules/@babel/runtime/helpers/esm/unsupportedIterableToArray.js
-  function _unsupportedIterableToArray(r, a) {
-    if (r) {
-      if ("string" == typeof r) return _arrayLikeToArray(r, a);
-      var t2 = {}.toString.call(r).slice(8, -1);
-      return "Object" === t2 && r.constructor && (t2 = r.constructor.name), "Map" === t2 || "Set" === t2 ? Array.from(r) : "Arguments" === t2 || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t2) ? _arrayLikeToArray(r, a) : void 0;
-    }
-  }
-
-  // node_modules/.pnpm/@babel+runtime@7.26.0/node_modules/@babel/runtime/helpers/esm/nonIterableSpread.js
-  function _nonIterableSpread() {
-    throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-  }
-
-  // node_modules/.pnpm/@babel+runtime@7.26.0/node_modules/@babel/runtime/helpers/esm/toConsumableArray.js
-  function _toConsumableArray(r) {
-    return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread();
-  }
-
-  // node_modules/.pnpm/css-vendor@2.0.8/node_modules/css-vendor/dist/css-vendor.esm.js
-  var js = "";
-  var css = "";
-  var vendor = "";
-  var browser = "";
-  var isTouch = module_default && "ontouchstart" in document.documentElement;
-  if (module_default) {
-    jsCssMap = {
-      Moz: "-moz-",
-      ms: "-ms-",
-      O: "-o-",
-      Webkit: "-webkit-"
-    };
-    _document$createEleme = document.createElement("p"), style = _document$createEleme.style;
-    testProp = "Transform";
-    for (key in jsCssMap) {
-      if (key + testProp in style) {
-        js = key;
-        css = jsCssMap[key];
-        break;
-      }
-    }
-    if (js === "Webkit" && "msHyphens" in style) {
-      js = "ms";
-      css = jsCssMap.ms;
-      browser = "edge";
-    }
-    if (js === "Webkit" && "-apple-trailing-word" in style) {
-      vendor = "apple";
-    }
-  }
-  var jsCssMap;
-  var _document$createEleme;
-  var style;
-  var testProp;
-  var key;
-  var prefix = {
-    js,
-    css,
-    vendor,
-    browser,
-    isTouch
-  };
-  function supportedKeyframes(key) {
-    if (key[1] === "-") return key;
-    if (prefix.js === "ms") return key;
-    return "@" + prefix.css + "keyframes" + key.substr(10);
-  }
-  var appearence = {
-    noPrefill: ["appearance"],
-    supportedProperty: function supportedProperty(prop) {
-      if (prop !== "appearance") return false;
-      if (prefix.js === "ms") return "-webkit-" + prop;
-      return prefix.css + prop;
-    }
-  };
-  var colorAdjust = {
-    noPrefill: ["color-adjust"],
-    supportedProperty: function supportedProperty2(prop) {
-      if (prop !== "color-adjust") return false;
-      if (prefix.js === "Webkit") return prefix.css + "print-" + prop;
-      return prop;
-    }
-  };
-  var regExp = /[-\s]+(.)?/g;
-  function toUpper(match, c) {
-    return c ? c.toUpperCase() : "";
-  }
-  function camelize(str) {
-    return str.replace(regExp, toUpper);
-  }
-  function pascalize(str) {
-    return camelize("-" + str);
-  }
-  var mask = {
-    noPrefill: ["mask"],
-    supportedProperty: function supportedProperty3(prop, style) {
-      if (!/^mask/.test(prop)) return false;
-      if (prefix.js === "Webkit") {
-        var longhand = "mask-image";
-        if (camelize(longhand) in style) {
-          return prop;
-        }
-        if (prefix.js + pascalize(longhand) in style) {
-          return prefix.css + prop;
-        }
-      }
-      return prop;
-    }
-  };
-  var textOrientation = {
-    noPrefill: ["text-orientation"],
-    supportedProperty: function supportedProperty4(prop) {
-      if (prop !== "text-orientation") return false;
-      if (prefix.vendor === "apple" && !prefix.isTouch) {
-        return prefix.css + prop;
-      }
-      return prop;
-    }
-  };
-  var transform = {
-    noPrefill: ["transform"],
-    supportedProperty: function supportedProperty5(prop, style, options) {
-      if (prop !== "transform") return false;
-      if (options.transform) {
-        return prop;
-      }
-      return prefix.css + prop;
-    }
-  };
-  var transition = {
-    noPrefill: ["transition"],
-    supportedProperty: function supportedProperty6(prop, style, options) {
-      if (prop !== "transition") return false;
-      if (options.transition) {
-        return prop;
-      }
-      return prefix.css + prop;
-    }
-  };
-  var writingMode = {
-    noPrefill: ["writing-mode"],
-    supportedProperty: function supportedProperty7(prop) {
-      if (prop !== "writing-mode") return false;
-      if (prefix.js === "Webkit" || prefix.js === "ms" && prefix.browser !== "edge") {
-        return prefix.css + prop;
-      }
-      return prop;
-    }
-  };
-  var userSelect = {
-    noPrefill: ["user-select"],
-    supportedProperty: function supportedProperty8(prop) {
-      if (prop !== "user-select") return false;
-      if (prefix.js === "Moz" || prefix.js === "ms" || prefix.vendor === "apple") {
-        return prefix.css + prop;
-      }
-      return prop;
-    }
-  };
-  var breakPropsOld = {
-    supportedProperty: function supportedProperty9(prop, style) {
-      if (!/^break-/.test(prop)) return false;
-      if (prefix.js === "Webkit") {
-        var jsProp = "WebkitColumn" + pascalize(prop);
-        return jsProp in style ? prefix.css + "column-" + prop : false;
-      }
-      if (prefix.js === "Moz") {
-        var _jsProp = "page" + pascalize(prop);
-        return _jsProp in style ? "page-" + prop : false;
-      }
-      return false;
-    }
-  };
-  var inlineLogicalOld = {
-    supportedProperty: function supportedProperty10(prop, style) {
-      if (!/^(border|margin|padding)-inline/.test(prop)) return false;
-      if (prefix.js === "Moz") return prop;
-      var newProp = prop.replace("-inline", "");
-      return prefix.js + pascalize(newProp) in style ? prefix.css + newProp : false;
-    }
-  };
-  var unprefixed = {
-    supportedProperty: function supportedProperty11(prop, style) {
-      return camelize(prop) in style ? prop : false;
-    }
-  };
-  var prefixed = {
-    supportedProperty: function supportedProperty12(prop, style) {
-      var pascalized = pascalize(prop);
-      if (prop[0] === "-") return prop;
-      if (prop[0] === "-" && prop[1] === "-") return prop;
-      if (prefix.js + pascalized in style) return prefix.css + prop;
-      if (prefix.js !== "Webkit" && "Webkit" + pascalized in style) return "-webkit-" + prop;
-      return false;
-    }
-  };
-  var scrollSnap = {
-    supportedProperty: function supportedProperty13(prop) {
-      if (prop.substring(0, 11) !== "scroll-snap") return false;
-      if (prefix.js === "ms") {
-        return "" + prefix.css + prop;
-      }
-      return prop;
-    }
-  };
-  var overscrollBehavior = {
-    supportedProperty: function supportedProperty14(prop) {
-      if (prop !== "overscroll-behavior") return false;
-      if (prefix.js === "ms") {
-        return prefix.css + "scroll-chaining";
-      }
-      return prop;
-    }
-  };
-  var propMap = {
-    "flex-grow": "flex-positive",
-    "flex-shrink": "flex-negative",
-    "flex-basis": "flex-preferred-size",
-    "justify-content": "flex-pack",
-    order: "flex-order",
-    "align-items": "flex-align",
-    "align-content": "flex-line-pack"
-    // 'align-self' is handled by 'align-self' plugin.
-  };
-  var flex2012 = {
-    supportedProperty: function supportedProperty15(prop, style) {
-      var newProp = propMap[prop];
-      if (!newProp) return false;
-      return prefix.js + pascalize(newProp) in style ? prefix.css + newProp : false;
-    }
-  };
-  var propMap$1 = {
-    flex: "box-flex",
-    "flex-grow": "box-flex",
-    "flex-direction": ["box-orient", "box-direction"],
-    order: "box-ordinal-group",
-    "align-items": "box-align",
-    "flex-flow": ["box-orient", "box-direction"],
-    "justify-content": "box-pack"
-  };
-  var propKeys = Object.keys(propMap$1);
-  var prefixCss = function prefixCss2(p) {
-    return prefix.css + p;
-  };
-  var flex2009 = {
-    supportedProperty: function supportedProperty16(prop, style, _ref) {
-      var multiple = _ref.multiple;
-      if (propKeys.indexOf(prop) > -1) {
-        var newProp = propMap$1[prop];
-        if (!Array.isArray(newProp)) {
-          return prefix.js + pascalize(newProp) in style ? prefix.css + newProp : false;
-        }
-        if (!multiple) return false;
-        for (var i = 0; i < newProp.length; i++) {
-          if (!(prefix.js + pascalize(newProp[0]) in style)) {
-            return false;
-          }
-        }
-        return newProp.map(prefixCss);
-      }
-      return false;
-    }
-  };
-  var plugins2 = [appearence, colorAdjust, mask, textOrientation, transform, transition, writingMode, userSelect, breakPropsOld, inlineLogicalOld, unprefixed, prefixed, scrollSnap, overscrollBehavior, flex2012, flex2009];
-  var propertyDetectors = plugins2.filter(function(p) {
-    return p.supportedProperty;
-  }).map(function(p) {
-    return p.supportedProperty;
-  });
-  var noPrefill = plugins2.filter(function(p) {
-    return p.noPrefill;
-  }).reduce(function(a, p) {
-    a.push.apply(a, _toConsumableArray(p.noPrefill));
-    return a;
-  }, []);
-  var el;
-  var cache2 = {};
-  if (module_default) {
-    el = document.createElement("p");
-    computed = window.getComputedStyle(document.documentElement, "");
-    for (key$1 in computed) {
-      if (!isNaN(key$1)) cache2[computed[key$1]] = computed[key$1];
-    }
-    noPrefill.forEach(function(x) {
-      return delete cache2[x];
-    });
-  }
-  var computed;
-  var key$1;
-  function supportedProperty17(prop, options) {
-    if (options === void 0) {
-      options = {};
-    }
-    if (!el) return prop;
-    if (cache2[prop] != null) {
-      return cache2[prop];
-    }
-    if (prop === "transition" || prop === "transform") {
-      options[prop] = prop in el.style;
-    }
-    for (var i = 0; i < propertyDetectors.length; i++) {
-      cache2[prop] = propertyDetectors[i](prop, el.style, options);
-      if (cache2[prop]) break;
-    }
-    try {
-      el.style[prop] = "";
-    } catch (err) {
-      return false;
-    }
-    return cache2[prop];
-  }
-  var cache$1 = {};
-  var transitionProperties = {
-    transition: 1,
-    "transition-property": 1,
-    "-webkit-transition": 1,
-    "-webkit-transition-property": 1
-  };
-  var transPropsRegExp = /(^\s*[\w-]+)|, (\s*[\w-]+)(?![^()]*\))/g;
-  var el$1;
-  function prefixTransitionCallback(match, p1, p2) {
-    if (p1 === "var") return "var";
-    if (p1 === "all") return "all";
-    if (p2 === "all") return ", all";
-    var prefixedValue = p1 ? supportedProperty17(p1) : ", " + supportedProperty17(p2);
-    if (!prefixedValue) return p1 || p2;
-    return prefixedValue;
-  }
-  if (module_default) el$1 = document.createElement("p");
-  function supportedValue(property, value) {
-    var prefixedValue = value;
-    if (!el$1 || property === "content") return value;
-    if (typeof prefixedValue !== "string" || !isNaN(parseInt(prefixedValue, 10))) {
-      return prefixedValue;
-    }
-    var cacheKey = property + prefixedValue;
-    if (cache$1[cacheKey] != null) {
-      return cache$1[cacheKey];
-    }
-    try {
-      el$1.style[property] = prefixedValue;
-    } catch (err) {
-      cache$1[cacheKey] = false;
-      return false;
-    }
-    if (transitionProperties[property]) {
-      prefixedValue = prefixedValue.replace(transPropsRegExp, prefixTransitionCallback);
-    } else if (el$1.style[property] === "") {
-      prefixedValue = prefix.css + prefixedValue;
-      if (prefixedValue === "-ms-flex") el$1.style[property] = "-ms-flexbox";
-      el$1.style[property] = prefixedValue;
-      if (el$1.style[property] === "") {
-        cache$1[cacheKey] = false;
-        return false;
-      }
-    }
-    el$1.style[property] = "";
-    cache$1[cacheKey] = prefixedValue;
-    return cache$1[cacheKey];
-  }
-
-  // node_modules/.pnpm/jss-plugin-vendor-prefixer@10.10.0/node_modules/jss-plugin-vendor-prefixer/dist/jss-plugin-vendor-prefixer.esm.js
-  function jssVendorPrefixer() {
-    function onProcessRule3(rule) {
-      if (rule.type === "keyframes") {
-        var atRule = rule;
-        atRule.at = supportedKeyframes(atRule.at);
-      }
-    }
-    function prefixStyle(style) {
-      for (var prop in style) {
-        var value = style[prop];
-        if (prop === "fallbacks" && Array.isArray(value)) {
-          style[prop] = value.map(prefixStyle);
-          continue;
-        }
-        var changeProp = false;
-        var supportedProp = supportedProperty17(prop);
-        if (supportedProp && supportedProp !== prop) changeProp = true;
-        var changeValue = false;
-        var supportedValue$1 = supportedValue(supportedProp, toCssValue(value));
-        if (supportedValue$1 && supportedValue$1 !== value) changeValue = true;
-        if (changeProp || changeValue) {
-          if (changeProp) delete style[prop];
-          style[supportedProp || prop] = supportedValue$1 || value;
-        }
-      }
-      return style;
-    }
-    function onProcessStyle2(style, rule) {
-      if (rule.type !== "style") return style;
-      return prefixStyle(style);
-    }
-    function onChangeValue2(value, prop) {
-      return supportedValue(prop, toCssValue(value)) || value;
-    }
-    return {
-      onProcessRule: onProcessRule3,
-      onProcessStyle: onProcessStyle2,
-      onChangeValue: onChangeValue2
-    };
-  }
-  var jss_plugin_vendor_prefixer_esm_default = jssVendorPrefixer;
-
-  // node_modules/.pnpm/jss-plugin-props-sort@10.10.0/node_modules/jss-plugin-props-sort/dist/jss-plugin-props-sort.esm.js
-  function jssPropsSort() {
-    var sort = function sort2(prop0, prop1) {
-      if (prop0.length === prop1.length) {
-        return prop0 > prop1 ? 1 : -1;
-      }
-      return prop0.length - prop1.length;
-    };
-    return {
-      onProcessStyle: function onProcessStyle2(style, rule) {
-        if (rule.type !== "style") return style;
-        var newStyle = {};
-        var props = Object.keys(style).sort(sort);
-        for (var i = 0; i < props.length; i++) {
-          newStyle[props[i]] = style[props[i]];
-        }
-        return newStyle;
-      }
-    };
-  }
-  var jss_plugin_props_sort_esm_default = jssPropsSort;
-
-  // node_modules/.pnpm/jss-preset-default@10.10.0/node_modules/jss-preset-default/dist/jss-preset-default.esm.js
-  var create = function create2(options) {
-    if (options === void 0) {
-      options = {};
-    }
-    return {
-      plugins: [jss_plugin_rule_value_function_esm_default(), jss_plugin_rule_value_observable_esm_default(options.observable), jss_plugin_template_esm_default(), jss_plugin_global_esm_default(), jss_plugin_extend_esm_default(), jss_plugin_nested_esm_default(), jss_plugin_compose_esm_default(), jss_plugin_camel_case_esm_default(), jss_plugin_default_unit_esm_default(options.defaultUnit), jss_plugin_expand_esm_default(), jss_plugin_vendor_prefixer_esm_default(), jss_plugin_props_sort_esm_default()]
-    };
-  };
-  var jss_preset_default_esm_default = create;
-
-  // src/json-viewer/styles.ts
-  var commonJsonFont = {
-    "font-family": `"JetBrains Mono", ui-monospace, "Cascadia Code",
-    "Source Code Pro", Menlo, Consolas, "DejaVu Sans Mono", monospace`
-  };
-  jss_esm_default.setup(jss_preset_default_esm_default());
-  function makeStyleSheet(theme2) {
-    const styles = {
-      jsonContainer: {
-        "background-color": theme2.bgColor ?? ""
-      },
-      jsonArray__content: { "margin-left": "0.5 em" },
-      jsonArray__empty: { color: "grey" },
-      jsonObject__trivia: { color: "grey" },
-      jsonObject__header: {
-        display: "flex",
-        gap: "0.5em"
-      },
-      jsonObject__header__name: {
-        ...theme2.jsonTitle,
-        "font-size": "1em",
-        "font-weight": 600,
-        "&:hover": {
-          cursor: "pointer",
-          "text-decoration": "underline"
-        }
-      },
-      jsonObject__header__toggle: {
-        ...theme2.jsonKey,
-        display: "flex",
-        "font-weight": 600,
-        "align-items": "center"
-      },
-      jsonObject__content: { "margin-left": "1.75em" },
-      jsonObject__content__item: { gap: "0.5em" },
-      jsonObject__content__item__online: { display: "flex", gap: "0.5em" },
-      jsonObject__content__item__key: {
-        ...theme2.jsonKey,
-        "user-select": "none",
-        "&:after": {
-          content: '":"',
-          color: "grey",
-          "margin-right": "0.5em"
-        }
-      },
-      jsonObject__keyButton: {
-        "&:hover": {
-          cursor: "pointer",
-          "text-decoration": "underline"
-        }
-      },
-      jsonString: {
-        ...theme2.jsonString,
-        "&::before": {
-          content: '"\\""'
-        },
-        "&::after": {
-          content: '"\\""'
-        },
-        ...commonJsonFont
-      },
-      jsonBool: { ...theme2.jsonBoolean, ...commonJsonFont },
-      jsonNull: { ...theme2.jsonNull, ...commonJsonFont },
-      jsonNumber: { ...theme2.jsonNumber, ...commonJsonFont },
-      jsonObject: commonJsonFont
-    };
-    return jss_esm_default.createStyleSheet(styles);
-  }
-  var defaultTheme = {
-    bgColor: "#1a1b26",
-    jsonTitle: { color: "#bb9af7" },
-    jsonKey: { color: "#7aa2f7" },
-    jsonString: { color: "#9ece6a" },
-    jsonBoolean: { color: "#c0caf5" },
-    jsonNumber: { color: "#ff9e64" },
-    jsonNull: { color: "#bb9af7" }
-  };
-  var defaultStyleSheet = makeStyleSheet(defaultTheme);
-
-  // src/json-viewer/view.ts
-  function isJsonObject(value) {
-    return typeof value === "object" && value !== null && !Array.isArray(value);
-  }
-  function makeTrivia(styles, content2) {
-    return span(styles.jsonObject__trivia, content2);
-  }
-  function span(klass, text) {
-    const el2 = document.createElement("span");
-    el2.classList.add(klass);
-    if (text) {
-      el2.textContent = text;
-    }
-    return el2;
-  }
-  function div(klass, text) {
-    const el2 = document.createElement("div");
-    el2.classList.add(klass);
-    if (text) {
-      el2.textContent = text;
-    }
-    return el2;
-  }
-  var JsonViewKvPair = class {
-    constructor(key, value, styles = defaultStyleSheet.classes, callback) {
-      this.styles = styles;
-      this.callback = callback;
-      this.key = key;
-      this.value = value;
-    }
-    key;
-    value;
-    render(root2) {
-      const container = div(this.styles.jsonObject__content__item);
-      const key_element = span(
-        this.styles.jsonObject__content__item__key,
-        this.key
-      );
-      container.appendChild(key_element);
-      container.onmouseenter = () => {
-        if (this.value instanceof JsonViewObject) {
-          this.callback?.(this.value.object, "enter");
-        }
-      };
-      container.onmouseleave = () => {
-        if (this.value instanceof JsonViewObject) {
-          this.callback?.(this.value.object, "exit");
-        }
-      };
-      const value_container = span("jsonObject__content__item__value");
-      if (this.value instanceof JsonViewObject || this.value instanceof JsonViewArray) {
-        const is_object = this.value instanceof JsonViewObject;
-        const is_object_with_header_name = this.value instanceof JsonViewObject && this.value.header_name;
-        const is_array = !is_object;
-        const is_empty_array = this.value instanceof JsonViewArray && this.value.items.length === 0;
-        if (is_array && !is_empty_array || is_object && !is_object_with_header_name) {
-          const lbrace = makeTrivia(this.styles, is_object ? "{" : "[");
-          const rbrace = makeTrivia(this.styles, is_object ? "}" : "]");
-          value_container.appendChild(lbrace);
-          this.value.render(value_container, false);
-          value_container.appendChild(rbrace);
-        } else {
-          this.value.render(value_container);
-          value_container.style.display = "inline";
-        }
-        container.appendChild(value_container);
-        key_element.classList.add(this.styles.jsonObject__keyButton);
-        key_element.onclick = () => {
-          const val = this.value;
-          val.toggle();
-        };
-      } else {
-        this.value.render(value_container);
-        container.appendChild(value_container);
-      }
-      root2.appendChild(container);
-    }
-  };
-  var JsonViewObject = class {
-    constructor(object, styles = defaultStyleSheet.classes, callback) {
-      this.object = object;
-      this.styles = styles;
-      this.callback = callback;
-      const header_name = typeof object.__name === "string" ? object.__name : void 0;
-      const kv_pairs = Object.entries(object).filter(([key]) => !key.startsWith("__")).map(
-        ([key, value]) => new JsonViewKvPair(
-          key,
-          constructJsonViewItem(value, styles, callback),
-          styles,
-          callback
-        )
-      );
-      this.header_name = header_name;
-      this.kv_pairs = kv_pairs;
-      this.container_el = div(styles.jsonObject);
-      this.keyvalue_container_el = div(styles.jsonObject__content);
-      this.dotdotdot = span(styles.jsonObject__trivia, "...");
-    }
-    header_name;
-    /**
-     * Whether the object is currently open or closed.
-     */
-    is_open = true;
-    /**
-     * Key-value pairs in the JSON object.
-     */
-    kv_pairs;
-    /**
-     * The root element of the JSON object.
-     */
-    container_el;
-    /**
-     * The container element for the key-value pairs.
-     */
-    keyvalue_container_el;
-    /**
-     * The opening "{" element in the DOM of the JSON object.
-     */
-    open_brace_el = null;
-    /**
-     * The closing "}" element in the DOM of the JSON object.
-     */
-    close_brace_el = null;
-    /**
-     * The "+" or "-" element to toggle the object open or closed.
-     * This may not exist if the object has no header name.
-     */
-    toggle_div = null;
-    dotdotdot;
-    render(root2, braces = true) {
-      const container = this.container_el;
-      container.appendChild(this.dotdotdot);
-      this.dotdotdot.style.display = "none";
-      if (this.header_name) {
-        const header = div(this.styles.jsonObject__header);
-        this.toggle_div = span(this.styles.jsonObject__header__toggle, "-");
-        this.toggle_div.classList.add("open");
-        header.appendChild(this.toggle_div);
-        const header_name = span(
-          this.styles.jsonObject__header__name,
-          this.header_name
-        );
-        header_name.onclick = this.toggle.bind(this);
-        header_name.onmouseenter = () => this.callback?.(this.object, "enter");
-        header_name.onmouseleave = () => this.callback?.(this.object, "exit");
-        header.appendChild(header_name);
-        const lbrace = makeTrivia(this.styles, "{");
-        header.appendChild(lbrace);
-        this.open_brace_el = lbrace;
-        container.appendChild(header);
-      }
-      container.onmouseenter = () => this.callback?.(this.object, "enter");
-      container.onmouseleave = () => this.callback?.(this.object, "exit");
-      const kv_el = this.keyvalue_container_el;
-      if (braces && !this.open_brace_el) {
-        const lbrace = makeTrivia(this.styles, "{");
-        container.appendChild(lbrace);
-        this.open_brace_el = lbrace;
-      }
-      for (const kv_pair of this.kv_pairs) {
-        kv_pair.render(kv_el);
-      }
-      container.appendChild(kv_el);
-      if (braces || this.header_name) {
-        const rbrace = makeTrivia(this.styles, "}");
-        container.appendChild(rbrace);
-        this.close_brace_el = rbrace;
-      }
-      root2.appendChild(container);
-    }
-    /**
-     * Toggle the expanded/collapsed state of the object's node in the DOM.
-     */
-    toggle() {
-      this.is_open = !this.is_open;
-      if (!this.container_el) return;
-      if (this.header_name) {
-        if (this.open_brace_el)
-          this.open_brace_el.style.display = this.is_open ? "inline" : "none";
-        if (this.close_brace_el)
-          this.close_brace_el.style.display = this.is_open ? "inline" : "none";
-        this.keyvalue_container_el.style.display = this.is_open ? "block" : "none";
-        this.dotdotdot.style.display = "none";
-        if (this.toggle_div) {
-          this.toggle_div.textContent = this.is_open ? "-" : "+";
-        }
-        return;
-      }
-      this.container_el.style.display = this.is_open ? "block" : "inline";
-      this.keyvalue_container_el.style.display = this.is_open ? "block" : "none";
-      for (const child of Array.from(this.container_el.children)) {
-        if (child instanceof HTMLElement) {
-          child.style.display = this.is_open ? "block" : "none";
-        }
-      }
-      this.dotdotdot.style.display = this.is_open ? "none" : "inline";
-    }
-  };
-  var JsonViewArray = class {
-    constructor(array, styles = defaultStyleSheet.classes, callback) {
-      this.array = array;
-      this.styles = styles;
-      this.callback = callback;
-      this.dotdotdot = span(styles.jsonObject__trivia, "...");
-      this.items = array.map((x) => constructJsonViewItem(x, styles, callback));
-    }
-    items;
-    dotdotdot;
-    open_brace = null;
-    close_brace = null;
-    container_el = null;
-    root = null;
-    is_open = true;
-    render(root2, braces = true) {
-      this.root = root2;
-      if (this.items.length === 0) {
-        const container2 = span("jsonArray");
-        const empty2 = span(this.styles.jsonArray__empty, "[]");
-        container2.appendChild(empty2);
-        root2.appendChild(container2);
-        return;
-      }
-      const container = div("jsonArray");
-      if (braces) {
-        const lbrace = makeTrivia(this.styles, "[");
-        container.appendChild(lbrace);
-        this.open_brace = lbrace;
-      }
-      const items_container = div(this.styles.jsonArray__content);
-      items_container.onmouseenter = () => this.callback?.(this.array, "enter");
-      items_container.onmouseleave = () => this.callback?.(this.array, "exit");
-      for (const item of this.items) {
-        item.render(items_container);
-      }
-      container.appendChild(items_container);
-      if (braces) {
-        const rbrace = makeTrivia(this.styles, "]");
-        container.appendChild(rbrace);
-        this.close_brace = rbrace;
-      }
-      root2.appendChild(container);
-      this.container_el = container;
-    }
-    toggle() {
-      this.is_open = !this.is_open;
-      if (!this.container_el) return;
-      this.container_el.style.display = this.is_open ? "block" : "inline";
-      for (const child of this.container_el.children) {
-        if (child instanceof HTMLElement) {
-          child.style.display = this.is_open ? "block" : "none";
-        }
-      }
-      this.container_el.appendChild(this.dotdotdot);
-      this.dotdotdot.style.display = this.is_open ? "none" : "inline";
-    }
-  };
-  function escapeString(s) {
-    let new_s = "";
-    for (const ch of s) {
-      switch (ch) {
-        case "\n":
-          new_s += "\\n";
-          break;
-        case "\r":
-          new_s += "\\r";
-          break;
-        case "	":
-          new_s += "\\t";
-          break;
-        case '"':
-          new_s += '\\"';
-          break;
-        case "\\":
-          new_s += "\\\\";
-          break;
-        default:
-          new_s += ch;
-      }
-    }
-    return new_s;
-  }
-  var JsonViewPrimitive = class {
-    constructor(value, styles = defaultStyleSheet.classes) {
-      this.value = value;
-      this.styles = styles;
-      if (typeof this.value === "string") {
-        this.value = escapeString(this.value);
-      }
-    }
-    render(root2) {
-      const primitive = document.createElement("span");
-      switch (typeof this.value) {
-        case "string":
-          primitive.classList.add(this.styles.jsonString);
-          break;
-        case "number":
-          primitive.classList.add(this.styles.jsonNumber);
-          break;
-        case "boolean":
-          primitive.classList.add(this.styles.jsonBool);
-          break;
-        case "object":
-          primitive.classList.add(this.styles.jsonNull);
-        default: {
-        }
-      }
-      let rendered_value;
-      switch (typeof this.value) {
-        case "string":
-          rendered_value = this.value;
-          break;
-        case "boolean":
-          rendered_value = this.value ? "true" : "false";
-          break;
-        case "object":
-          rendered_value = "null";
-          break;
-        default:
-          rendered_value = this.value.toString();
-      }
-      primitive.textContent = rendered_value;
-      root2.appendChild(primitive);
-    }
-  };
-  function constructJsonViewItem(value, styles = defaultStyleSheet.classes, callback) {
-    if (typeof value === "object") {
-      if (Array.isArray(value)) return new JsonViewArray(value, styles, callback);
-      if (value !== null) return new JsonViewObject(value, styles, callback);
-    }
-    switch (typeof value) {
-      case "string":
-      case "number":
-      case "boolean":
-        return new JsonViewPrimitive(value, styles);
-      case "object":
-        if (value === null) return new JsonViewPrimitive(null, styles);
-      default:
-        throw new Error(`Unknown value type: ${typeof value}`);
-    }
-  }
-  function renderJson(json, root2, stylesheet, callback) {
-    const styles = stylesheet.classes;
-    root2.classList.add(styles.jsonContainer);
-    const viewItem = constructJsonViewItem(json, styles, callback);
-    viewItem.render(root2);
-  }
-
   // node_modules/.pnpm/@codemirror+state@6.4.1/node_modules/@codemirror/state/dist/index.js
   var Text = class _Text {
     /**
@@ -4021,13 +628,13 @@
     from = Math.max(0, Math.min(text.length, from));
     return [from, Math.max(from, Math.min(text.length, to))];
   }
-  var extend2 = /* @__PURE__ */ "lc,34,7n,7,7b,19,,,,2,,2,,,20,b,1c,l,g,,2t,7,2,6,2,2,,4,z,,u,r,2j,b,1m,9,9,,o,4,,9,,3,,5,17,3,3b,f,,w,1j,,,,4,8,4,,3,7,a,2,t,,1m,,,,2,4,8,,9,,a,2,q,,2,2,1l,,4,2,4,2,2,3,3,,u,2,3,,b,2,1l,,4,5,,2,4,,k,2,m,6,,,1m,,,2,,4,8,,7,3,a,2,u,,1n,,,,c,,9,,14,,3,,1l,3,5,3,,4,7,2,b,2,t,,1m,,2,,2,,3,,5,2,7,2,b,2,s,2,1l,2,,,2,4,8,,9,,a,2,t,,20,,4,,2,3,,,8,,29,,2,7,c,8,2q,,2,9,b,6,22,2,r,,,,,,1j,e,,5,,2,5,b,,10,9,,2u,4,,6,,2,2,2,p,2,4,3,g,4,d,,2,2,6,,f,,jj,3,qa,3,t,3,t,2,u,2,1s,2,,7,8,,2,b,9,,19,3,3b,2,y,,3a,3,4,2,9,,6,3,63,2,2,,1m,,,7,,,,,2,8,6,a,2,,1c,h,1r,4,1c,7,,,5,,14,9,c,2,w,4,2,2,,3,1k,,,2,3,,,3,1m,8,2,2,48,3,,d,,7,4,,6,,3,2,5i,1m,,5,ek,,5f,x,2da,3,3x,,2o,w,fe,6,2x,2,n9w,4,,a,w,2,28,2,7k,,3,,4,,p,2,5,,47,2,q,i,d,,12,8,p,b,1a,3,1c,,2,4,2,2,13,,1v,6,2,2,2,2,c,,8,,1b,,1f,,,3,2,2,5,2,,,16,2,8,,6m,,2,,4,,fn4,,kh,g,g,g,a6,2,gt,,6a,,45,5,1ae,3,,2,5,4,14,3,4,,4l,2,fx,4,ar,2,49,b,4w,,1i,f,1k,3,1d,4,2,2,1x,3,10,5,,8,1q,,c,2,1g,9,a,4,2,,2n,3,2,,,2,6,,4g,,3,8,l,2,1l,2,,,,,m,,e,7,3,5,5f,8,2,3,,,n,,29,,2,6,,,2,,,2,,2,6j,,2,4,6,2,,2,r,2,2d,8,2,,,2,2y,,,,2,6,,,2t,3,2,4,,5,77,9,,2,6t,,a,2,,,4,,40,4,2,2,4,,w,a,14,6,2,4,8,,9,6,2,3,1a,d,,2,ba,7,,6,,,2a,m,2,7,,2,,2,3e,6,3,,,2,,7,,,20,2,3,,,,9n,2,f0b,5,1n,7,t4,,1r,4,29,,f5k,2,43q,,,3,4,5,8,8,2,7,u,4,44,3,1iz,1j,4,1e,8,,e,,m,5,,f,11s,7,,h,2,7,,2,,5,79,7,c5,4,15s,7,31,7,240,5,gx7k,2o,3k,6o".split(",").map((s) => s ? parseInt(s, 36) : 1);
-  for (let i = 1; i < extend2.length; i++)
-    extend2[i] += extend2[i - 1];
+  var extend = /* @__PURE__ */ "lc,34,7n,7,7b,19,,,,2,,2,,,20,b,1c,l,g,,2t,7,2,6,2,2,,4,z,,u,r,2j,b,1m,9,9,,o,4,,9,,3,,5,17,3,3b,f,,w,1j,,,,4,8,4,,3,7,a,2,t,,1m,,,,2,4,8,,9,,a,2,q,,2,2,1l,,4,2,4,2,2,3,3,,u,2,3,,b,2,1l,,4,5,,2,4,,k,2,m,6,,,1m,,,2,,4,8,,7,3,a,2,u,,1n,,,,c,,9,,14,,3,,1l,3,5,3,,4,7,2,b,2,t,,1m,,2,,2,,3,,5,2,7,2,b,2,s,2,1l,2,,,2,4,8,,9,,a,2,t,,20,,4,,2,3,,,8,,29,,2,7,c,8,2q,,2,9,b,6,22,2,r,,,,,,1j,e,,5,,2,5,b,,10,9,,2u,4,,6,,2,2,2,p,2,4,3,g,4,d,,2,2,6,,f,,jj,3,qa,3,t,3,t,2,u,2,1s,2,,7,8,,2,b,9,,19,3,3b,2,y,,3a,3,4,2,9,,6,3,63,2,2,,1m,,,7,,,,,2,8,6,a,2,,1c,h,1r,4,1c,7,,,5,,14,9,c,2,w,4,2,2,,3,1k,,,2,3,,,3,1m,8,2,2,48,3,,d,,7,4,,6,,3,2,5i,1m,,5,ek,,5f,x,2da,3,3x,,2o,w,fe,6,2x,2,n9w,4,,a,w,2,28,2,7k,,3,,4,,p,2,5,,47,2,q,i,d,,12,8,p,b,1a,3,1c,,2,4,2,2,13,,1v,6,2,2,2,2,c,,8,,1b,,1f,,,3,2,2,5,2,,,16,2,8,,6m,,2,,4,,fn4,,kh,g,g,g,a6,2,gt,,6a,,45,5,1ae,3,,2,5,4,14,3,4,,4l,2,fx,4,ar,2,49,b,4w,,1i,f,1k,3,1d,4,2,2,1x,3,10,5,,8,1q,,c,2,1g,9,a,4,2,,2n,3,2,,,2,6,,4g,,3,8,l,2,1l,2,,,,,m,,e,7,3,5,5f,8,2,3,,,n,,29,,2,6,,,2,,,2,,2,6j,,2,4,6,2,,2,r,2,2d,8,2,,,2,2y,,,,2,6,,,2t,3,2,4,,5,77,9,,2,6t,,a,2,,,4,,40,4,2,2,4,,w,a,14,6,2,4,8,,9,6,2,3,1a,d,,2,ba,7,,6,,,2a,m,2,7,,2,,2,3e,6,3,,,2,,7,,,20,2,3,,,,9n,2,f0b,5,1n,7,t4,,1r,4,29,,f5k,2,43q,,,3,4,5,8,8,2,7,u,4,44,3,1iz,1j,4,1e,8,,e,,m,5,,f,11s,7,,h,2,7,,2,,5,79,7,c5,4,15s,7,31,7,240,5,gx7k,2o,3k,6o".split(",").map((s) => s ? parseInt(s, 36) : 1);
+  for (let i = 1; i < extend.length; i++)
+    extend[i] += extend[i - 1];
   function isExtendingChar(code) {
-    for (let i = 1; i < extend2.length; i += 2)
-      if (extend2[i] > code)
-        return extend2[i - 1] <= code;
+    for (let i = 1; i < extend.length; i += 2)
+      if (extend[i] > code)
+        return extend[i - 1] <= code;
     return false;
   }
   function isRegionalIndicator(code) {
@@ -5761,7 +2368,7 @@
         if (effect.is(Compartment.reconfigure)) {
           if (conf) {
             compartments = /* @__PURE__ */ new Map();
-            conf.compartments.forEach((val, key) => compartments.set(key, val));
+            conf.compartments.forEach((val, key2) => compartments.set(key2, val));
             conf = null;
           }
           compartments.set(effect.value.compartment, effect.value.extension);
@@ -6049,19 +2656,19 @@
   function combineConfig(configs, defaults3, combine = {}) {
     let result2 = {};
     for (let config2 of configs)
-      for (let key of Object.keys(config2)) {
-        let value = config2[key], current = result2[key];
+      for (let key2 of Object.keys(config2)) {
+        let value = config2[key2], current = result2[key2];
         if (current === void 0)
-          result2[key] = value;
+          result2[key2] = value;
         else if (current === value || value === void 0) ;
-        else if (Object.hasOwnProperty.call(combine, key))
-          result2[key] = combine[key](current, value);
+        else if (Object.hasOwnProperty.call(combine, key2))
+          result2[key2] = combine[key2](current, value);
         else
-          throw new Error("Config merge conflict for field " + key);
+          throw new Error("Config merge conflict for field " + key2);
       }
-    for (let key in defaults3)
-      if (result2[key] === void 0)
-        result2[key] = defaults3[key];
+    for (let key2 in defaults3)
+      if (result2[key2] === void 0)
+        result2[key2] = defaults3[key2];
     return result2;
   }
   var RangeValue = class {
@@ -7785,7 +4392,7 @@
   var webkit = "webkitFontSmoothing" in doc.documentElement.style;
   var safari = !ie2 && /* @__PURE__ */ /Apple Computer/.test(nav.vendor);
   var ios = safari && (/* @__PURE__ */ /Mobile\/\w+/.test(nav.userAgent) || nav.maxTouchPoints > 2);
-  var browser2 = {
+  var browser = {
     mac: ios || /* @__PURE__ */ /Mac/.test(nav.platform),
     windows: /* @__PURE__ */ /Win/.test(nav.platform),
     linux: /* @__PURE__ */ /Linux|X11/.test(nav.platform),
@@ -7927,7 +4534,7 @@
       pos = length;
     let from = pos, to = pos, flatten2 = 0;
     if (pos == 0 && side < 0 || pos == length && side >= 0) {
-      if (!(browser2.chrome || browser2.gecko)) {
+      if (!(browser.chrome || browser.gecko)) {
         if (pos) {
           from--;
           flatten2 = 1;
@@ -7946,7 +4553,7 @@
     if (!rects.length)
       return null;
     let rect = rects[(flatten2 ? flatten2 < 0 : side >= 0) ? 0 : rects.length - 1];
-    if (browser2.safari && !flatten2 && rect.width == 0)
+    if (browser.safari && !flatten2 && rect.width == 0)
       rect = Array.prototype.find.call(rects, (r) => r.width) || rect;
     return flatten2 ? flattenRect(rect, flatten2 < 0) : rect || null;
   }
@@ -8184,8 +4791,8 @@
     let keysA = Object.keys(a), keysB = Object.keys(b);
     if (keysA.length - (ignore && keysA.indexOf(ignore) > -1 ? 1 : 0) != keysB.length - (ignore && keysB.indexOf(ignore) > -1 ? 1 : 0))
       return false;
-    for (let key of keysA) {
-      if (key != ignore && (keysB.indexOf(key) == -1 || a[key] !== b[key]))
+    for (let key2 of keysA) {
+      if (key2 != ignore && (keysB.indexOf(key2) == -1 || a[key2] !== b[key2]))
         return false;
     }
     return true;
@@ -8565,7 +5172,7 @@
       let last = this.dom.lastChild;
       while (last && ContentView.get(last) instanceof MarkView)
         last = last.lastChild;
-      if (!last || !this.length || last.nodeName != "BR" && ((_a2 = ContentView.get(last)) === null || _a2 === void 0 ? void 0 : _a2.isEditable) == false && (!browser2.ios || !this.children.some((ch) => ch instanceof TextView))) {
+      if (!last || !this.length || last.nodeName != "BR" && ((_a2 = ContentView.get(last)) === null || _a2 === void 0 ? void 0 : _a2.isEditable) == false && (!browser.ios || !this.children.some((ch) => ch instanceof TextView))) {
         let hack = document.createElement("BR");
         hack.cmIgnore = true;
         this.dom.appendChild(hack);
@@ -9633,7 +6240,7 @@
         changedRanges = new ChangedRange(from, to, update.changes.mapPos(from, -1), update.changes.mapPos(to, 1)).addToSet(changedRanges.slice());
       }
       this.hasComposition = composition ? { from: composition.range.fromB, to: composition.range.toB } : null;
-      if ((browser2.ie || browser2.chrome) && !composition && update && update.state.doc.lines != update.startState.doc.lines)
+      if ((browser.ie || browser.chrome) && !composition && update && update.state.doc.lines != update.startState.doc.lines)
         this.forceSelection = true;
       let prevDeco = this.decorations, deco = this.updateDeco();
       let decoDiff = findChangedDeco(prevDeco, deco, update.changes);
@@ -9656,7 +6263,7 @@
       observer.ignore(() => {
         this.dom.style.height = this.view.viewState.contentHeight / this.view.scaleY + "px";
         this.dom.style.flexBasis = this.minWidth ? this.minWidth + "px" : "";
-        let track = browser2.chrome || browser2.ios ? { node: observer.selectionRange.focusNode, written: false } : void 0;
+        let track = browser.chrome || browser.ios ? { node: observer.selectionRange.focusNode, written: false } : void 0;
         this.sync(this.view, track);
         this.flags &= ~7;
         if (track && (track.written || observer.selectionRange.focusNode != track.node))
@@ -9761,7 +6368,7 @@
       let main2 = this.view.state.selection.main;
       let anchor = this.moveToLine(this.domAtPos(main2.anchor));
       let head = main2.empty ? anchor : this.moveToLine(this.domAtPos(main2.head));
-      if (browser2.gecko && main2.empty && !this.hasComposition && betweenUneditable(anchor)) {
+      if (browser.gecko && main2.empty && !this.hasComposition && betweenUneditable(anchor)) {
         let dummy = document.createTextNode("");
         this.view.observer.ignore(() => anchor.node.insertBefore(dummy, anchor.node.childNodes[anchor.offset] || null));
         anchor = head = new DOMPos(dummy, 0);
@@ -9770,14 +6377,14 @@
       let domSel = this.view.observer.selectionRange;
       if (force || !domSel.focusNode || (!isEquivalentPosition(anchor.node, anchor.offset, domSel.anchorNode, domSel.anchorOffset) || !isEquivalentPosition(head.node, head.offset, domSel.focusNode, domSel.focusOffset)) && !this.suppressWidgetCursorChange(domSel, main2)) {
         this.view.observer.ignore(() => {
-          if (browser2.android && browser2.chrome && this.dom.contains(domSel.focusNode) && inUneditable(domSel.focusNode, this.dom)) {
+          if (browser.android && browser.chrome && this.dom.contains(domSel.focusNode) && inUneditable(domSel.focusNode, this.dom)) {
             this.dom.blur();
             this.dom.focus({ preventScroll: true });
           }
           let rawSel = getSelection(this.view.root);
           if (!rawSel) ;
           else if (main2.empty) {
-            if (browser2.gecko) {
+            if (browser.gecko) {
               let nextTo = nextToUneditable(anchor.node, anchor.offset);
               if (nextTo && nextTo != (1 | 2)) {
                 let text = (nextTo == 1 ? textNodeBefore : textNodeAfter)(anchor.node, anchor.offset);
@@ -10284,7 +6891,7 @@
         let dy = (rect.top > y ? rect.top - y : y - rect.bottom) - 1;
         if (rect.left - 1 <= x && rect.right + 1 >= x && dy < closestDY) {
           let right = x >= (rect.left + rect.right) / 2, after = right;
-          if (browser2.chrome || browser2.gecko) {
+          if (browser.chrome || browser.gecko) {
             let rectBefore = textRange(node, i).getBoundingClientRect();
             if (rectBefore.left == rect.right)
               after = !right;
@@ -10348,7 +6955,7 @@
         let range = doc2.caretRangeFromPoint(x, y);
         if (range) {
           ({ startContainer: node, startOffset: offset } = range);
-          if (!view.contentDOM.contains(node) || browser2.safari && isSuspiciousSafariCaretResult(node, offset, x) || browser2.chrome && isSuspiciousChromeCaretResult(node, offset, x))
+          if (!view.contentDOM.contains(node) || browser.safari && isSuspiciousSafariCaretResult(node, offset, x) || browser.chrome && isSuspiciousChromeCaretResult(node, offset, x))
             node = void 0;
         }
       }
@@ -10638,7 +7245,7 @@
         let head = iHead && iHead.node == domSel.focusNode && iHead.offset == domSel.focusOffset || !contains(view.contentDOM, domSel.focusNode) ? view.state.selection.main.head : view.docView.posFromDOM(domSel.focusNode, domSel.focusOffset);
         let anchor = iAnchor && iAnchor.node == domSel.anchorNode && iAnchor.offset == domSel.anchorOffset || !contains(view.contentDOM, domSel.anchorNode) ? view.state.selection.main.anchor : view.docView.posFromDOM(domSel.anchorNode, domSel.anchorOffset);
         let vp = view.viewport;
-        if ((browser2.ios || browser2.chrome) && view.state.selection.main.empty && head != anchor && (vp.from > 0 || vp.to < view.state.doc.length)) {
+        if ((browser.ios || browser.chrome) && view.state.selection.main.empty && head != anchor && (vp.from > 0 || vp.to < view.state.doc.length)) {
           let from = Math.min(head, anchor), to = Math.max(head, anchor);
           let offFrom = vp.from - from, offTo = vp.to - to;
           if ((offFrom == 0 || offFrom == 1 || from == 0) && (offTo == 0 || offTo == -1 || to == view.state.doc.length)) {
@@ -10657,13 +7264,13 @@
     if (domChange.bounds) {
       let { from, to } = domChange.bounds;
       let preferredPos = sel.from, preferredSide = null;
-      if (lastKey === 8 || browser2.android && domChange.text.length < to - from) {
+      if (lastKey === 8 || browser.android && domChange.text.length < to - from) {
         preferredPos = sel.to;
         preferredSide = "end";
       }
       let diff = findDiff(view.state.doc.sliceString(from, to, LineBreakPlaceholder), domChange.text, preferredPos - from, preferredSide);
       if (diff) {
-        if (browser2.chrome && lastKey == 13 && diff.toB == diff.from + 2 && domChange.text.slice(diff.from, diff.toB) == LineBreakPlaceholder + LineBreakPlaceholder)
+        if (browser.chrome && lastKey == 13 && diff.toB == diff.from + 2 && domChange.text.slice(diff.from, diff.toB) == LineBreakPlaceholder + LineBreakPlaceholder)
           diff.toB--;
         change = {
           from: from + diff.from,
@@ -10684,11 +7291,11 @@
         to: sel.to,
         insert: view.state.doc.slice(sel.from, change.from).append(change.insert).append(view.state.doc.slice(change.to, sel.to))
       };
-    } else if ((browser2.mac || browser2.android) && change && change.from == change.to && change.from == sel.head - 1 && /^\. ?$/.test(change.insert.toString()) && view.contentDOM.getAttribute("autocorrect") == "off") {
+    } else if ((browser.mac || browser.android) && change && change.from == change.to && change.from == sel.head - 1 && /^\. ?$/.test(change.insert.toString()) && view.contentDOM.getAttribute("autocorrect") == "off") {
       if (newSel && change.insert.length == 2)
         newSel = EditorSelection.single(newSel.main.anchor - 1, newSel.main.head - 1);
       change = { from: sel.from, to: sel.to, insert: Text.of([" "]) };
-    } else if (browser2.chrome && change && change.from == change.to && change.from == sel.head && change.insert.toString() == "\n " && view.lineWrapping) {
+    } else if (browser.chrome && change && change.from == change.to && change.from == sel.head && change.insert.toString() == "\n " && view.lineWrapping) {
       if (newSel)
         newSel = EditorSelection.single(newSel.main.anchor - 1, newSel.main.head - 1);
       change = { from: sel.from, to: sel.to, insert: Text.of([" "]) };
@@ -10709,10 +7316,10 @@
     }
   }
   function applyDOMChangeInner(view, change, newSel, lastKey = -1) {
-    if (browser2.ios && view.inputState.flushIOSKey(change))
+    if (browser.ios && view.inputState.flushIOSKey(change))
       return true;
     let sel = view.state.selection.main;
-    if (browser2.android && (change.to == sel.to && // GBoard will sometimes remove a space it just inserted
+    if (browser.android && (change.to == sel.to && // GBoard will sometimes remove a space it just inserted
     // after a completion when you press enter
     (change.from == sel.from || change.from == sel.from - 1 && view.state.sliceDoc(change.from, sel.from) == " ") && change.insert.length == 1 && change.insert.lines == 2 && dispatchKey(view.contentDOM, "Enter", 13) || (change.from == sel.from - 1 && change.to == sel.to && change.insert.length == 0 || lastKey == 8 && change.insert.length < change.to - change.from && change.to > sel.head) && dispatchKey(view.contentDOM, "Backspace", 8) || change.from == sel.from && change.to == sel.to + 1 && change.insert.length == 0 && dispatchKey(view.contentDOM, "Delete", 46)))
       return true;
@@ -10854,9 +7461,9 @@
       this.draggedContent = null;
       this.handleEvent = this.handleEvent.bind(this);
       this.notifiedFocused = view.hasFocus;
-      if (browser2.safari)
+      if (browser.safari)
         view.contentDOM.addEventListener("input", () => null);
-      if (browser2.gecko)
+      if (browser.gecko)
         firefoxCopyCutHack(view.contentDOM.ownerDocument);
     }
     handleEvent(event) {
@@ -10906,12 +7513,12 @@
         return true;
       if (this.tabFocusMode > 0 && event.keyCode != 27 && modifierCodes.indexOf(event.keyCode) < 0)
         this.tabFocusMode = -1;
-      if (browser2.android && browser2.chrome && !event.synthetic && (event.keyCode == 13 || event.keyCode == 8)) {
+      if (browser.android && browser.chrome && !event.synthetic && (event.keyCode == 13 || event.keyCode == 8)) {
         this.view.observer.delayAndroidKey(event.key, event.keyCode);
         return true;
       }
       let pending;
-      if (browser2.ios && !event.synthetic && !event.altKey && !event.metaKey && ((pending = PendingKeys.find((key) => key.keyCode == event.keyCode)) && !event.ctrlKey || EmacsyPendingKeys.indexOf(event.key) > -1 && event.ctrlKey && !event.shiftKey)) {
+      if (browser.ios && !event.synthetic && !event.altKey && !event.metaKey && ((pending = PendingKeys.find((key2) => key2.keyCode == event.keyCode)) && !event.ctrlKey || EmacsyPendingKeys.indexOf(event.key) > -1 && event.ctrlKey && !event.shiftKey)) {
         this.pendingIOSKey = pending || event;
         setTimeout(() => this.flushIOSKey(), 250);
         return true;
@@ -10921,20 +7528,20 @@
       return false;
     }
     flushIOSKey(change) {
-      let key = this.pendingIOSKey;
-      if (!key)
+      let key2 = this.pendingIOSKey;
+      if (!key2)
         return false;
-      if (key.key == "Enter" && change && change.from < change.to && /^\S+$/.test(change.insert.toString()))
+      if (key2.key == "Enter" && change && change.from < change.to && /^\S+$/.test(change.insert.toString()))
         return false;
       this.pendingIOSKey = void 0;
-      return dispatchKey(this.view.contentDOM, key.key, key.keyCode, key instanceof KeyboardEvent ? key : void 0);
+      return dispatchKey(this.view.contentDOM, key2.key, key2.keyCode, key2 instanceof KeyboardEvent ? key2 : void 0);
     }
     ignoreDuringComposition(event) {
       if (!/^key/.test(event.type))
         return false;
       if (this.composing > 0)
         return true;
-      if (browser2.safari && !browser2.ios && this.compositionPendingKey && Date.now() - this.compositionEndedAt < 100) {
+      if (browser.safari && !browser.ios && this.compositionPendingKey && Date.now() - this.compositionEndedAt < 100) {
         this.compositionPendingKey = false;
         return true;
       }
@@ -11010,10 +7617,10 @@
     return Math.max(Math.abs(a.clientX - b.clientX), Math.abs(a.clientY - b.clientY));
   }
   var MouseSelection = class {
-    constructor(view, startEvent, style, mustSelect) {
+    constructor(view, startEvent, style2, mustSelect) {
       this.view = view;
       this.startEvent = startEvent;
-      this.style = style;
+      this.style = style2;
       this.mustSelect = mustSelect;
       this.scrollSpeed = { x: 0, y: 0 };
       this.scrolling = -1;
@@ -11133,11 +7740,11 @@
   };
   function addsSelectionRange(view, event) {
     let facet = view.state.facet(clickAddsSelectionRange);
-    return facet.length ? facet[0](event) : browser2.mac ? event.metaKey : event.ctrlKey;
+    return facet.length ? facet[0](event) : browser.mac ? event.metaKey : event.ctrlKey;
   }
   function dragMovesSelection(view, event) {
     let facet = view.state.facet(dragMovesSelection$1);
-    return facet.length ? facet[0](event) : browser2.mac ? !event.altKey : !event.ctrlKey;
+    return facet.length ? facet[0](event) : browser.mac ? !event.altKey : !event.ctrlKey;
   }
   function isInPrimarySelection(view, event) {
     let { main: main2 } = view.state.selection;
@@ -11166,7 +7773,7 @@
   }
   var handlers = /* @__PURE__ */ Object.create(null);
   var observers = /* @__PURE__ */ Object.create(null);
-  var brokenClipboardAPI = browser2.ie && browser2.ie_version < 15 || browser2.ios && browser2.webkit_version < 604;
+  var brokenClipboardAPI = browser.ie && browser.ie_version < 15 || browser.ios && browser.webkit_version < 604;
   function capturePaste(view) {
     let parent = view.dom.parentNode;
     if (!parent)
@@ -11240,17 +7847,17 @@
     view.observer.flush();
     if (view.inputState.lastTouchTime > Date.now() - 2e3)
       return false;
-    let style = null;
+    let style2 = null;
     for (let makeStyle of view.state.facet(mouseSelectionStyle)) {
-      style = makeStyle(view, event);
-      if (style)
+      style2 = makeStyle(view, event);
+      if (style2)
         break;
     }
-    if (!style && event.button == 0)
-      style = basicMouseSelection(view, event);
-    if (style) {
+    if (!style2 && event.button == 0)
+      style2 = basicMouseSelection(view, event);
+    if (style2) {
       let mustFocus = !view.hasFocus;
-      view.inputState.startMouseSelection(new MouseSelection(view, event, style, mustFocus));
+      view.inputState.startMouseSelection(new MouseSelection(view, event, style2, mustFocus));
       if (mustFocus)
         view.observer.ignore(() => {
           focusPreventScroll(view.contentDOM);
@@ -11301,7 +7908,7 @@
     let pos = view.posAtCoords({ x: event.clientX, y: event.clientY }, false);
     return { pos, bias: findPositionSide(view, pos, event.clientX, event.clientY) };
   }
-  var BadMouseDetail = browser2.ie && browser2.ie_version <= 11;
+  var BadMouseDetail = browser.ie && browser.ie_version <= 11;
   var lastMouseDown = null;
   var lastMouseDownCount = 0;
   var lastMouseDownTime = 0;
@@ -11545,7 +8152,7 @@
     view.inputState.compositionPendingKey = true;
     view.inputState.compositionPendingChange = view.observer.pendingRecords().length > 0;
     view.inputState.compositionFirstChange = null;
-    if (browser2.chrome && browser2.android) {
+    if (browser.chrome && browser.android) {
       view.observer.flushSoon();
     } else if (view.inputState.compositionPendingChange) {
       Promise.resolve().then(() => view.observer.flush());
@@ -11571,7 +8178,7 @@
       }
     }
     let pending;
-    if (browser2.chrome && browser2.android && (pending = PendingKeys.find((key) => key.inputType == event.inputType))) {
+    if (browser.chrome && browser.android && (pending = PendingKeys.find((key2) => key2.inputType == event.inputType))) {
       view.observer.delayAndroidKey(pending.key, pending.keyCode);
       if (pending.key == "Backspace" || pending.key == "Delete") {
         let startViewHeight = ((_b = window.visualViewport) === null || _b === void 0 ? void 0 : _b.height) || 0;
@@ -11584,10 +8191,10 @@
         }, 100);
       }
     }
-    if (browser2.ios && event.inputType == "deleteContentForward") {
+    if (browser.ios && event.inputType == "deleteContentForward") {
       view.observer.flushSoon();
     }
-    if (browser2.safari && event.inputType == "insertText" && view.inputState.composing >= 0) {
+    if (browser.safari && event.inputType == "insertText" && view.inputState.composing >= 0) {
       setTimeout(() => observers.compositionend(view, event), 20);
     }
     return false;
@@ -12303,15 +8910,15 @@
     for (let parent = dom.parentNode; parent && parent != doc2.body; ) {
       if (parent.nodeType == 1) {
         let elt = parent;
-        let style = window.getComputedStyle(elt);
-        if ((elt.scrollHeight > elt.clientHeight || elt.scrollWidth > elt.clientWidth) && style.overflow != "visible") {
+        let style2 = window.getComputedStyle(elt);
+        if ((elt.scrollHeight > elt.clientHeight || elt.scrollWidth > elt.clientWidth) && style2.overflow != "visible") {
           let parentRect = elt.getBoundingClientRect();
           left = Math.max(left, parentRect.left);
           right = Math.min(right, parentRect.right);
           top2 = Math.max(top2, parentRect.top);
           bottom = Math.min(parent == dom.parentNode ? win.innerHeight : bottom, parentRect.bottom);
         }
-        parent = style.position == "absolute" || style.position == "fixed" ? elt.offsetParent : elt.parentNode;
+        parent = style2.position == "absolute" || style2.position == "fixed" ? elt.offsetParent : elt.parentNode;
       } else if (parent.nodeType == 11) {
         parent = parent.host;
       } else {
@@ -12478,10 +9085,10 @@
         this.mustEnforceCursorAssoc = true;
     }
     measure(view) {
-      let dom = view.contentDOM, style = window.getComputedStyle(dom);
+      let dom = view.contentDOM, style2 = window.getComputedStyle(dom);
       let oracle = this.heightOracle;
-      let whiteSpace = style.whiteSpace;
-      this.defaultTextDirection = style.direction == "rtl" ? Direction.RTL : Direction.LTR;
+      let whiteSpace = style2.whiteSpace;
+      this.defaultTextDirection = style2.direction == "rtl" ? Direction.RTL : Direction.LTR;
       let refresh = this.heightOracle.mustRefreshForWrapping(whiteSpace);
       let domRect = dom.getBoundingClientRect();
       let measureContent = refresh || this.mustMeasureContent || this.contentDOMHeight != domRect.height;
@@ -12497,8 +9104,8 @@
           refresh = measureContent = true;
         }
       }
-      let paddingTop = (parseInt(style.paddingTop) || 0) * this.scaleY;
-      let paddingBottom = (parseInt(style.paddingBottom) || 0) * this.scaleY;
+      let paddingTop = (parseInt(style2.paddingTop) || 0) * this.scaleY;
+      let paddingBottom = (parseInt(style2.paddingBottom) || 0) * this.scaleY;
       if (this.paddingTop != paddingTop || this.paddingBottom != paddingBottom) {
         this.paddingTop = paddingTop;
         this.paddingBottom = paddingBottom;
@@ -13173,7 +9780,7 @@
     attributes: true,
     characterDataOldValue: true
   };
-  var useCharData = browser2.ie && browser2.ie_version <= 11;
+  var useCharData = browser.ie && browser.ie_version <= 11;
   var DOMObserver = class {
     constructor(view) {
       this.view = view;
@@ -13199,13 +9806,13 @@
       this.observer = new MutationObserver((mutations) => {
         for (let mut of mutations)
           this.queue.push(mut);
-        if ((browser2.ie && browser2.ie_version <= 11 || browser2.ios && view.composing) && mutations.some((m) => m.type == "childList" && m.removedNodes.length || m.type == "characterData" && m.oldValue.length > m.target.nodeValue.length))
+        if ((browser.ie && browser.ie_version <= 11 || browser.ios && view.composing) && mutations.some((m) => m.type == "childList" && m.removedNodes.length || m.type == "characterData" && m.oldValue.length > m.target.nodeValue.length))
           this.flushSoon();
         else
           this.flush();
       });
       if (window.EditContext && view.constructor.EDIT_CONTEXT !== false && // Chrome <126 doesn't support inverted selections in edit context (#1392)
-      !(browser2.chrome && browser2.chrome_version < 126)) {
+      !(browser.chrome && browser.chrome_version < 126)) {
         this.editContext = new EditContextManager(view);
         if (view.state.facet(editable))
           view.contentDOM.editContext = this.editContext.editContext;
@@ -13304,7 +9911,7 @@
           this.selectionChanged = false;
         return;
       }
-      if ((browser2.ie && browser2.ie_version <= 11 || browser2.android && browser2.chrome) && !view.state.selection.main.empty && // (Selection.isCollapsed isn't reliable on IE)
+      if ((browser.ie && browser.ie_version <= 11 || browser.android && browser.chrome) && !view.state.selection.main.empty && // (Selection.isCollapsed isn't reliable on IE)
       sel.focusNode && isEquivalentPosition(sel.focusNode, sel.focusOffset, sel.anchorNode, sel.anchorOffset))
         this.flushSoon();
       else
@@ -13315,7 +9922,7 @@
       let selection = getSelection(view.root);
       if (!selection)
         return false;
-      let range = browser2.safari && view.root.nodeType == 11 && view.root.activeElement == this.dom && safariSelectionRangeHack(this.view, selection) || selection;
+      let range = browser.safari && view.root.nodeType == 11 && view.root.activeElement == this.dom && safariSelectionRangeHack(this.view, selection) || selection;
       if (!range || this.selectionRange.eq(range))
         return false;
       let local = hasSelection(this.dom, range);
@@ -13404,25 +10011,25 @@
     // from handling DOM changes for a moment when such a key is
     // detected (via beforeinput or keydown), and then tries to flush
     // them or, if that has no effect, dispatches the given key.
-    delayAndroidKey(key, keyCode) {
+    delayAndroidKey(key2, keyCode) {
       var _a2;
       if (!this.delayedAndroidKey) {
         let flush = () => {
-          let key2 = this.delayedAndroidKey;
-          if (key2) {
+          let key3 = this.delayedAndroidKey;
+          if (key3) {
             this.clearDelayedAndroidKey();
-            this.view.inputState.lastKeyCode = key2.keyCode;
+            this.view.inputState.lastKeyCode = key3.keyCode;
             this.view.inputState.lastKeyTime = Date.now();
             let flushed = this.flush();
-            if (!flushed && key2.force)
-              dispatchKey(this.dom, key2.key, key2.keyCode);
+            if (!flushed && key3.force)
+              dispatchKey(this.dom, key3.key, key3.keyCode);
           }
         };
         this.flushingAndroidKey = this.view.win.requestAnimationFrame(flush);
       }
-      if (!this.delayedAndroidKey || key == "Enter")
+      if (!this.delayedAndroidKey || key2 == "Enter")
         this.delayedAndroidKey = {
-          key,
+          key: key2,
           keyCode,
           // Only run the key handler when no changes are detected if
           // this isn't coming right after another change, in which case
@@ -13665,8 +10272,8 @@
         for (let format of e.getTextFormats()) {
           let lineStyle = format.underlineStyle, thickness = format.underlineThickness;
           if (lineStyle != "None" && thickness != "None") {
-            let style = `text-decoration: underline ${lineStyle == "Dashed" ? "dashed " : lineStyle == "Squiggle" ? "wavy " : ""}${thickness == "Thin" ? 1 : 2}px`;
-            deco.push(Decoration.mark({ attributes: { style } }).range(this.toEditorPos(format.rangeStart), this.toEditorPos(format.rangeEnd)));
+            let style2 = `text-decoration: underline ${lineStyle == "Dashed" ? "dashed " : lineStyle == "Squiggle" ? "wavy " : ""}${thickness == "Thin" ? 1 : 2}px`;
+            deco.push(Decoration.mark({ attributes: { style: style2 } }).range(this.toEditorPos(format.rangeStart), this.toEditorPos(format.rangeEnd)));
           }
         }
         view.dispatch({ effects: setEditContextFormatting.of(Decoration.set(deco)) });
@@ -14212,7 +10819,7 @@
         translate: "no",
         contenteditable: !this.state.facet(editable) ? "false" : "true",
         class: "cm-content",
-        style: `${browser2.tabSize}: ${this.state.tabSize}`,
+        style: `${browser.tabSize}: ${this.state.tabSize}`,
         role: "textbox",
         "aria-multiline": "true"
       };
@@ -14551,7 +11158,7 @@
     */
     get hasFocus() {
       var _a2;
-      return (this.dom.ownerDocument.hasFocus() || browser2.safari && ((_a2 = this.inputState) === null || _a2 === void 0 ? void 0 : _a2.lastContextMenu) > Date.now() - 3e4) && this.root.activeElement == this.contentDOM;
+      return (this.dom.ownerDocument.hasFocus() || browser.safari && ((_a2 = this.inputState) === null || _a2 === void 0 ? void 0 : _a2.lastContextMenu) > Date.now() - 3e4) && this.root.activeElement == this.contentDOM;
     }
     /**
     Put focus on the editor.
@@ -14744,12 +11351,12 @@
       this.fresh = fresh;
       this.order = order;
     }
-    static update(cache4, changes) {
-      if (changes.empty && !cache4.some((c) => c.fresh))
-        return cache4;
-      let result2 = [], lastDir = cache4.length ? cache4[cache4.length - 1].dir : Direction.LTR;
-      for (let i = Math.max(0, cache4.length - 10); i < cache4.length; i++) {
-        let entry = cache4[i];
+    static update(cache3, changes) {
+      if (changes.empty && !cache3.some((c) => c.fresh))
+        return cache3;
+      let result2 = [], lastDir = cache3.length ? cache3[cache3.length - 1].dir : Direction.LTR;
+      for (let i = Math.max(0, cache3.length - 10); i < cache3.length; i++) {
+        let entry = cache3[i];
         if (entry.dir == lastDir && !changes.touchesRange(entry.from, entry.to))
           result2.push(new _CachedOrder(changes.mapPos(entry.from, 1), changes.mapPos(entry.to, -1), entry.dir, entry.isolates, false, entry.order));
       }
@@ -14764,7 +11371,7 @@
     }
     return base2;
   }
-  var currentPlatform = browser2.mac ? "mac" : browser2.windows ? "win" : browser2.linux ? "linux" : "key";
+  var currentPlatform = browser.mac ? "mac" : browser.windows ? "win" : browser.linux ? "linux" : "key";
   function normalizeKeyName(name2, platform) {
     const parts = name2.split(/-(?!$)/);
     let result2 = parts[parts.length - 1];
@@ -14839,10 +11446,10 @@
       else if (current != is)
         throw new Error("Key binding " + name2 + " is used both as a regular binding and as a multi-stroke prefix");
     };
-    let add2 = (scope, key, command2, preventDefault, stopPropagation) => {
+    let add2 = (scope, key2, command2, preventDefault, stopPropagation) => {
       var _a2, _b;
       let scopeObj = bound[scope] || (bound[scope] = /* @__PURE__ */ Object.create(null));
-      let parts = key.split(/ (?!$)/).map((k) => normalizeKeyName(k, platform));
+      let parts = key2.split(/ (?!$)/).map((k) => normalizeKeyName(k, platform));
       for (let i = 1; i < parts.length; i++) {
         let prefix2 = parts.slice(0, i).join(" ");
         checkPrefix(prefix2, true);
@@ -14882,8 +11489,8 @@
           if (!scopeObj._any)
             scopeObj._any = { preventDefault: false, stopPropagation: false, run: [] };
           let { any } = b;
-          for (let key in scopeObj)
-            scopeObj[key].run.push((view) => any(view, currentKeyEvent));
+          for (let key2 in scopeObj)
+            scopeObj[key2].run.push((view) => any(view, currentKeyEvent));
         }
       let name2 = b[platform] || b.key;
       if (!name2)
@@ -14934,7 +11541,7 @@
       if (runFor(scopeObj[prefix2 + modifiers(name2, event, !isChar)])) {
         handled = true;
       } else if (isChar && (event.altKey || event.metaKey || event.ctrlKey) && // Ctrl-Alt may be used for AltGr on Windows
-      !(browser2.windows && event.ctrlKey && event.altKey) && (baseName = base[event.keyCode]) && baseName != name2) {
+      !(browser.windows && event.ctrlKey && event.altKey) && (baseName = base[event.keyCode]) && baseName != name2) {
         if (runFor(scopeObj[prefix2 + modifiers(baseName, event, true)])) {
           handled = true;
         } else if (event.shiftKey && (shiftName = shift[event.keyCode]) != name2 && shiftName != baseName && runFor(scopeObj[prefix2 + modifiers(shiftName, event, false)])) {
@@ -15192,7 +11799,7 @@
       layerOrder.of(config2)
     ];
   }
-  var CanHidePrimary = !browser2.ios;
+  var CanHidePrimary = !browser.ios;
   var selectionConfig = /* @__PURE__ */ Facet.define({
     combine(configs) {
       return combineConfig(configs, {
@@ -15823,7 +12430,7 @@
     combine: (values) => {
       var _a2, _b, _c;
       return {
-        position: browser2.ios ? "absolute" : ((_a2 = values.find((conf) => conf.position)) === null || _a2 === void 0 ? void 0 : _a2.position) || "fixed",
+        position: browser.ios ? "absolute" : ((_a2 = values.find((conf) => conf.position)) === null || _a2 === void 0 ? void 0 : _a2.position) || "fixed",
         parent: ((_b = values.find((conf) => conf.parent)) === null || _b === void 0 ? void 0 : _b.parent) || null,
         tooltipSpace: ((_c = values.find((conf) => conf.tooltipSpace)) === null || _c === void 0 ? void 0 : _c.tooltipSpace) || windowSpace
       };
@@ -15947,7 +12554,7 @@
       let scaleX = 1, scaleY = 1, makeAbsolute = false;
       if (this.position == "fixed" && this.manager.tooltipViews.length) {
         let { dom } = this.manager.tooltipViews[0];
-        if (browser2.gecko) {
+        if (browser.gecko) {
           makeAbsolute = dom.offsetParent != this.container.ownerDocument.body;
         } else if (dom.style.top == Outside && dom.style.left == "0px") {
           let rect = dom.getBoundingClientRect();
@@ -18151,10 +14758,10 @@
     get node() {
       if (!this.buffer)
         return this._tree;
-      let cache4 = this.bufferNode, result2 = null, depth = 0;
-      if (cache4 && cache4.context == this.buffer) {
+      let cache3 = this.bufferNode, result2 = null, depth = 0;
+      if (cache3 && cache3.context == this.buffer) {
         scan: for (let index2 = this.index, d = this.stack.length; d >= 0; ) {
-          for (let c = cache4; c; c = c._parent)
+          for (let c = cache3; c; c = c._parent)
             if (c.index == index2) {
               if (index2 == this.index)
                 return c;
@@ -18819,12 +15426,12 @@
   Rule.empty = new Rule([], 2, null);
   function tagHighlighter(tags2, options) {
     let map = /* @__PURE__ */ Object.create(null);
-    for (let style of tags2) {
-      if (!Array.isArray(style.tag))
-        map[style.tag.id] = style.class;
+    for (let style2 of tags2) {
+      if (!Array.isArray(style2.tag))
+        map[style2.tag.id] = style2.class;
       else
-        for (let tag of style.tag)
-          map[tag.id] = style.class;
+        for (let tag of style2.tag)
+          map[tag.id] = style2.class;
     }
     let { scope, all = null } = options || {};
     return {
@@ -20532,9 +17139,9 @@
       const all = typeof options.all == "string" ? options.all : options.all ? def(options.all) : void 0;
       const scopeOpt = options.scope;
       this.scope = scopeOpt instanceof Language ? (type) => type.prop(languageDataProp) == scopeOpt.data : scopeOpt ? (type) => type == scopeOpt : void 0;
-      this.style = tagHighlighter(specs.map((style) => ({
-        tag: style.tag,
-        class: style.class || def(Object.assign({}, style, { tag: null }))
+      this.style = tagHighlighter(specs.map((style2) => ({
+        tag: style2.tag,
+        class: style2.class || def(Object.assign({}, style2, { tag: null }))
       })), {
         all
       }).style;
@@ -20612,8 +17219,8 @@
         return Decoration.none;
       let builder = new RangeSetBuilder();
       for (let { from, to } of view.visibleRanges) {
-        highlightTree(this.tree, highlighters, (from2, to2, style) => {
-          builder.add(from2, to2, this.markCache[style] || (this.markCache[style] = Decoration.mark({ class: style })));
+        highlightTree(this.tree, highlighters, (from2, to2, style2) => {
+          builder.add(from2, to2, this.markCache[style2] || (this.markCache[style2] = Decoration.mark({ class: style2 })));
         }, from, to);
       }
       return builder.finish();
@@ -20889,11 +17496,11 @@
     }
     if (!tags$1.length)
       return 0;
-    let name2 = tagStr.replace(/ /g, "_"), key = name2 + " " + tags$1.map((t2) => t2.id);
-    let known = byTag[key];
+    let name2 = tagStr.replace(/ /g, "_"), key2 = name2 + " " + tags$1.map((t2) => t2.id);
+    let known = byTag[key2];
     if (known)
       return known.id;
-    let type = byTag[key] = NodeType.define({
+    let type = byTag[key2] = NodeType.define({
       id: typeArray.length,
       name: name2,
       props: [styleTags({ [name2]: tags$1 })]
@@ -22349,7 +18956,7 @@
     }
   });
   function highlightSelectionMatches(options) {
-    let ext = [defaultTheme2, matchHighlighter];
+    let ext = [defaultTheme, matchHighlighter];
     if (options)
       ext.push(highlightConfig.of(options));
     return ext;
@@ -22419,7 +19026,7 @@
   }, {
     decorations: (v) => v.decorations
   });
-  var defaultTheme2 = /* @__PURE__ */ EditorView.baseTheme({
+  var defaultTheme = /* @__PURE__ */ EditorView.baseTheme({
     ".cm-selectionMatch": { backgroundColor: "#99ff7780" },
     ".cm-searchMatch .cm-selectionMatch": { backgroundColor: "transparent" }
   });
@@ -27415,7 +24022,7 @@
       type: "keyword"
     })
   ]);
-  var cache3 = /* @__PURE__ */ new NodeWeakMap();
+  var cache = /* @__PURE__ */ new NodeWeakMap();
   var ScopeNodes = /* @__PURE__ */ new Set([
     "Script",
     "Block",
@@ -27451,7 +24058,7 @@
     __proto__: null
   };
   function getScope(doc2, node) {
-    let cached = cache3.get(node);
+    let cached = cache.get(node);
     if (cached)
       return cached;
     let completions = [], top2 = true;
@@ -27472,7 +24079,7 @@
         return false;
       }
     });
-    cache3.set(node, completions);
+    cache.set(node, completions);
     return completions;
   }
   var Identifier = /^[\w$\xa1-\uffff][\w$\d\xa1-\uffff]*$/;
@@ -27632,6 +24239,17 @@
     ]);
     return true;
   });
+
+  // node_modules/.pnpm/@babel+runtime@7.26.0/node_modules/@babel/runtime/helpers/esm/extends.js
+  function _extends() {
+    return _extends = Object.assign ? Object.assign.bind() : function(n) {
+      for (var e = 1; e < arguments.length; e++) {
+        var t2 = arguments[e];
+        for (var r in t2) ({}).hasOwnProperty.call(t2, r) && (n[r] = t2[r]);
+      }
+      return n;
+    }, _extends.apply(null, arguments);
+  }
 
   // node_modules/.pnpm/@uiw+codemirror-themes@4.23.6_@codemirror+language@6.10.3_@codemirror+state@6.4.1_@codemirror+view@6.35.0/node_modules/@uiw/codemirror-themes/esm/index.js
   var createTheme = (_ref) => {
@@ -27798,7 +24416,3337 @@
   };
   var tokyoNight = tokyoNightInit();
 
-  // src/json-viewer/themes.ts
+  // node_modules/.pnpm/@jam-tools+json-tree-view@1.0.4/node_modules/@jam-tools/json-tree-view/dist/index.js
+  var __defProp = Object.defineProperty;
+  var __export = (target, all) => {
+    for (var name2 in all)
+      __defProp(target, name2, { get: all[name2], enumerable: true });
+  };
+  var styles_exports = {};
+  __export(styles_exports, {
+    defaultStyleSheet: () => defaultStyleSheet,
+    defaultTheme: () => defaultTheme2,
+    makeStyleSheet: () => makeStyleSheet
+  });
+  function _extends2() {
+    return _extends2 = Object.assign ? Object.assign.bind() : function(n) {
+      for (var e = 1; e < arguments.length; e++) {
+        var t2 = arguments[e];
+        for (var r in t2) ({}).hasOwnProperty.call(t2, r) && (n[r] = t2[r]);
+      }
+      return n;
+    }, _extends2.apply(null, arguments);
+  }
+  var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function(obj) {
+    return typeof obj;
+  } : function(obj) {
+    return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+  };
+  var isBrowser = (typeof window === "undefined" ? "undefined" : _typeof(window)) === "object" && (typeof document === "undefined" ? "undefined" : _typeof(document)) === "object" && document.nodeType === 9;
+  var module_default = isBrowser;
+  var isProduction = false;
+  function warning(condition, message) {
+    if (!isProduction) {
+      if (condition) {
+        return;
+      }
+      var text = "Warning: " + message;
+      if (typeof console !== "undefined") {
+        console.warn(text);
+      }
+      try {
+        throw Error(text);
+      } catch (x) {
+      }
+    }
+  }
+  var tiny_warning_esm_default = warning;
+  function _typeof2(o) {
+    "@babel/helpers - typeof";
+    return _typeof2 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(o2) {
+      return typeof o2;
+    } : function(o2) {
+      return o2 && "function" == typeof Symbol && o2.constructor === Symbol && o2 !== Symbol.prototype ? "symbol" : typeof o2;
+    }, _typeof2(o);
+  }
+  function toPrimitive(t2, r) {
+    if ("object" != _typeof2(t2) || !t2) return t2;
+    var e = t2[Symbol.toPrimitive];
+    if (void 0 !== e) {
+      var i = e.call(t2, r || "default");
+      if ("object" != _typeof2(i)) return i;
+      throw new TypeError("@@toPrimitive must return a primitive value.");
+    }
+    return ("string" === r ? String : Number)(t2);
+  }
+  function toPropertyKey(t2) {
+    var i = toPrimitive(t2, "string");
+    return "symbol" == _typeof2(i) ? i : i + "";
+  }
+  function _defineProperties(e, r) {
+    for (var t2 = 0; t2 < r.length; t2++) {
+      var o = r[t2];
+      o.enumerable = o.enumerable || false, o.configurable = true, "value" in o && (o.writable = true), Object.defineProperty(e, toPropertyKey(o.key), o);
+    }
+  }
+  function _createClass(e, r, t2) {
+    return r && _defineProperties(e.prototype, r), t2 && _defineProperties(e, t2), Object.defineProperty(e, "prototype", {
+      writable: false
+    }), e;
+  }
+  function _setPrototypeOf(t2, e) {
+    return _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function(t22, e2) {
+      return t22.__proto__ = e2, t22;
+    }, _setPrototypeOf(t2, e);
+  }
+  function _inheritsLoose(t2, o) {
+    t2.prototype = Object.create(o.prototype), t2.prototype.constructor = t2, _setPrototypeOf(t2, o);
+  }
+  function _assertThisInitialized(e) {
+    if (void 0 === e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+    return e;
+  }
+  function _objectWithoutPropertiesLoose(r, e) {
+    if (null == r) return {};
+    var t2 = {};
+    for (var n in r) if ({}.hasOwnProperty.call(r, n)) {
+      if (e.includes(n)) continue;
+      t2[n] = r[n];
+    }
+    return t2;
+  }
+  var plainObjectConstrurctor = {}.constructor;
+  function cloneStyle(style2) {
+    if (style2 == null || typeof style2 !== "object") return style2;
+    if (Array.isArray(style2)) return style2.map(cloneStyle);
+    if (style2.constructor !== plainObjectConstrurctor) return style2;
+    var newStyle = {};
+    for (var name2 in style2) {
+      newStyle[name2] = cloneStyle(style2[name2]);
+    }
+    return newStyle;
+  }
+  function createRule(name2, decl, options) {
+    if (name2 === void 0) {
+      name2 = "unnamed";
+    }
+    var jss = options.jss;
+    var declCopy = cloneStyle(decl);
+    var rule = jss.plugins.onCreateRule(name2, declCopy, options);
+    if (rule) return rule;
+    if (name2[0] === "@") {
+      true ? tiny_warning_esm_default(false, "[JSS] Unknown rule " + name2) : void 0;
+    }
+    return null;
+  }
+  var join = function join2(value, by) {
+    var result2 = "";
+    for (var i = 0; i < value.length; i++) {
+      if (value[i] === "!important") break;
+      if (result2) result2 += by;
+      result2 += value[i];
+    }
+    return result2;
+  };
+  var toCssValue = function toCssValue2(value) {
+    if (!Array.isArray(value)) return value;
+    var cssValue = "";
+    if (Array.isArray(value[0])) {
+      for (var i = 0; i < value.length; i++) {
+        if (value[i] === "!important") break;
+        if (cssValue) cssValue += ", ";
+        cssValue += join(value[i], " ");
+      }
+    } else cssValue = join(value, ", ");
+    if (value[value.length - 1] === "!important") {
+      cssValue += " !important";
+    }
+    return cssValue;
+  };
+  function getWhitespaceSymbols(options) {
+    if (options && options.format === false) {
+      return {
+        linebreak: "",
+        space: ""
+      };
+    }
+    return {
+      linebreak: "\n",
+      space: " "
+    };
+  }
+  function indentStr(str, indent) {
+    var result2 = "";
+    for (var index2 = 0; index2 < indent; index2++) {
+      result2 += "  ";
+    }
+    return result2 + str;
+  }
+  function toCss(selector, style2, options) {
+    if (options === void 0) {
+      options = {};
+    }
+    var result2 = "";
+    if (!style2) return result2;
+    var _options = options, _options$indent = _options.indent, indent = _options$indent === void 0 ? 0 : _options$indent;
+    var fallbacks = style2.fallbacks;
+    if (options.format === false) {
+      indent = -Infinity;
+    }
+    var _getWhitespaceSymbols = getWhitespaceSymbols(options), linebreak = _getWhitespaceSymbols.linebreak, space2 = _getWhitespaceSymbols.space;
+    if (selector) indent++;
+    if (fallbacks) {
+      if (Array.isArray(fallbacks)) {
+        for (var index2 = 0; index2 < fallbacks.length; index2++) {
+          var fallback = fallbacks[index2];
+          for (var prop in fallback) {
+            var value = fallback[prop];
+            if (value != null) {
+              if (result2) result2 += linebreak;
+              result2 += indentStr(prop + ":" + space2 + toCssValue(value) + ";", indent);
+            }
+          }
+        }
+      } else {
+        for (var _prop in fallbacks) {
+          var _value = fallbacks[_prop];
+          if (_value != null) {
+            if (result2) result2 += linebreak;
+            result2 += indentStr(_prop + ":" + space2 + toCssValue(_value) + ";", indent);
+          }
+        }
+      }
+    }
+    for (var _prop2 in style2) {
+      var _value2 = style2[_prop2];
+      if (_value2 != null && _prop2 !== "fallbacks") {
+        if (result2) result2 += linebreak;
+        result2 += indentStr(_prop2 + ":" + space2 + toCssValue(_value2) + ";", indent);
+      }
+    }
+    if (!result2 && !options.allowEmpty) return result2;
+    if (!selector) return result2;
+    indent--;
+    if (result2) result2 = "" + linebreak + result2 + linebreak;
+    return indentStr("" + selector + space2 + "{" + result2, indent) + indentStr("}", indent);
+  }
+  var escapeRegex = /([[\].#*$><+~=|^:(),"'`\s])/g;
+  var nativeEscape = typeof CSS !== "undefined" && CSS.escape;
+  var escape = function(str) {
+    return nativeEscape ? nativeEscape(str) : str.replace(escapeRegex, "\\$1");
+  };
+  var BaseStyleRule = /* @__PURE__ */ function() {
+    function BaseStyleRule2(key2, style2, options) {
+      this.type = "style";
+      this.isProcessed = false;
+      var sheet = options.sheet, Renderer = options.Renderer;
+      this.key = key2;
+      this.options = options;
+      this.style = style2;
+      if (sheet) this.renderer = sheet.renderer;
+      else if (Renderer) this.renderer = new Renderer();
+    }
+    var _proto = BaseStyleRule2.prototype;
+    _proto.prop = function prop(name2, value, options) {
+      if (value === void 0) return this.style[name2];
+      var force = options ? options.force : false;
+      if (!force && this.style[name2] === value) return this;
+      var newValue = value;
+      if (!options || options.process !== false) {
+        newValue = this.options.jss.plugins.onChangeValue(value, name2, this);
+      }
+      var isEmpty = newValue == null || newValue === false;
+      var isDefined = name2 in this.style;
+      if (isEmpty && !isDefined && !force) return this;
+      var remove2 = isEmpty && isDefined;
+      if (remove2) delete this.style[name2];
+      else this.style[name2] = newValue;
+      if (this.renderable && this.renderer) {
+        if (remove2) this.renderer.removeProperty(this.renderable, name2);
+        else this.renderer.setProperty(this.renderable, name2, newValue);
+        return this;
+      }
+      var sheet = this.options.sheet;
+      if (sheet && sheet.attached) {
+        true ? tiny_warning_esm_default(false, '[JSS] Rule is not linked. Missing sheet option "link: true".') : void 0;
+      }
+      return this;
+    };
+    return BaseStyleRule2;
+  }();
+  var StyleRule = /* @__PURE__ */ function(_BaseStyleRule) {
+    _inheritsLoose(StyleRule2, _BaseStyleRule);
+    function StyleRule2(key2, style2, options) {
+      var _this;
+      _this = _BaseStyleRule.call(this, key2, style2, options) || this;
+      var selector = options.selector, scoped = options.scoped, sheet = options.sheet, generateId = options.generateId;
+      if (selector) {
+        _this.selectorText = selector;
+      } else if (scoped !== false) {
+        _this.id = generateId(_assertThisInitialized(_assertThisInitialized(_this)), sheet);
+        _this.selectorText = "." + escape(_this.id);
+      }
+      return _this;
+    }
+    var _proto2 = StyleRule2.prototype;
+    _proto2.applyTo = function applyTo(renderable) {
+      var renderer = this.renderer;
+      if (renderer) {
+        var json = this.toJSON();
+        for (var prop in json) {
+          renderer.setProperty(renderable, prop, json[prop]);
+        }
+      }
+      return this;
+    };
+    _proto2.toJSON = function toJSON() {
+      var json = {};
+      for (var prop in this.style) {
+        var value = this.style[prop];
+        if (typeof value !== "object") json[prop] = value;
+        else if (Array.isArray(value)) json[prop] = toCssValue(value);
+      }
+      return json;
+    };
+    _proto2.toString = function toString(options) {
+      var sheet = this.options.sheet;
+      var link = sheet ? sheet.options.link : false;
+      var opts = link ? _extends2({}, options, {
+        allowEmpty: true
+      }) : options;
+      return toCss(this.selectorText, this.style, opts);
+    };
+    _createClass(StyleRule2, [{
+      key: "selector",
+      set: function set(selector) {
+        if (selector === this.selectorText) return;
+        this.selectorText = selector;
+        var renderer = this.renderer, renderable = this.renderable;
+        if (!renderable || !renderer) return;
+        var hasChanged = renderer.setSelector(renderable, selector);
+        if (!hasChanged) {
+          renderer.replaceRule(renderable, this);
+        }
+      },
+      get: function get() {
+        return this.selectorText;
+      }
+    }]);
+    return StyleRule2;
+  }(BaseStyleRule);
+  var pluginStyleRule = {
+    onCreateRule: function onCreateRule(key2, style2, options) {
+      if (key2[0] === "@" || options.parent && options.parent.type === "keyframes") {
+        return null;
+      }
+      return new StyleRule(key2, style2, options);
+    }
+  };
+  var defaultToStringOptions = {
+    indent: 1,
+    children: true
+  };
+  var atRegExp = /@([\w-]+)/;
+  var ConditionalRule = /* @__PURE__ */ function() {
+    function ConditionalRule2(key2, styles, options) {
+      this.type = "conditional";
+      this.isProcessed = false;
+      this.key = key2;
+      var atMatch = key2.match(atRegExp);
+      this.at = atMatch ? atMatch[1] : "unknown";
+      this.query = options.name || "@" + this.at;
+      this.options = options;
+      this.rules = new RuleList(_extends2({}, options, {
+        parent: this
+      }));
+      for (var name2 in styles) {
+        this.rules.add(name2, styles[name2]);
+      }
+      this.rules.process();
+    }
+    var _proto = ConditionalRule2.prototype;
+    _proto.getRule = function getRule(name2) {
+      return this.rules.get(name2);
+    };
+    _proto.indexOf = function indexOf(rule) {
+      return this.rules.indexOf(rule);
+    };
+    _proto.addRule = function addRule(name2, style2, options) {
+      var rule = this.rules.add(name2, style2, options);
+      if (!rule) return null;
+      this.options.jss.plugins.onProcessRule(rule);
+      return rule;
+    };
+    _proto.replaceRule = function replaceRule(name2, style2, options) {
+      var newRule = this.rules.replace(name2, style2, options);
+      if (newRule) this.options.jss.plugins.onProcessRule(newRule);
+      return newRule;
+    };
+    _proto.toString = function toString(options) {
+      if (options === void 0) {
+        options = defaultToStringOptions;
+      }
+      var _getWhitespaceSymbols = getWhitespaceSymbols(options), linebreak = _getWhitespaceSymbols.linebreak;
+      if (options.indent == null) options.indent = defaultToStringOptions.indent;
+      if (options.children == null) options.children = defaultToStringOptions.children;
+      if (options.children === false) {
+        return this.query + " {}";
+      }
+      var children = this.rules.toString(options);
+      return children ? this.query + " {" + linebreak + children + linebreak + "}" : "";
+    };
+    return ConditionalRule2;
+  }();
+  var keyRegExp = /@container|@media|@supports\s+/;
+  var pluginConditionalRule = {
+    onCreateRule: function onCreateRule2(key2, styles, options) {
+      return keyRegExp.test(key2) ? new ConditionalRule(key2, styles, options) : null;
+    }
+  };
+  var defaultToStringOptions$1 = {
+    indent: 1,
+    children: true
+  };
+  var nameRegExp = /@keyframes\s+([\w-]+)/;
+  var KeyframesRule = /* @__PURE__ */ function() {
+    function KeyframesRule2(key2, frames, options) {
+      this.type = "keyframes";
+      this.at = "@keyframes";
+      this.isProcessed = false;
+      var nameMatch = key2.match(nameRegExp);
+      if (nameMatch && nameMatch[1]) {
+        this.name = nameMatch[1];
+      } else {
+        this.name = "noname";
+        true ? tiny_warning_esm_default(false, "[JSS] Bad keyframes name " + key2) : void 0;
+      }
+      this.key = this.type + "-" + this.name;
+      this.options = options;
+      var scoped = options.scoped, sheet = options.sheet, generateId = options.generateId;
+      this.id = scoped === false ? this.name : escape(generateId(this, sheet));
+      this.rules = new RuleList(_extends2({}, options, {
+        parent: this
+      }));
+      for (var name2 in frames) {
+        this.rules.add(name2, frames[name2], _extends2({}, options, {
+          parent: this
+        }));
+      }
+      this.rules.process();
+    }
+    var _proto = KeyframesRule2.prototype;
+    _proto.toString = function toString(options) {
+      if (options === void 0) {
+        options = defaultToStringOptions$1;
+      }
+      var _getWhitespaceSymbols = getWhitespaceSymbols(options), linebreak = _getWhitespaceSymbols.linebreak;
+      if (options.indent == null) options.indent = defaultToStringOptions$1.indent;
+      if (options.children == null) options.children = defaultToStringOptions$1.children;
+      if (options.children === false) {
+        return this.at + " " + this.id + " {}";
+      }
+      var children = this.rules.toString(options);
+      if (children) children = "" + linebreak + children + linebreak;
+      return this.at + " " + this.id + " {" + children + "}";
+    };
+    return KeyframesRule2;
+  }();
+  var keyRegExp$1 = /@keyframes\s+/;
+  var refRegExp = /\$([\w-]+)/g;
+  var findReferencedKeyframe = function findReferencedKeyframe2(val, keyframes) {
+    if (typeof val === "string") {
+      return val.replace(refRegExp, function(match, name2) {
+        if (name2 in keyframes) {
+          return keyframes[name2];
+        }
+        true ? tiny_warning_esm_default(false, '[JSS] Referenced keyframes rule "' + name2 + '" is not defined.') : void 0;
+        return match;
+      });
+    }
+    return val;
+  };
+  var replaceRef = function replaceRef2(style2, prop, keyframes) {
+    var value = style2[prop];
+    var refKeyframe = findReferencedKeyframe(value, keyframes);
+    if (refKeyframe !== value) {
+      style2[prop] = refKeyframe;
+    }
+  };
+  var pluginKeyframesRule = {
+    onCreateRule: function onCreateRule3(key2, frames, options) {
+      return typeof key2 === "string" && keyRegExp$1.test(key2) ? new KeyframesRule(key2, frames, options) : null;
+    },
+    // Animation name ref replacer.
+    onProcessStyle: function onProcessStyle(style2, rule, sheet) {
+      if (rule.type !== "style" || !sheet) return style2;
+      if ("animation-name" in style2) replaceRef(style2, "animation-name", sheet.keyframes);
+      if ("animation" in style2) replaceRef(style2, "animation", sheet.keyframes);
+      return style2;
+    },
+    onChangeValue: function onChangeValue(val, prop, rule) {
+      var sheet = rule.options.sheet;
+      if (!sheet) {
+        return val;
+      }
+      switch (prop) {
+        case "animation":
+          return findReferencedKeyframe(val, sheet.keyframes);
+        case "animation-name":
+          return findReferencedKeyframe(val, sheet.keyframes);
+        default:
+          return val;
+      }
+    }
+  };
+  var KeyframeRule = /* @__PURE__ */ function(_BaseStyleRule) {
+    _inheritsLoose(KeyframeRule2, _BaseStyleRule);
+    function KeyframeRule2() {
+      return _BaseStyleRule.apply(this, arguments) || this;
+    }
+    var _proto = KeyframeRule2.prototype;
+    _proto.toString = function toString(options) {
+      var sheet = this.options.sheet;
+      var link = sheet ? sheet.options.link : false;
+      var opts = link ? _extends2({}, options, {
+        allowEmpty: true
+      }) : options;
+      return toCss(this.key, this.style, opts);
+    };
+    return KeyframeRule2;
+  }(BaseStyleRule);
+  var pluginKeyframeRule = {
+    onCreateRule: function onCreateRule4(key2, style2, options) {
+      if (options.parent && options.parent.type === "keyframes") {
+        return new KeyframeRule(key2, style2, options);
+      }
+      return null;
+    }
+  };
+  var FontFaceRule = /* @__PURE__ */ function() {
+    function FontFaceRule2(key2, style2, options) {
+      this.type = "font-face";
+      this.at = "@font-face";
+      this.isProcessed = false;
+      this.key = key2;
+      this.style = style2;
+      this.options = options;
+    }
+    var _proto = FontFaceRule2.prototype;
+    _proto.toString = function toString(options) {
+      var _getWhitespaceSymbols = getWhitespaceSymbols(options), linebreak = _getWhitespaceSymbols.linebreak;
+      if (Array.isArray(this.style)) {
+        var str = "";
+        for (var index2 = 0; index2 < this.style.length; index2++) {
+          str += toCss(this.at, this.style[index2]);
+          if (this.style[index2 + 1]) str += linebreak;
+        }
+        return str;
+      }
+      return toCss(this.at, this.style, options);
+    };
+    return FontFaceRule2;
+  }();
+  var keyRegExp$2 = /@font-face/;
+  var pluginFontFaceRule = {
+    onCreateRule: function onCreateRule5(key2, style2, options) {
+      return keyRegExp$2.test(key2) ? new FontFaceRule(key2, style2, options) : null;
+    }
+  };
+  var ViewportRule = /* @__PURE__ */ function() {
+    function ViewportRule2(key2, style2, options) {
+      this.type = "viewport";
+      this.at = "@viewport";
+      this.isProcessed = false;
+      this.key = key2;
+      this.style = style2;
+      this.options = options;
+    }
+    var _proto = ViewportRule2.prototype;
+    _proto.toString = function toString(options) {
+      return toCss(this.key, this.style, options);
+    };
+    return ViewportRule2;
+  }();
+  var pluginViewportRule = {
+    onCreateRule: function onCreateRule6(key2, style2, options) {
+      return key2 === "@viewport" || key2 === "@-ms-viewport" ? new ViewportRule(key2, style2, options) : null;
+    }
+  };
+  var SimpleRule = /* @__PURE__ */ function() {
+    function SimpleRule2(key2, value, options) {
+      this.type = "simple";
+      this.isProcessed = false;
+      this.key = key2;
+      this.value = value;
+      this.options = options;
+    }
+    var _proto = SimpleRule2.prototype;
+    _proto.toString = function toString(options) {
+      if (Array.isArray(this.value)) {
+        var str = "";
+        for (var index2 = 0; index2 < this.value.length; index2++) {
+          str += this.key + " " + this.value[index2] + ";";
+          if (this.value[index2 + 1]) str += "\n";
+        }
+        return str;
+      }
+      return this.key + " " + this.value + ";";
+    };
+    return SimpleRule2;
+  }();
+  var keysMap = {
+    "@charset": true,
+    "@import": true,
+    "@namespace": true
+  };
+  var pluginSimpleRule = {
+    onCreateRule: function onCreateRule7(key2, value, options) {
+      return key2 in keysMap ? new SimpleRule(key2, value, options) : null;
+    }
+  };
+  var plugins = [pluginStyleRule, pluginConditionalRule, pluginKeyframesRule, pluginKeyframeRule, pluginFontFaceRule, pluginViewportRule, pluginSimpleRule];
+  var defaultUpdateOptions = {
+    process: true
+  };
+  var forceUpdateOptions = {
+    force: true,
+    process: true
+    /**
+     * Contains rules objects and allows adding/removing etc.
+     * Is used for e.g. by `StyleSheet` or `ConditionalRule`.
+     */
+  };
+  var RuleList = /* @__PURE__ */ function() {
+    function RuleList2(options) {
+      this.map = {};
+      this.raw = {};
+      this.index = [];
+      this.counter = 0;
+      this.options = options;
+      this.classes = options.classes;
+      this.keyframes = options.keyframes;
+    }
+    var _proto = RuleList2.prototype;
+    _proto.add = function add2(name2, decl, ruleOptions) {
+      var _this$options = this.options, parent = _this$options.parent, sheet = _this$options.sheet, jss = _this$options.jss, Renderer = _this$options.Renderer, generateId = _this$options.generateId, scoped = _this$options.scoped;
+      var options = _extends2({
+        classes: this.classes,
+        parent,
+        sheet,
+        jss,
+        Renderer,
+        generateId,
+        scoped,
+        name: name2,
+        keyframes: this.keyframes,
+        selector: void 0
+      }, ruleOptions);
+      var key2 = name2;
+      if (name2 in this.raw) {
+        key2 = name2 + "-d" + this.counter++;
+      }
+      this.raw[key2] = decl;
+      if (key2 in this.classes) {
+        options.selector = "." + escape(this.classes[key2]);
+      }
+      var rule = createRule(key2, decl, options);
+      if (!rule) return null;
+      this.register(rule);
+      var index2 = options.index === void 0 ? this.index.length : options.index;
+      this.index.splice(index2, 0, rule);
+      return rule;
+    };
+    _proto.replace = function replace2(name2, decl, ruleOptions) {
+      var oldRule = this.get(name2);
+      var oldIndex = this.index.indexOf(oldRule);
+      if (oldRule) {
+        this.remove(oldRule);
+      }
+      var options = ruleOptions;
+      if (oldIndex !== -1) options = _extends2({}, ruleOptions, {
+        index: oldIndex
+      });
+      return this.add(name2, decl, options);
+    };
+    _proto.get = function get(nameOrSelector) {
+      return this.map[nameOrSelector];
+    };
+    _proto.remove = function remove2(rule) {
+      this.unregister(rule);
+      delete this.raw[rule.key];
+      this.index.splice(this.index.indexOf(rule), 1);
+    };
+    _proto.indexOf = function indexOf(rule) {
+      return this.index.indexOf(rule);
+    };
+    _proto.process = function process2() {
+      var plugins3 = this.options.jss.plugins;
+      this.index.slice(0).forEach(plugins3.onProcessRule, plugins3);
+    };
+    _proto.register = function register(rule) {
+      this.map[rule.key] = rule;
+      if (rule instanceof StyleRule) {
+        this.map[rule.selector] = rule;
+        if (rule.id) this.classes[rule.key] = rule.id;
+      } else if (rule instanceof KeyframesRule && this.keyframes) {
+        this.keyframes[rule.name] = rule.id;
+      }
+    };
+    _proto.unregister = function unregister(rule) {
+      delete this.map[rule.key];
+      if (rule instanceof StyleRule) {
+        delete this.map[rule.selector];
+        delete this.classes[rule.key];
+      } else if (rule instanceof KeyframesRule) {
+        delete this.keyframes[rule.name];
+      }
+    };
+    _proto.update = function update() {
+      var name2;
+      var data;
+      var options;
+      if (typeof (arguments.length <= 0 ? void 0 : arguments[0]) === "string") {
+        name2 = arguments.length <= 0 ? void 0 : arguments[0];
+        data = arguments.length <= 1 ? void 0 : arguments[1];
+        options = arguments.length <= 2 ? void 0 : arguments[2];
+      } else {
+        data = arguments.length <= 0 ? void 0 : arguments[0];
+        options = arguments.length <= 1 ? void 0 : arguments[1];
+        name2 = null;
+      }
+      if (name2) {
+        this.updateOne(this.get(name2), data, options);
+      } else {
+        for (var index2 = 0; index2 < this.index.length; index2++) {
+          this.updateOne(this.index[index2], data, options);
+        }
+      }
+    };
+    _proto.updateOne = function updateOne(rule, data, options) {
+      if (options === void 0) {
+        options = defaultUpdateOptions;
+      }
+      var _this$options2 = this.options, plugins3 = _this$options2.jss.plugins, sheet = _this$options2.sheet;
+      if (rule.rules instanceof RuleList2) {
+        rule.rules.update(data, options);
+        return;
+      }
+      var style2 = rule.style;
+      plugins3.onUpdate(data, rule, sheet, options);
+      if (options.process && style2 && style2 !== rule.style) {
+        plugins3.onProcessStyle(rule.style, rule, sheet);
+        for (var prop in rule.style) {
+          var nextValue = rule.style[prop];
+          var prevValue = style2[prop];
+          if (nextValue !== prevValue) {
+            rule.prop(prop, nextValue, forceUpdateOptions);
+          }
+        }
+        for (var _prop in style2) {
+          var _nextValue = rule.style[_prop];
+          var _prevValue = style2[_prop];
+          if (_nextValue == null && _nextValue !== _prevValue) {
+            rule.prop(_prop, null, forceUpdateOptions);
+          }
+        }
+      }
+    };
+    _proto.toString = function toString(options) {
+      var str = "";
+      var sheet = this.options.sheet;
+      var link = sheet ? sheet.options.link : false;
+      var _getWhitespaceSymbols = getWhitespaceSymbols(options), linebreak = _getWhitespaceSymbols.linebreak;
+      for (var index2 = 0; index2 < this.index.length; index2++) {
+        var rule = this.index[index2];
+        var css2 = rule.toString(options);
+        if (!css2 && !link) continue;
+        if (str) str += linebreak;
+        str += css2;
+      }
+      return str;
+    };
+    return RuleList2;
+  }();
+  var StyleSheet = /* @__PURE__ */ function() {
+    function StyleSheet3(styles, options) {
+      this.attached = false;
+      this.deployed = false;
+      this.classes = {};
+      this.keyframes = {};
+      this.options = _extends2({}, options, {
+        sheet: this,
+        parent: this,
+        classes: this.classes,
+        keyframes: this.keyframes
+      });
+      if (options.Renderer) {
+        this.renderer = new options.Renderer(this);
+      }
+      this.rules = new RuleList(this.options);
+      for (var name2 in styles) {
+        this.rules.add(name2, styles[name2]);
+      }
+      this.rules.process();
+    }
+    var _proto = StyleSheet3.prototype;
+    _proto.attach = function attach() {
+      if (this.attached) return this;
+      if (this.renderer) this.renderer.attach();
+      this.attached = true;
+      if (!this.deployed) this.deploy();
+      return this;
+    };
+    _proto.detach = function detach() {
+      if (!this.attached) return this;
+      if (this.renderer) this.renderer.detach();
+      this.attached = false;
+      return this;
+    };
+    _proto.addRule = function addRule(name2, decl, options) {
+      var queue = this.queue;
+      if (this.attached && !queue) this.queue = [];
+      var rule = this.rules.add(name2, decl, options);
+      if (!rule) return null;
+      this.options.jss.plugins.onProcessRule(rule);
+      if (this.attached) {
+        if (!this.deployed) return rule;
+        if (queue) queue.push(rule);
+        else {
+          this.insertRule(rule);
+          if (this.queue) {
+            this.queue.forEach(this.insertRule, this);
+            this.queue = void 0;
+          }
+        }
+        return rule;
+      }
+      this.deployed = false;
+      return rule;
+    };
+    _proto.replaceRule = function replaceRule(nameOrSelector, decl, options) {
+      var oldRule = this.rules.get(nameOrSelector);
+      if (!oldRule) return this.addRule(nameOrSelector, decl, options);
+      var newRule = this.rules.replace(nameOrSelector, decl, options);
+      if (newRule) {
+        this.options.jss.plugins.onProcessRule(newRule);
+      }
+      if (this.attached) {
+        if (!this.deployed) return newRule;
+        if (this.renderer) {
+          if (!newRule) {
+            this.renderer.deleteRule(oldRule);
+          } else if (oldRule.renderable) {
+            this.renderer.replaceRule(oldRule.renderable, newRule);
+          }
+        }
+        return newRule;
+      }
+      this.deployed = false;
+      return newRule;
+    };
+    _proto.insertRule = function insertRule2(rule) {
+      if (this.renderer) {
+        this.renderer.insertRule(rule);
+      }
+    };
+    _proto.addRules = function addRules(styles, options) {
+      var added = [];
+      for (var name2 in styles) {
+        var rule = this.addRule(name2, styles[name2], options);
+        if (rule) added.push(rule);
+      }
+      return added;
+    };
+    _proto.getRule = function getRule(nameOrSelector) {
+      return this.rules.get(nameOrSelector);
+    };
+    _proto.deleteRule = function deleteRule(name2) {
+      var rule = typeof name2 === "object" ? name2 : this.rules.get(name2);
+      if (!rule || // Style sheet was created without link: true and attached, in this case we
+      // won't be able to remove the CSS rule from the DOM.
+      this.attached && !rule.renderable) {
+        return false;
+      }
+      this.rules.remove(rule);
+      if (this.attached && rule.renderable && this.renderer) {
+        return this.renderer.deleteRule(rule.renderable);
+      }
+      return true;
+    };
+    _proto.indexOf = function indexOf(rule) {
+      return this.rules.indexOf(rule);
+    };
+    _proto.deploy = function deploy() {
+      if (this.renderer) this.renderer.deploy();
+      this.deployed = true;
+      return this;
+    };
+    _proto.update = function update() {
+      var _this$rules;
+      (_this$rules = this.rules).update.apply(_this$rules, arguments);
+      return this;
+    };
+    _proto.updateOne = function updateOne(rule, data, options) {
+      this.rules.updateOne(rule, data, options);
+      return this;
+    };
+    _proto.toString = function toString(options) {
+      return this.rules.toString(options);
+    };
+    return StyleSheet3;
+  }();
+  var PluginsRegistry = /* @__PURE__ */ function() {
+    function PluginsRegistry2() {
+      this.plugins = {
+        internal: [],
+        external: []
+      };
+      this.registry = {};
+    }
+    var _proto = PluginsRegistry2.prototype;
+    _proto.onCreateRule = function onCreateRule8(name2, decl, options) {
+      for (var i = 0; i < this.registry.onCreateRule.length; i++) {
+        var rule = this.registry.onCreateRule[i](name2, decl, options);
+        if (rule) return rule;
+      }
+      return null;
+    };
+    _proto.onProcessRule = function onProcessRule3(rule) {
+      if (rule.isProcessed) return;
+      var sheet = rule.options.sheet;
+      for (var i = 0; i < this.registry.onProcessRule.length; i++) {
+        this.registry.onProcessRule[i](rule, sheet);
+      }
+      if (rule.style) this.onProcessStyle(rule.style, rule, sheet);
+      rule.isProcessed = true;
+    };
+    _proto.onProcessStyle = function onProcessStyle2(style2, rule, sheet) {
+      for (var i = 0; i < this.registry.onProcessStyle.length; i++) {
+        rule.style = this.registry.onProcessStyle[i](rule.style, rule, sheet);
+      }
+    };
+    _proto.onProcessSheet = function onProcessSheet(sheet) {
+      for (var i = 0; i < this.registry.onProcessSheet.length; i++) {
+        this.registry.onProcessSheet[i](sheet);
+      }
+    };
+    _proto.onUpdate = function onUpdate(data, rule, sheet, options) {
+      for (var i = 0; i < this.registry.onUpdate.length; i++) {
+        this.registry.onUpdate[i](data, rule, sheet, options);
+      }
+    };
+    _proto.onChangeValue = function onChangeValue2(value, prop, rule) {
+      var processedValue = value;
+      for (var i = 0; i < this.registry.onChangeValue.length; i++) {
+        processedValue = this.registry.onChangeValue[i](processedValue, prop, rule);
+      }
+      return processedValue;
+    };
+    _proto.use = function use(newPlugin, options) {
+      if (options === void 0) {
+        options = {
+          queue: "external"
+        };
+      }
+      var plugins3 = this.plugins[options.queue];
+      if (plugins3.indexOf(newPlugin) !== -1) {
+        return;
+      }
+      plugins3.push(newPlugin);
+      this.registry = [].concat(this.plugins.external, this.plugins.internal).reduce(function(registry, plugin) {
+        for (var name2 in plugin) {
+          if (name2 in registry) {
+            registry[name2].push(plugin[name2]);
+          } else {
+            true ? tiny_warning_esm_default(false, '[JSS] Unknown hook "' + name2 + '".') : void 0;
+          }
+        }
+        return registry;
+      }, {
+        onCreateRule: [],
+        onProcessRule: [],
+        onProcessStyle: [],
+        onProcessSheet: [],
+        onChangeValue: [],
+        onUpdate: []
+      });
+    };
+    return PluginsRegistry2;
+  }();
+  var SheetsRegistry = /* @__PURE__ */ function() {
+    function SheetsRegistry2() {
+      this.registry = [];
+    }
+    var _proto = SheetsRegistry2.prototype;
+    _proto.add = function add2(sheet) {
+      var registry = this.registry;
+      var index2 = sheet.options.index;
+      if (registry.indexOf(sheet) !== -1) return;
+      if (registry.length === 0 || index2 >= this.index) {
+        registry.push(sheet);
+        return;
+      }
+      for (var i = 0; i < registry.length; i++) {
+        if (registry[i].options.index > index2) {
+          registry.splice(i, 0, sheet);
+          return;
+        }
+      }
+    };
+    _proto.reset = function reset() {
+      this.registry = [];
+    };
+    _proto.remove = function remove2(sheet) {
+      var index2 = this.registry.indexOf(sheet);
+      this.registry.splice(index2, 1);
+    };
+    _proto.toString = function toString(_temp) {
+      var _ref = _temp === void 0 ? {} : _temp, attached = _ref.attached, options = _objectWithoutPropertiesLoose(_ref, ["attached"]);
+      var _getWhitespaceSymbols = getWhitespaceSymbols(options), linebreak = _getWhitespaceSymbols.linebreak;
+      var css2 = "";
+      for (var i = 0; i < this.registry.length; i++) {
+        var sheet = this.registry[i];
+        if (attached != null && sheet.attached !== attached) {
+          continue;
+        }
+        if (css2) css2 += linebreak;
+        css2 += sheet.toString(options);
+      }
+      return css2;
+    };
+    _createClass(SheetsRegistry2, [{
+      key: "index",
+      /**
+       * Current highest index number.
+       */
+      get: function get() {
+        return this.registry.length === 0 ? 0 : this.registry[this.registry.length - 1].options.index;
+      }
+    }]);
+    return SheetsRegistry2;
+  }();
+  var sheets = new SheetsRegistry();
+  var globalThis$1 = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" && window.Math === Math ? window : typeof self !== "undefined" && self.Math === Math ? self : Function("return this")();
+  var ns = "2f1acc6c3a606b082e5eef5e54414ffb";
+  if (globalThis$1[ns] == null) globalThis$1[ns] = 0;
+  var moduleId = globalThis$1[ns]++;
+  var maxRules = 1e10;
+  var createGenerateId = function createGenerateId2(options) {
+    if (options === void 0) {
+      options = {};
+    }
+    var ruleCounter = 0;
+    var generateId = function generateId2(rule, sheet) {
+      ruleCounter += 1;
+      if (ruleCounter > maxRules) {
+        true ? tiny_warning_esm_default(false, "[JSS] You might have a memory leak. Rule counter is at " + ruleCounter + ".") : void 0;
+      }
+      var jssId = "";
+      var prefix2 = "";
+      if (sheet) {
+        if (sheet.options.classNamePrefix) {
+          prefix2 = sheet.options.classNamePrefix;
+        }
+        if (sheet.options.jss.id != null) {
+          jssId = String(sheet.options.jss.id);
+        }
+      }
+      if (options.minify) {
+        return "" + (prefix2 || "c") + moduleId + jssId + ruleCounter;
+      }
+      return prefix2 + rule.key + "-" + moduleId + (jssId ? "-" + jssId : "") + "-" + ruleCounter;
+    };
+    return generateId;
+  };
+  var memoize = function memoize2(fn) {
+    var value;
+    return function() {
+      if (!value) value = fn();
+      return value;
+    };
+  };
+  var getPropertyValue = function getPropertyValue2(cssRule, prop) {
+    try {
+      if (cssRule.attributeStyleMap) {
+        return cssRule.attributeStyleMap.get(prop);
+      }
+      return cssRule.style.getPropertyValue(prop);
+    } catch (err) {
+      return "";
+    }
+  };
+  var setProperty = function setProperty2(cssRule, prop, value) {
+    try {
+      var cssValue = value;
+      if (Array.isArray(value)) {
+        cssValue = toCssValue(value);
+      }
+      if (cssRule.attributeStyleMap) {
+        cssRule.attributeStyleMap.set(prop, cssValue);
+      } else {
+        var indexOfImportantFlag = cssValue ? cssValue.indexOf("!important") : -1;
+        var cssValueWithoutImportantFlag = indexOfImportantFlag > -1 ? cssValue.substr(0, indexOfImportantFlag - 1) : cssValue;
+        cssRule.style.setProperty(prop, cssValueWithoutImportantFlag, indexOfImportantFlag > -1 ? "important" : "");
+      }
+    } catch (err) {
+      return false;
+    }
+    return true;
+  };
+  var removeProperty = function removeProperty2(cssRule, prop) {
+    try {
+      if (cssRule.attributeStyleMap) {
+        cssRule.attributeStyleMap.delete(prop);
+      } else {
+        cssRule.style.removeProperty(prop);
+      }
+    } catch (err) {
+      true ? tiny_warning_esm_default(false, '[JSS] DOMException "' + err.message + '" was thrown. Tried to remove property "' + prop + '".') : void 0;
+    }
+  };
+  var setSelector = function setSelector2(cssRule, selectorText) {
+    cssRule.selectorText = selectorText;
+    return cssRule.selectorText === selectorText;
+  };
+  var getHead = memoize(function() {
+    return document.querySelector("head");
+  });
+  function findHigherSheet(registry, options) {
+    for (var i = 0; i < registry.length; i++) {
+      var sheet = registry[i];
+      if (sheet.attached && sheet.options.index > options.index && sheet.options.insertionPoint === options.insertionPoint) {
+        return sheet;
+      }
+    }
+    return null;
+  }
+  function findHighestSheet(registry, options) {
+    for (var i = registry.length - 1; i >= 0; i--) {
+      var sheet = registry[i];
+      if (sheet.attached && sheet.options.insertionPoint === options.insertionPoint) {
+        return sheet;
+      }
+    }
+    return null;
+  }
+  function findCommentNode(text) {
+    var head = getHead();
+    for (var i = 0; i < head.childNodes.length; i++) {
+      var node = head.childNodes[i];
+      if (node.nodeType === 8 && node.nodeValue.trim() === text) {
+        return node;
+      }
+    }
+    return null;
+  }
+  function findPrevNode(options) {
+    var registry = sheets.registry;
+    if (registry.length > 0) {
+      var sheet = findHigherSheet(registry, options);
+      if (sheet && sheet.renderer) {
+        return {
+          parent: sheet.renderer.element.parentNode,
+          node: sheet.renderer.element
+        };
+      }
+      sheet = findHighestSheet(registry, options);
+      if (sheet && sheet.renderer) {
+        return {
+          parent: sheet.renderer.element.parentNode,
+          node: sheet.renderer.element.nextSibling
+        };
+      }
+    }
+    var insertionPoint = options.insertionPoint;
+    if (insertionPoint && typeof insertionPoint === "string") {
+      var comment2 = findCommentNode(insertionPoint);
+      if (comment2) {
+        return {
+          parent: comment2.parentNode,
+          node: comment2.nextSibling
+        };
+      }
+      true ? tiny_warning_esm_default(false, '[JSS] Insertion point "' + insertionPoint + '" not found.') : void 0;
+    }
+    return false;
+  }
+  function insertStyle(style2, options) {
+    var insertionPoint = options.insertionPoint;
+    var nextNode = findPrevNode(options);
+    if (nextNode !== false && nextNode.parent) {
+      nextNode.parent.insertBefore(style2, nextNode.node);
+      return;
+    }
+    if (insertionPoint && typeof insertionPoint.nodeType === "number") {
+      var insertionPointElement = insertionPoint;
+      var parentNode = insertionPointElement.parentNode;
+      if (parentNode) parentNode.insertBefore(style2, insertionPointElement.nextSibling);
+      else true ? tiny_warning_esm_default(false, "[JSS] Insertion point is not in the DOM.") : void 0;
+      return;
+    }
+    getHead().appendChild(style2);
+  }
+  var getNonce = memoize(function() {
+    var node = document.querySelector('meta[property="csp-nonce"]');
+    return node ? node.getAttribute("content") : null;
+  });
+  var _insertRule = function insertRule(container, rule, index2) {
+    try {
+      if ("insertRule" in container) {
+        container.insertRule(rule, index2);
+      } else if ("appendRule" in container) {
+        container.appendRule(rule);
+      }
+    } catch (err) {
+      true ? tiny_warning_esm_default(false, "[JSS] " + err.message) : void 0;
+      return false;
+    }
+    return container.cssRules[index2];
+  };
+  var getValidRuleInsertionIndex = function getValidRuleInsertionIndex2(container, index2) {
+    var maxIndex = container.cssRules.length;
+    if (index2 === void 0 || index2 > maxIndex) {
+      return maxIndex;
+    }
+    return index2;
+  };
+  var createStyle = function createStyle2() {
+    var el2 = document.createElement("style");
+    el2.textContent = "\n";
+    return el2;
+  };
+  var DomRenderer = /* @__PURE__ */ function() {
+    function DomRenderer2(sheet) {
+      this.getPropertyValue = getPropertyValue;
+      this.setProperty = setProperty;
+      this.removeProperty = removeProperty;
+      this.setSelector = setSelector;
+      this.hasInsertedRules = false;
+      this.cssRules = [];
+      if (sheet) sheets.add(sheet);
+      this.sheet = sheet;
+      var _ref = this.sheet ? this.sheet.options : {}, media = _ref.media, meta2 = _ref.meta, element = _ref.element;
+      this.element = element || createStyle();
+      this.element.setAttribute("data-jss", "");
+      if (media) this.element.setAttribute("media", media);
+      if (meta2) this.element.setAttribute("data-meta", meta2);
+      var nonce = getNonce();
+      if (nonce) this.element.setAttribute("nonce", nonce);
+    }
+    var _proto = DomRenderer2.prototype;
+    _proto.attach = function attach() {
+      if (this.element.parentNode || !this.sheet) return;
+      insertStyle(this.element, this.sheet.options);
+      var deployed = Boolean(this.sheet && this.sheet.deployed);
+      if (this.hasInsertedRules && deployed) {
+        this.hasInsertedRules = false;
+        this.deploy();
+      }
+    };
+    _proto.detach = function detach() {
+      if (!this.sheet) return;
+      var parentNode = this.element.parentNode;
+      if (parentNode) parentNode.removeChild(this.element);
+      if (this.sheet.options.link) {
+        this.cssRules = [];
+        this.element.textContent = "\n";
+      }
+    };
+    _proto.deploy = function deploy() {
+      var sheet = this.sheet;
+      if (!sheet) return;
+      if (sheet.options.link) {
+        this.insertRules(sheet.rules);
+        return;
+      }
+      this.element.textContent = "\n" + sheet.toString() + "\n";
+    };
+    _proto.insertRules = function insertRules(rules, nativeParent) {
+      for (var i = 0; i < rules.index.length; i++) {
+        this.insertRule(rules.index[i], i, nativeParent);
+      }
+    };
+    _proto.insertRule = function insertRule2(rule, index2, nativeParent) {
+      if (nativeParent === void 0) {
+        nativeParent = this.element.sheet;
+      }
+      if (rule.rules) {
+        var parent = rule;
+        var latestNativeParent = nativeParent;
+        if (rule.type === "conditional" || rule.type === "keyframes") {
+          var _insertionIndex = getValidRuleInsertionIndex(nativeParent, index2);
+          latestNativeParent = _insertRule(nativeParent, parent.toString({
+            children: false
+          }), _insertionIndex);
+          if (latestNativeParent === false) {
+            return false;
+          }
+          this.refCssRule(rule, _insertionIndex, latestNativeParent);
+        }
+        this.insertRules(parent.rules, latestNativeParent);
+        return latestNativeParent;
+      }
+      var ruleStr = rule.toString();
+      if (!ruleStr) return false;
+      var insertionIndex = getValidRuleInsertionIndex(nativeParent, index2);
+      var nativeRule = _insertRule(nativeParent, ruleStr, insertionIndex);
+      if (nativeRule === false) {
+        return false;
+      }
+      this.hasInsertedRules = true;
+      this.refCssRule(rule, insertionIndex, nativeRule);
+      return nativeRule;
+    };
+    _proto.refCssRule = function refCssRule(rule, index2, cssRule) {
+      rule.renderable = cssRule;
+      if (rule.options.parent instanceof StyleSheet) {
+        this.cssRules.splice(index2, 0, cssRule);
+      }
+    };
+    _proto.deleteRule = function deleteRule(cssRule) {
+      var sheet = this.element.sheet;
+      var index2 = this.indexOf(cssRule);
+      if (index2 === -1) return false;
+      sheet.deleteRule(index2);
+      this.cssRules.splice(index2, 1);
+      return true;
+    };
+    _proto.indexOf = function indexOf(cssRule) {
+      return this.cssRules.indexOf(cssRule);
+    };
+    _proto.replaceRule = function replaceRule(cssRule, rule) {
+      var index2 = this.indexOf(cssRule);
+      if (index2 === -1) return false;
+      this.element.sheet.deleteRule(index2);
+      this.cssRules.splice(index2, 1);
+      return this.insertRule(rule, index2);
+    };
+    _proto.getRules = function getRules() {
+      return this.element.sheet.cssRules;
+    };
+    return DomRenderer2;
+  }();
+  var instanceCounter = 0;
+  var Jss = /* @__PURE__ */ function() {
+    function Jss2(options) {
+      this.id = instanceCounter++;
+      this.version = "10.10.0";
+      this.plugins = new PluginsRegistry();
+      this.options = {
+        id: {
+          minify: false
+        },
+        createGenerateId,
+        Renderer: module_default ? DomRenderer : null,
+        plugins: []
+      };
+      this.generateId = createGenerateId({
+        minify: false
+      });
+      for (var i = 0; i < plugins.length; i++) {
+        this.plugins.use(plugins[i], {
+          queue: "internal"
+        });
+      }
+      this.setup(options);
+    }
+    var _proto = Jss2.prototype;
+    _proto.setup = function setup(options) {
+      if (options === void 0) {
+        options = {};
+      }
+      if (options.createGenerateId) {
+        this.options.createGenerateId = options.createGenerateId;
+      }
+      if (options.id) {
+        this.options.id = _extends2({}, this.options.id, options.id);
+      }
+      if (options.createGenerateId || options.id) {
+        this.generateId = this.options.createGenerateId(this.options.id);
+      }
+      if (options.insertionPoint != null) this.options.insertionPoint = options.insertionPoint;
+      if ("Renderer" in options) {
+        this.options.Renderer = options.Renderer;
+      }
+      if (options.plugins) this.use.apply(this, options.plugins);
+      return this;
+    };
+    _proto.createStyleSheet = function createStyleSheet(styles, options) {
+      if (options === void 0) {
+        options = {};
+      }
+      var _options = options, index2 = _options.index;
+      if (typeof index2 !== "number") {
+        index2 = sheets.index === 0 ? 0 : sheets.index + 1;
+      }
+      var sheet = new StyleSheet(styles, _extends2({}, options, {
+        jss: this,
+        generateId: options.generateId || this.generateId,
+        insertionPoint: this.options.insertionPoint,
+        Renderer: this.options.Renderer,
+        index: index2
+      }));
+      this.plugins.onProcessSheet(sheet);
+      return sheet;
+    };
+    _proto.removeStyleSheet = function removeStyleSheet(sheet) {
+      sheet.detach();
+      sheets.remove(sheet);
+      return this;
+    };
+    _proto.createRule = function createRule$1(name2, style2, options) {
+      if (style2 === void 0) {
+        style2 = {};
+      }
+      if (options === void 0) {
+        options = {};
+      }
+      if (typeof name2 === "object") {
+        return this.createRule(void 0, name2, style2);
+      }
+      var ruleOptions = _extends2({}, options, {
+        name: name2,
+        jss: this,
+        Renderer: this.options.Renderer
+      });
+      if (!ruleOptions.generateId) ruleOptions.generateId = this.generateId;
+      if (!ruleOptions.classes) ruleOptions.classes = {};
+      if (!ruleOptions.keyframes) ruleOptions.keyframes = {};
+      var rule = createRule(name2, style2, ruleOptions);
+      if (rule) this.plugins.onProcessRule(rule);
+      return rule;
+    };
+    _proto.use = function use() {
+      var _this = this;
+      for (var _len = arguments.length, plugins3 = new Array(_len), _key = 0; _key < _len; _key++) {
+        plugins3[_key] = arguments[_key];
+      }
+      plugins3.forEach(function(plugin) {
+        _this.plugins.use(plugin);
+      });
+      return this;
+    };
+    return Jss2;
+  }();
+  var createJss = function createJss2(options) {
+    return new Jss(options);
+  };
+  var hasCSSTOMSupport = typeof CSS === "object" && CSS != null && "number" in CSS;
+  var index = createJss();
+  var jss_esm_default = index;
+  var now = Date.now();
+  var fnValuesNs = "fnValues" + now;
+  var fnRuleNs = "fnStyle" + ++now;
+  var functionPlugin = function functionPlugin2() {
+    return {
+      onCreateRule: function onCreateRule8(name2, decl, options) {
+        if (typeof decl !== "function") return null;
+        var rule = createRule(name2, {}, options);
+        rule[fnRuleNs] = decl;
+        return rule;
+      },
+      onProcessStyle: function onProcessStyle2(style2, rule) {
+        if (fnValuesNs in rule || fnRuleNs in rule) return style2;
+        var fnValues = {};
+        for (var prop in style2) {
+          var value = style2[prop];
+          if (typeof value !== "function") continue;
+          delete style2[prop];
+          fnValues[prop] = value;
+        }
+        rule[fnValuesNs] = fnValues;
+        return style2;
+      },
+      onUpdate: function onUpdate(data, rule, sheet, options) {
+        var styleRule = rule;
+        var fnRule = styleRule[fnRuleNs];
+        if (fnRule) {
+          styleRule.style = fnRule(data) || {};
+          if (true) {
+            for (var prop in styleRule.style) {
+              if (typeof styleRule.style[prop] === "function") {
+                true ? tiny_warning_esm_default(false, "[JSS] Function values inside function rules are not supported.") : void 0;
+                break;
+              }
+            }
+          }
+        }
+        var fnValues = styleRule[fnValuesNs];
+        if (fnValues) {
+          for (var _prop in fnValues) {
+            styleRule.prop(_prop, fnValues[_prop](data), options);
+          }
+        }
+      }
+    };
+  };
+  var jss_plugin_rule_value_function_esm_default = functionPlugin;
+  function symbolObservablePonyfill(root2) {
+    var result2;
+    var Symbol2 = root2.Symbol;
+    if (typeof Symbol2 === "function") {
+      if (Symbol2.observable) {
+        result2 = Symbol2.observable;
+      } else {
+        result2 = Symbol2("observable");
+        Symbol2.observable = result2;
+      }
+    } else {
+      result2 = "@@observable";
+    }
+    return result2;
+  }
+  var root;
+  if (typeof self !== "undefined") {
+    root = self;
+  } else if (typeof window !== "undefined") {
+    root = window;
+  } else if (typeof global !== "undefined") {
+    root = global;
+  } else if (typeof module !== "undefined") {
+    root = module;
+  } else {
+    root = Function("return this")();
+  }
+  var result = symbolObservablePonyfill(root);
+  var es_default = result;
+  var isObservable = function isObservable2(value) {
+    return value && value[es_default] && value === value[es_default]();
+  };
+  var observablePlugin = function observablePlugin2(updateOptions) {
+    return {
+      onCreateRule: function onCreateRule8(name2, decl, options) {
+        if (!isObservable(decl)) return null;
+        var style$ = decl;
+        var rule = createRule(name2, {}, options);
+        style$.subscribe(function(style2) {
+          for (var prop in style2) {
+            rule.prop(prop, style2[prop], updateOptions);
+          }
+        });
+        return rule;
+      },
+      onProcessRule: function onProcessRule3(rule) {
+        if (rule && rule.type !== "style") return;
+        var styleRule = rule;
+        var style2 = styleRule.style;
+        var _loop = function _loop2(prop2) {
+          var value = style2[prop2];
+          if (!isObservable(value)) return "continue";
+          delete style2[prop2];
+          value.subscribe({
+            next: function next(nextValue) {
+              styleRule.prop(prop2, nextValue, updateOptions);
+            }
+          });
+        };
+        for (var prop in style2) {
+          var _ret = _loop(prop);
+          if (_ret === "continue") continue;
+        }
+      }
+    };
+  };
+  var jss_plugin_rule_value_observable_esm_default = observablePlugin;
+  var semiWithNl = /;\n/;
+  var parse = function parse2(cssText) {
+    var style2 = {};
+    var split = cssText.split(semiWithNl);
+    for (var i = 0; i < split.length; i++) {
+      var decl = (split[i] || "").trim();
+      if (!decl) continue;
+      var colonIndex = decl.indexOf(":");
+      if (colonIndex === -1) {
+        true ? tiny_warning_esm_default(false, '[JSS] Malformed CSS string "' + decl + '"') : void 0;
+        continue;
+      }
+      var prop = decl.substr(0, colonIndex).trim();
+      var value = decl.substr(colonIndex + 1).trim();
+      style2[prop] = value;
+    }
+    return style2;
+  };
+  var onProcessRule = function onProcessRule2(rule) {
+    if (typeof rule.style === "string") {
+      rule.style = parse(rule.style);
+    }
+  };
+  function templatePlugin() {
+    return {
+      onProcessRule
+    };
+  }
+  var jss_plugin_template_esm_default = templatePlugin;
+  var at = "@global";
+  var atPrefix = "@global ";
+  var GlobalContainerRule = /* @__PURE__ */ function() {
+    function GlobalContainerRule2(key2, styles, options) {
+      this.type = "global";
+      this.at = at;
+      this.isProcessed = false;
+      this.key = key2;
+      this.options = options;
+      this.rules = new RuleList(_extends2({}, options, {
+        parent: this
+      }));
+      for (var selector in styles) {
+        this.rules.add(selector, styles[selector]);
+      }
+      this.rules.process();
+    }
+    var _proto = GlobalContainerRule2.prototype;
+    _proto.getRule = function getRule(name2) {
+      return this.rules.get(name2);
+    };
+    _proto.addRule = function addRule(name2, style2, options) {
+      var rule = this.rules.add(name2, style2, options);
+      if (rule) this.options.jss.plugins.onProcessRule(rule);
+      return rule;
+    };
+    _proto.replaceRule = function replaceRule(name2, style2, options) {
+      var newRule = this.rules.replace(name2, style2, options);
+      if (newRule) this.options.jss.plugins.onProcessRule(newRule);
+      return newRule;
+    };
+    _proto.indexOf = function indexOf(rule) {
+      return this.rules.indexOf(rule);
+    };
+    _proto.toString = function toString(options) {
+      return this.rules.toString(options);
+    };
+    return GlobalContainerRule2;
+  }();
+  var GlobalPrefixedRule = /* @__PURE__ */ function() {
+    function GlobalPrefixedRule2(key2, style2, options) {
+      this.type = "global";
+      this.at = at;
+      this.isProcessed = false;
+      this.key = key2;
+      this.options = options;
+      var selector = key2.substr(atPrefix.length);
+      this.rule = options.jss.createRule(selector, style2, _extends2({}, options, {
+        parent: this
+      }));
+    }
+    var _proto2 = GlobalPrefixedRule2.prototype;
+    _proto2.toString = function toString(options) {
+      return this.rule ? this.rule.toString(options) : "";
+    };
+    return GlobalPrefixedRule2;
+  }();
+  var separatorRegExp = /\s*,\s*/g;
+  function addScope(selector, scope) {
+    var parts = selector.split(separatorRegExp);
+    var scoped = "";
+    for (var i = 0; i < parts.length; i++) {
+      scoped += scope + " " + parts[i].trim();
+      if (parts[i + 1]) scoped += ", ";
+    }
+    return scoped;
+  }
+  function handleNestedGlobalContainerRule(rule, sheet) {
+    var options = rule.options, style2 = rule.style;
+    var rules = style2 ? style2[at] : null;
+    if (!rules) return;
+    for (var name2 in rules) {
+      sheet.addRule(name2, rules[name2], _extends2({}, options, {
+        selector: addScope(name2, rule.selector)
+      }));
+    }
+    delete style2[at];
+  }
+  function handlePrefixedGlobalRule(rule, sheet) {
+    var options = rule.options, style2 = rule.style;
+    for (var prop in style2) {
+      if (prop[0] !== "@" || prop.substr(0, at.length) !== at) continue;
+      var selector = addScope(prop.substr(at.length), rule.selector);
+      sheet.addRule(selector, style2[prop], _extends2({}, options, {
+        selector
+      }));
+      delete style2[prop];
+    }
+  }
+  function jssGlobal() {
+    function onCreateRule8(name2, styles, options) {
+      if (!name2) return null;
+      if (name2 === at) {
+        return new GlobalContainerRule(name2, styles, options);
+      }
+      if (name2[0] === "@" && name2.substr(0, atPrefix.length) === atPrefix) {
+        return new GlobalPrefixedRule(name2, styles, options);
+      }
+      var parent = options.parent;
+      if (parent) {
+        if (parent.type === "global" || parent.options.parent && parent.options.parent.type === "global") {
+          options.scoped = false;
+        }
+      }
+      if (!options.selector && options.scoped === false) {
+        options.selector = name2;
+      }
+      return null;
+    }
+    function onProcessRule3(rule, sheet) {
+      if (rule.type !== "style" || !sheet) return;
+      handleNestedGlobalContainerRule(rule, sheet);
+      handlePrefixedGlobalRule(rule, sheet);
+    }
+    return {
+      onCreateRule: onCreateRule8,
+      onProcessRule: onProcessRule3
+    };
+  }
+  var jss_plugin_global_esm_default = jssGlobal;
+  var isObject = function isObject2(obj) {
+    return obj && typeof obj === "object" && !Array.isArray(obj);
+  };
+  var valueNs = "extendCurrValue" + Date.now();
+  function mergeExtend(style2, rule, sheet, newStyle) {
+    var extendType = typeof style2.extend;
+    if (extendType === "string") {
+      if (!sheet) return;
+      var refRule = sheet.getRule(style2.extend);
+      if (!refRule) return;
+      if (refRule === rule) {
+        true ? tiny_warning_esm_default(false, "[JSS] A rule tries to extend itself \n" + rule.toString()) : void 0;
+        return;
+      }
+      var parent = refRule.options.parent;
+      if (parent) {
+        var originalStyle = parent.rules.raw[style2.extend];
+        extend2(originalStyle, rule, sheet, newStyle);
+      }
+      return;
+    }
+    if (Array.isArray(style2.extend)) {
+      for (var index2 = 0; index2 < style2.extend.length; index2++) {
+        var singleExtend = style2.extend[index2];
+        var singleStyle = typeof singleExtend === "string" ? _extends2({}, style2, {
+          extend: singleExtend
+        }) : style2.extend[index2];
+        extend2(singleStyle, rule, sheet, newStyle);
+      }
+      return;
+    }
+    for (var prop in style2.extend) {
+      if (prop === "extend") {
+        extend2(style2.extend.extend, rule, sheet, newStyle);
+        continue;
+      }
+      if (isObject(style2.extend[prop])) {
+        if (!(prop in newStyle)) newStyle[prop] = {};
+        extend2(style2.extend[prop], rule, sheet, newStyle[prop]);
+        continue;
+      }
+      newStyle[prop] = style2.extend[prop];
+    }
+  }
+  function mergeRest(style2, rule, sheet, newStyle) {
+    for (var prop in style2) {
+      if (prop === "extend") continue;
+      if (isObject(newStyle[prop]) && isObject(style2[prop])) {
+        extend2(style2[prop], rule, sheet, newStyle[prop]);
+        continue;
+      }
+      if (isObject(style2[prop])) {
+        newStyle[prop] = extend2(style2[prop], rule, sheet);
+        continue;
+      }
+      newStyle[prop] = style2[prop];
+    }
+  }
+  function extend2(style2, rule, sheet, newStyle) {
+    if (newStyle === void 0) {
+      newStyle = {};
+    }
+    mergeExtend(style2, rule, sheet, newStyle);
+    mergeRest(style2, rule, sheet, newStyle);
+    return newStyle;
+  }
+  function jssExtend() {
+    function onProcessStyle2(style2, rule, sheet) {
+      if ("extend" in style2) return extend2(style2, rule, sheet);
+      return style2;
+    }
+    function onChangeValue2(value, prop, rule) {
+      if (prop !== "extend") return value;
+      if (value == null || value === false) {
+        for (var key2 in rule[valueNs]) {
+          rule.prop(key2, null);
+        }
+        rule[valueNs] = null;
+        return null;
+      }
+      if (typeof value === "object") {
+        for (var _key in value) {
+          rule.prop(_key, value[_key]);
+        }
+        rule[valueNs] = value;
+      }
+      return null;
+    }
+    return {
+      onProcessStyle: onProcessStyle2,
+      onChangeValue: onChangeValue2
+    };
+  }
+  var jss_plugin_extend_esm_default = jssExtend;
+  var separatorRegExp2 = /\s*,\s*/g;
+  var parentRegExp = /&/g;
+  var refRegExp2 = /\$([\w-]+)/g;
+  function jssNested() {
+    function getReplaceRef(container, sheet) {
+      return function(match, key2) {
+        var rule = container.getRule(key2) || sheet && sheet.getRule(key2);
+        if (rule) {
+          return rule.selector;
+        }
+        true ? tiny_warning_esm_default(false, '[JSS] Could not find the referenced rule "' + key2 + '" in "' + (container.options.meta || container.toString()) + '".') : void 0;
+        return key2;
+      };
+    }
+    function replaceParentRefs(nestedProp, parentProp) {
+      var parentSelectors = parentProp.split(separatorRegExp2);
+      var nestedSelectors = nestedProp.split(separatorRegExp2);
+      var result2 = "";
+      for (var i = 0; i < parentSelectors.length; i++) {
+        var parent = parentSelectors[i];
+        for (var j = 0; j < nestedSelectors.length; j++) {
+          var nested = nestedSelectors[j];
+          if (result2) result2 += ", ";
+          result2 += nested.indexOf("&") !== -1 ? nested.replace(parentRegExp, parent) : parent + " " + nested;
+        }
+      }
+      return result2;
+    }
+    function getOptions(rule, container, prevOptions) {
+      if (prevOptions) return _extends2({}, prevOptions, {
+        index: prevOptions.index + 1
+      });
+      var nestingLevel = rule.options.nestingLevel;
+      nestingLevel = nestingLevel === void 0 ? 1 : nestingLevel + 1;
+      var options = _extends2({}, rule.options, {
+        nestingLevel,
+        index: container.indexOf(rule) + 1
+        // We don't need the parent name to be set options for chlid.
+      });
+      delete options.name;
+      return options;
+    }
+    function onProcessStyle2(style2, rule, sheet) {
+      if (rule.type !== "style") return style2;
+      var styleRule = rule;
+      var container = styleRule.options.parent;
+      var options;
+      var replaceRef3;
+      for (var prop in style2) {
+        var isNested = prop.indexOf("&") !== -1;
+        var isNestedConditional = prop[0] === "@";
+        if (!isNested && !isNestedConditional) continue;
+        options = getOptions(styleRule, container, options);
+        if (isNested) {
+          var selector = replaceParentRefs(prop, styleRule.selector);
+          if (!replaceRef3) replaceRef3 = getReplaceRef(container, sheet);
+          selector = selector.replace(refRegExp2, replaceRef3);
+          var name2 = styleRule.key + "-" + prop;
+          if ("replaceRule" in container) {
+            container.replaceRule(name2, style2[prop], _extends2({}, options, {
+              selector
+            }));
+          } else {
+            container.addRule(name2, style2[prop], _extends2({}, options, {
+              selector
+            }));
+          }
+        } else if (isNestedConditional) {
+          container.addRule(prop, {}, options).addRule(styleRule.key, style2[prop], {
+            selector: styleRule.selector
+          });
+        }
+        delete style2[prop];
+      }
+      return style2;
+    }
+    return {
+      onProcessStyle: onProcessStyle2
+    };
+  }
+  var jss_plugin_nested_esm_default = jssNested;
+  function registerClass(rule, className) {
+    if (!className) return true;
+    if (Array.isArray(className)) {
+      for (var index2 = 0; index2 < className.length; index2++) {
+        var isSetted = registerClass(rule, className[index2]);
+        if (!isSetted) return false;
+      }
+      return true;
+    }
+    if (className.indexOf(" ") > -1) {
+      return registerClass(rule, className.split(" "));
+    }
+    var parent = rule.options.parent;
+    if (className[0] === "$") {
+      var refRule = parent.getRule(className.substr(1));
+      if (!refRule) {
+        true ? tiny_warning_esm_default(false, "[JSS] Referenced rule is not defined. \n" + rule.toString()) : void 0;
+        return false;
+      }
+      if (refRule === rule) {
+        true ? tiny_warning_esm_default(false, "[JSS] Cyclic composition detected. \n" + rule.toString()) : void 0;
+        return false;
+      }
+      parent.classes[rule.key] += " " + parent.classes[refRule.key];
+      return true;
+    }
+    parent.classes[rule.key] += " " + className;
+    return true;
+  }
+  function jssCompose() {
+    function onProcessStyle2(style2, rule) {
+      if (!("composes" in style2)) return style2;
+      registerClass(rule, style2.composes);
+      delete style2.composes;
+      return style2;
+    }
+    return {
+      onProcessStyle: onProcessStyle2
+    };
+  }
+  var jss_plugin_compose_esm_default = jssCompose;
+  var uppercasePattern = /[A-Z]/g;
+  var msPattern = /^ms-/;
+  var cache2 = {};
+  function toHyphenLower(match) {
+    return "-" + match.toLowerCase();
+  }
+  function hyphenateStyleName(name2) {
+    if (cache2.hasOwnProperty(name2)) {
+      return cache2[name2];
+    }
+    var hName = name2.replace(uppercasePattern, toHyphenLower);
+    return cache2[name2] = msPattern.test(hName) ? "-" + hName : hName;
+  }
+  var hyphenate_style_name_default = hyphenateStyleName;
+  function convertCase(style2) {
+    var converted = {};
+    for (var prop in style2) {
+      var key2 = prop.indexOf("--") === 0 ? prop : hyphenate_style_name_default(prop);
+      converted[key2] = style2[prop];
+    }
+    if (style2.fallbacks) {
+      if (Array.isArray(style2.fallbacks)) converted.fallbacks = style2.fallbacks.map(convertCase);
+      else converted.fallbacks = convertCase(style2.fallbacks);
+    }
+    return converted;
+  }
+  function camelCase() {
+    function onProcessStyle2(style2) {
+      if (Array.isArray(style2)) {
+        for (var index2 = 0; index2 < style2.length; index2++) {
+          style2[index2] = convertCase(style2[index2]);
+        }
+        return style2;
+      }
+      return convertCase(style2);
+    }
+    function onChangeValue2(value, prop, rule) {
+      if (prop.indexOf("--") === 0) {
+        return value;
+      }
+      var hyphenatedProp = hyphenate_style_name_default(prop);
+      if (prop === hyphenatedProp) return value;
+      rule.prop(hyphenatedProp, value);
+      return null;
+    }
+    return {
+      onProcessStyle: onProcessStyle2,
+      onChangeValue: onChangeValue2
+    };
+  }
+  var jss_plugin_camel_case_esm_default = camelCase;
+  var px = hasCSSTOMSupport && CSS ? CSS.px : "px";
+  var ms = hasCSSTOMSupport && CSS ? CSS.ms : "ms";
+  var percent = hasCSSTOMSupport && CSS ? CSS.percent : "%";
+  var defaultUnits = {
+    // Animation properties
+    "animation-delay": ms,
+    "animation-duration": ms,
+    // Background properties
+    "background-position": px,
+    "background-position-x": px,
+    "background-position-y": px,
+    "background-size": px,
+    // Border Properties
+    border: px,
+    "border-bottom": px,
+    "border-bottom-left-radius": px,
+    "border-bottom-right-radius": px,
+    "border-bottom-width": px,
+    "border-left": px,
+    "border-left-width": px,
+    "border-radius": px,
+    "border-right": px,
+    "border-right-width": px,
+    "border-top": px,
+    "border-top-left-radius": px,
+    "border-top-right-radius": px,
+    "border-top-width": px,
+    "border-width": px,
+    "border-block": px,
+    "border-block-end": px,
+    "border-block-end-width": px,
+    "border-block-start": px,
+    "border-block-start-width": px,
+    "border-block-width": px,
+    "border-inline": px,
+    "border-inline-end": px,
+    "border-inline-end-width": px,
+    "border-inline-start": px,
+    "border-inline-start-width": px,
+    "border-inline-width": px,
+    "border-start-start-radius": px,
+    "border-start-end-radius": px,
+    "border-end-start-radius": px,
+    "border-end-end-radius": px,
+    // Margin properties
+    margin: px,
+    "margin-bottom": px,
+    "margin-left": px,
+    "margin-right": px,
+    "margin-top": px,
+    "margin-block": px,
+    "margin-block-end": px,
+    "margin-block-start": px,
+    "margin-inline": px,
+    "margin-inline-end": px,
+    "margin-inline-start": px,
+    // Padding properties
+    padding: px,
+    "padding-bottom": px,
+    "padding-left": px,
+    "padding-right": px,
+    "padding-top": px,
+    "padding-block": px,
+    "padding-block-end": px,
+    "padding-block-start": px,
+    "padding-inline": px,
+    "padding-inline-end": px,
+    "padding-inline-start": px,
+    // Mask properties
+    "mask-position-x": px,
+    "mask-position-y": px,
+    "mask-size": px,
+    // Width and height properties
+    height: px,
+    width: px,
+    "min-height": px,
+    "max-height": px,
+    "min-width": px,
+    "max-width": px,
+    // Position properties
+    bottom: px,
+    left: px,
+    top: px,
+    right: px,
+    inset: px,
+    "inset-block": px,
+    "inset-block-end": px,
+    "inset-block-start": px,
+    "inset-inline": px,
+    "inset-inline-end": px,
+    "inset-inline-start": px,
+    // Shadow properties
+    "box-shadow": px,
+    "text-shadow": px,
+    // Column properties
+    "column-gap": px,
+    "column-rule": px,
+    "column-rule-width": px,
+    "column-width": px,
+    // Font and text properties
+    "font-size": px,
+    "font-size-delta": px,
+    "letter-spacing": px,
+    "text-decoration-thickness": px,
+    "text-indent": px,
+    "text-stroke": px,
+    "text-stroke-width": px,
+    "word-spacing": px,
+    // Motion properties
+    motion: px,
+    "motion-offset": px,
+    // Outline properties
+    outline: px,
+    "outline-offset": px,
+    "outline-width": px,
+    // Perspective properties
+    perspective: px,
+    "perspective-origin-x": percent,
+    "perspective-origin-y": percent,
+    // Transform properties
+    "transform-origin": percent,
+    "transform-origin-x": percent,
+    "transform-origin-y": percent,
+    "transform-origin-z": percent,
+    // Transition properties
+    "transition-delay": ms,
+    "transition-duration": ms,
+    // Alignment properties
+    "vertical-align": px,
+    "flex-basis": px,
+    // Some random properties
+    "shape-margin": px,
+    size: px,
+    gap: px,
+    // Grid properties
+    grid: px,
+    "grid-gap": px,
+    "row-gap": px,
+    "grid-row-gap": px,
+    "grid-column-gap": px,
+    "grid-template-rows": px,
+    "grid-template-columns": px,
+    "grid-auto-rows": px,
+    "grid-auto-columns": px,
+    // Not existing properties.
+    // Used to avoid issues with jss-plugin-expand integration.
+    "box-shadow-x": px,
+    "box-shadow-y": px,
+    "box-shadow-blur": px,
+    "box-shadow-spread": px,
+    "font-line-height": px,
+    "text-shadow-x": px,
+    "text-shadow-y": px,
+    "text-shadow-blur": px
+  };
+  function addCamelCasedVersion(obj) {
+    var regExp2 = /(-[a-z])/g;
+    var replace2 = function replace22(str) {
+      return str[1].toUpperCase();
+    };
+    var newObj = {};
+    for (var key2 in obj) {
+      newObj[key2] = obj[key2];
+      newObj[key2.replace(regExp2, replace2)] = obj[key2];
+    }
+    return newObj;
+  }
+  var units = addCamelCasedVersion(defaultUnits);
+  function iterate(prop, value, options) {
+    if (value == null) return value;
+    if (Array.isArray(value)) {
+      for (var i = 0; i < value.length; i++) {
+        value[i] = iterate(prop, value[i], options);
+      }
+    } else if (typeof value === "object") {
+      if (prop === "fallbacks") {
+        for (var innerProp in value) {
+          value[innerProp] = iterate(innerProp, value[innerProp], options);
+        }
+      } else {
+        for (var _innerProp in value) {
+          value[_innerProp] = iterate(prop + "-" + _innerProp, value[_innerProp], options);
+        }
+      }
+    } else if (typeof value === "number" && isNaN(value) === false) {
+      var unit = options[prop] || units[prop];
+      if (unit && !(value === 0 && unit === px)) {
+        return typeof unit === "function" ? unit(value).toString() : "" + value + unit;
+      }
+      return value.toString();
+    }
+    return value;
+  }
+  function defaultUnit(options) {
+    if (options === void 0) {
+      options = {};
+    }
+    var camelCasedOptions = addCamelCasedVersion(options);
+    function onProcessStyle2(style2, rule) {
+      if (rule.type !== "style") return style2;
+      for (var prop in style2) {
+        style2[prop] = iterate(prop, style2[prop], camelCasedOptions);
+      }
+      return style2;
+    }
+    function onChangeValue2(value, prop) {
+      return iterate(prop, value, camelCasedOptions);
+    }
+    return {
+      onProcessStyle: onProcessStyle2,
+      onChangeValue: onChangeValue2
+    };
+  }
+  var jss_plugin_default_unit_esm_default = defaultUnit;
+  var propArray = {
+    "background-size": true,
+    "background-position": true,
+    border: true,
+    "border-bottom": true,
+    "border-left": true,
+    "border-top": true,
+    "border-right": true,
+    "border-radius": true,
+    "border-image": true,
+    "border-width": true,
+    "border-style": true,
+    "border-color": true,
+    "box-shadow": true,
+    flex: true,
+    margin: true,
+    padding: true,
+    outline: true,
+    "transform-origin": true,
+    transform: true,
+    transition: true
+    /**
+     * A scheme for converting arrays to regular styles inside of objects.
+     * For e.g.: "{position: [0, 0]}" => "background-position: 0 0;".
+     */
+  };
+  var propArrayInObj = {
+    position: true,
+    // background-position
+    size: true
+    // background-size
+    /**
+     * A scheme for parsing and building correct styles from passed objects.
+     */
+  };
+  var propObj = {
+    padding: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0
+    },
+    margin: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0
+    },
+    background: {
+      attachment: null,
+      color: null,
+      image: null,
+      position: null,
+      repeat: null
+    },
+    border: {
+      width: null,
+      style: null,
+      color: null
+    },
+    "border-top": {
+      width: null,
+      style: null,
+      color: null
+    },
+    "border-right": {
+      width: null,
+      style: null,
+      color: null
+    },
+    "border-bottom": {
+      width: null,
+      style: null,
+      color: null
+    },
+    "border-left": {
+      width: null,
+      style: null,
+      color: null
+    },
+    outline: {
+      width: null,
+      style: null,
+      color: null
+    },
+    "list-style": {
+      type: null,
+      position: null,
+      image: null
+    },
+    transition: {
+      property: null,
+      duration: null,
+      "timing-function": null,
+      timingFunction: null,
+      // Needed for avoiding comilation issues with jss-plugin-camel-case
+      delay: null
+    },
+    animation: {
+      name: null,
+      duration: null,
+      "timing-function": null,
+      timingFunction: null,
+      // Needed to avoid compilation issues with jss-plugin-camel-case
+      delay: null,
+      "iteration-count": null,
+      iterationCount: null,
+      // Needed to avoid compilation issues with jss-plugin-camel-case
+      direction: null,
+      "fill-mode": null,
+      fillMode: null,
+      // Needed to avoid compilation issues with jss-plugin-camel-case
+      "play-state": null,
+      playState: null
+      // Needed to avoid compilation issues with jss-plugin-camel-case
+    },
+    "box-shadow": {
+      x: 0,
+      y: 0,
+      blur: 0,
+      spread: 0,
+      color: null,
+      inset: null
+    },
+    "text-shadow": {
+      x: 0,
+      y: 0,
+      blur: null,
+      color: null
+    }
+    /**
+     * A scheme for converting non-standart properties inside object.
+     * For e.g.: include 'border-radius' property inside 'border' object.
+     */
+  };
+  var customPropObj = {
+    border: {
+      radius: "border-radius",
+      image: "border-image",
+      width: "border-width",
+      style: "border-style",
+      color: "border-color"
+    },
+    "border-bottom": {
+      width: "border-bottom-width",
+      style: "border-bottom-style",
+      color: "border-bottom-color"
+    },
+    "border-top": {
+      width: "border-top-width",
+      style: "border-top-style",
+      color: "border-top-color"
+    },
+    "border-left": {
+      width: "border-left-width",
+      style: "border-left-style",
+      color: "border-left-color"
+    },
+    "border-right": {
+      width: "border-right-width",
+      style: "border-right-style",
+      color: "border-right-color"
+    },
+    background: {
+      size: "background-size",
+      image: "background-image"
+    },
+    font: {
+      style: "font-style",
+      variant: "font-variant",
+      weight: "font-weight",
+      stretch: "font-stretch",
+      size: "font-size",
+      family: "font-family",
+      lineHeight: "line-height",
+      // Needed to avoid compilation issues with jss-plugin-camel-case
+      "line-height": "line-height"
+    },
+    flex: {
+      grow: "flex-grow",
+      basis: "flex-basis",
+      direction: "flex-direction",
+      wrap: "flex-wrap",
+      flow: "flex-flow",
+      shrink: "flex-shrink"
+    },
+    align: {
+      self: "align-self",
+      items: "align-items",
+      content: "align-content"
+    },
+    grid: {
+      "template-columns": "grid-template-columns",
+      templateColumns: "grid-template-columns",
+      "template-rows": "grid-template-rows",
+      templateRows: "grid-template-rows",
+      "template-areas": "grid-template-areas",
+      templateAreas: "grid-template-areas",
+      template: "grid-template",
+      "auto-columns": "grid-auto-columns",
+      autoColumns: "grid-auto-columns",
+      "auto-rows": "grid-auto-rows",
+      autoRows: "grid-auto-rows",
+      "auto-flow": "grid-auto-flow",
+      autoFlow: "grid-auto-flow",
+      row: "grid-row",
+      column: "grid-column",
+      "row-start": "grid-row-start",
+      rowStart: "grid-row-start",
+      "row-end": "grid-row-end",
+      rowEnd: "grid-row-end",
+      "column-start": "grid-column-start",
+      columnStart: "grid-column-start",
+      "column-end": "grid-column-end",
+      columnEnd: "grid-column-end",
+      area: "grid-area",
+      gap: "grid-gap",
+      "row-gap": "grid-row-gap",
+      rowGap: "grid-row-gap",
+      "column-gap": "grid-column-gap",
+      columnGap: "grid-column-gap"
+    }
+  };
+  function mapValuesByProp(value, prop, rule) {
+    return value.map(function(item) {
+      return objectToArray(item, prop, rule, false, true);
+    });
+  }
+  function processArray(value, prop, scheme, rule) {
+    if (scheme[prop] == null) return value;
+    if (value.length === 0) return [];
+    if (Array.isArray(value[0])) return processArray(value[0], prop, scheme, rule);
+    if (typeof value[0] === "object") {
+      return mapValuesByProp(value, prop, rule);
+    }
+    return [value];
+  }
+  function objectToArray(value, prop, rule, isFallback, isInArray) {
+    if (!(propObj[prop] || customPropObj[prop])) return [];
+    var result2 = [];
+    if (customPropObj[prop]) {
+      value = customPropsToStyle(value, rule, customPropObj[prop], isFallback);
+    }
+    if (Object.keys(value).length) {
+      for (var baseProp in propObj[prop]) {
+        if (value[baseProp]) {
+          if (Array.isArray(value[baseProp])) {
+            result2.push(propArrayInObj[baseProp] === null ? value[baseProp] : value[baseProp].join(" "));
+          } else result2.push(value[baseProp]);
+          continue;
+        }
+        if (propObj[prop][baseProp] != null) {
+          result2.push(propObj[prop][baseProp]);
+        }
+      }
+    }
+    if (!result2.length || isInArray) return result2;
+    return [result2];
+  }
+  function customPropsToStyle(value, rule, customProps, isFallback) {
+    for (var prop in customProps) {
+      var propName = customProps[prop];
+      if (typeof value[prop] !== "undefined" && (isFallback || !rule.prop(propName))) {
+        var _styleDetector;
+        var appendedValue = styleDetector((_styleDetector = {}, _styleDetector[propName] = value[prop], _styleDetector), rule)[propName];
+        if (isFallback) rule.style.fallbacks[propName] = appendedValue;
+        else rule.style[propName] = appendedValue;
+      }
+      delete value[prop];
+    }
+    return value;
+  }
+  function styleDetector(style2, rule, isFallback) {
+    for (var prop in style2) {
+      var value = style2[prop];
+      if (Array.isArray(value)) {
+        if (!Array.isArray(value[0])) {
+          if (prop === "fallbacks") {
+            for (var index2 = 0; index2 < style2.fallbacks.length; index2++) {
+              style2.fallbacks[index2] = styleDetector(style2.fallbacks[index2], rule, true);
+            }
+            continue;
+          }
+          style2[prop] = processArray(value, prop, propArray, rule);
+          if (!style2[prop].length) delete style2[prop];
+        }
+      } else if (typeof value === "object") {
+        if (prop === "fallbacks") {
+          style2.fallbacks = styleDetector(style2.fallbacks, rule, true);
+          continue;
+        }
+        style2[prop] = objectToArray(value, prop, rule, isFallback);
+        if (!style2[prop].length) delete style2[prop];
+      } else if (style2[prop] === "") delete style2[prop];
+    }
+    return style2;
+  }
+  function jssExpand() {
+    function onProcessStyle2(style2, rule) {
+      if (!style2 || rule.type !== "style") return style2;
+      if (Array.isArray(style2)) {
+        for (var index2 = 0; index2 < style2.length; index2++) {
+          style2[index2] = styleDetector(style2[index2], rule);
+        }
+        return style2;
+      }
+      return styleDetector(style2, rule);
+    }
+    return {
+      onProcessStyle: onProcessStyle2
+    };
+  }
+  var jss_plugin_expand_esm_default = jssExpand;
+  function _arrayLikeToArray(r, a) {
+    (null == a || a > r.length) && (a = r.length);
+    for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e];
+    return n;
+  }
+  function _arrayWithoutHoles(r) {
+    if (Array.isArray(r)) return _arrayLikeToArray(r);
+  }
+  function _iterableToArray(r) {
+    if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r);
+  }
+  function _unsupportedIterableToArray(r, a) {
+    if (r) {
+      if ("string" == typeof r) return _arrayLikeToArray(r, a);
+      var t2 = {}.toString.call(r).slice(8, -1);
+      return "Object" === t2 && r.constructor && (t2 = r.constructor.name), "Map" === t2 || "Set" === t2 ? Array.from(r) : "Arguments" === t2 || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t2) ? _arrayLikeToArray(r, a) : void 0;
+    }
+  }
+  function _nonIterableSpread() {
+    throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+  }
+  function _toConsumableArray(r) {
+    return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread();
+  }
+  var js = "";
+  var css = "";
+  var vendor = "";
+  var browser2 = "";
+  var isTouch = module_default && "ontouchstart" in document.documentElement;
+  if (module_default) {
+    jsCssMap = {
+      Moz: "-moz-",
+      ms: "-ms-",
+      O: "-o-",
+      Webkit: "-webkit-"
+    };
+    _document$createEleme = document.createElement("p"), style = _document$createEleme.style;
+    testProp = "Transform";
+    for (key in jsCssMap) {
+      if (key + testProp in style) {
+        js = key;
+        css = jsCssMap[key];
+        break;
+      }
+    }
+    if (js === "Webkit" && "msHyphens" in style) {
+      js = "ms";
+      css = jsCssMap.ms;
+      browser2 = "edge";
+    }
+    if (js === "Webkit" && "-apple-trailing-word" in style) {
+      vendor = "apple";
+    }
+  }
+  var jsCssMap;
+  var _document$createEleme;
+  var style;
+  var testProp;
+  var key;
+  var prefix = {
+    js,
+    css,
+    vendor,
+    browser: browser2,
+    isTouch
+  };
+  function supportedKeyframes(key2) {
+    if (key2[1] === "-") return key2;
+    if (prefix.js === "ms") return key2;
+    return "@" + prefix.css + "keyframes" + key2.substr(10);
+  }
+  var appearence = {
+    noPrefill: ["appearance"],
+    supportedProperty: function supportedProperty(prop) {
+      if (prop !== "appearance") return false;
+      if (prefix.js === "ms") return "-webkit-" + prop;
+      return prefix.css + prop;
+    }
+  };
+  var colorAdjust = {
+    noPrefill: ["color-adjust"],
+    supportedProperty: function supportedProperty2(prop) {
+      if (prop !== "color-adjust") return false;
+      if (prefix.js === "Webkit") return prefix.css + "print-" + prop;
+      return prop;
+    }
+  };
+  var regExp = /[-\s]+(.)?/g;
+  function toUpper(match, c) {
+    return c ? c.toUpperCase() : "";
+  }
+  function camelize(str) {
+    return str.replace(regExp, toUpper);
+  }
+  function pascalize(str) {
+    return camelize("-" + str);
+  }
+  var mask = {
+    noPrefill: ["mask"],
+    supportedProperty: function supportedProperty3(prop, style2) {
+      if (!/^mask/.test(prop)) return false;
+      if (prefix.js === "Webkit") {
+        var longhand = "mask-image";
+        if (camelize(longhand) in style2) {
+          return prop;
+        }
+        if (prefix.js + pascalize(longhand) in style2) {
+          return prefix.css + prop;
+        }
+      }
+      return prop;
+    }
+  };
+  var textOrientation = {
+    noPrefill: ["text-orientation"],
+    supportedProperty: function supportedProperty4(prop) {
+      if (prop !== "text-orientation") return false;
+      if (prefix.vendor === "apple" && !prefix.isTouch) {
+        return prefix.css + prop;
+      }
+      return prop;
+    }
+  };
+  var transform = {
+    noPrefill: ["transform"],
+    supportedProperty: function supportedProperty5(prop, style2, options) {
+      if (prop !== "transform") return false;
+      if (options.transform) {
+        return prop;
+      }
+      return prefix.css + prop;
+    }
+  };
+  var transition = {
+    noPrefill: ["transition"],
+    supportedProperty: function supportedProperty6(prop, style2, options) {
+      if (prop !== "transition") return false;
+      if (options.transition) {
+        return prop;
+      }
+      return prefix.css + prop;
+    }
+  };
+  var writingMode = {
+    noPrefill: ["writing-mode"],
+    supportedProperty: function supportedProperty7(prop) {
+      if (prop !== "writing-mode") return false;
+      if (prefix.js === "Webkit" || prefix.js === "ms" && prefix.browser !== "edge") {
+        return prefix.css + prop;
+      }
+      return prop;
+    }
+  };
+  var userSelect = {
+    noPrefill: ["user-select"],
+    supportedProperty: function supportedProperty8(prop) {
+      if (prop !== "user-select") return false;
+      if (prefix.js === "Moz" || prefix.js === "ms" || prefix.vendor === "apple") {
+        return prefix.css + prop;
+      }
+      return prop;
+    }
+  };
+  var breakPropsOld = {
+    supportedProperty: function supportedProperty9(prop, style2) {
+      if (!/^break-/.test(prop)) return false;
+      if (prefix.js === "Webkit") {
+        var jsProp = "WebkitColumn" + pascalize(prop);
+        return jsProp in style2 ? prefix.css + "column-" + prop : false;
+      }
+      if (prefix.js === "Moz") {
+        var _jsProp = "page" + pascalize(prop);
+        return _jsProp in style2 ? "page-" + prop : false;
+      }
+      return false;
+    }
+  };
+  var inlineLogicalOld = {
+    supportedProperty: function supportedProperty10(prop, style2) {
+      if (!/^(border|margin|padding)-inline/.test(prop)) return false;
+      if (prefix.js === "Moz") return prop;
+      var newProp = prop.replace("-inline", "");
+      return prefix.js + pascalize(newProp) in style2 ? prefix.css + newProp : false;
+    }
+  };
+  var unprefixed = {
+    supportedProperty: function supportedProperty11(prop, style2) {
+      return camelize(prop) in style2 ? prop : false;
+    }
+  };
+  var prefixed = {
+    supportedProperty: function supportedProperty12(prop, style2) {
+      var pascalized = pascalize(prop);
+      if (prop[0] === "-") return prop;
+      if (prop[0] === "-" && prop[1] === "-") return prop;
+      if (prefix.js + pascalized in style2) return prefix.css + prop;
+      if (prefix.js !== "Webkit" && "Webkit" + pascalized in style2) return "-webkit-" + prop;
+      return false;
+    }
+  };
+  var scrollSnap = {
+    supportedProperty: function supportedProperty13(prop) {
+      if (prop.substring(0, 11) !== "scroll-snap") return false;
+      if (prefix.js === "ms") {
+        return "" + prefix.css + prop;
+      }
+      return prop;
+    }
+  };
+  var overscrollBehavior = {
+    supportedProperty: function supportedProperty14(prop) {
+      if (prop !== "overscroll-behavior") return false;
+      if (prefix.js === "ms") {
+        return prefix.css + "scroll-chaining";
+      }
+      return prop;
+    }
+  };
+  var propMap = {
+    "flex-grow": "flex-positive",
+    "flex-shrink": "flex-negative",
+    "flex-basis": "flex-preferred-size",
+    "justify-content": "flex-pack",
+    order: "flex-order",
+    "align-items": "flex-align",
+    "align-content": "flex-line-pack"
+    // 'align-self' is handled by 'align-self' plugin.
+  };
+  var flex2012 = {
+    supportedProperty: function supportedProperty15(prop, style2) {
+      var newProp = propMap[prop];
+      if (!newProp) return false;
+      return prefix.js + pascalize(newProp) in style2 ? prefix.css + newProp : false;
+    }
+  };
+  var propMap$1 = {
+    flex: "box-flex",
+    "flex-grow": "box-flex",
+    "flex-direction": ["box-orient", "box-direction"],
+    order: "box-ordinal-group",
+    "align-items": "box-align",
+    "flex-flow": ["box-orient", "box-direction"],
+    "justify-content": "box-pack"
+  };
+  var propKeys = Object.keys(propMap$1);
+  var prefixCss = function prefixCss2(p) {
+    return prefix.css + p;
+  };
+  var flex2009 = {
+    supportedProperty: function supportedProperty16(prop, style2, _ref) {
+      var multiple = _ref.multiple;
+      if (propKeys.indexOf(prop) > -1) {
+        var newProp = propMap$1[prop];
+        if (!Array.isArray(newProp)) {
+          return prefix.js + pascalize(newProp) in style2 ? prefix.css + newProp : false;
+        }
+        if (!multiple) return false;
+        for (var i = 0; i < newProp.length; i++) {
+          if (!(prefix.js + pascalize(newProp[0]) in style2)) {
+            return false;
+          }
+        }
+        return newProp.map(prefixCss);
+      }
+      return false;
+    }
+  };
+  var plugins2 = [appearence, colorAdjust, mask, textOrientation, transform, transition, writingMode, userSelect, breakPropsOld, inlineLogicalOld, unprefixed, prefixed, scrollSnap, overscrollBehavior, flex2012, flex2009];
+  var propertyDetectors = plugins2.filter(function(p) {
+    return p.supportedProperty;
+  }).map(function(p) {
+    return p.supportedProperty;
+  });
+  var noPrefill = plugins2.filter(function(p) {
+    return p.noPrefill;
+  }).reduce(function(a, p) {
+    a.push.apply(a, _toConsumableArray(p.noPrefill));
+    return a;
+  }, []);
+  var el;
+  var cache22 = {};
+  if (module_default) {
+    el = document.createElement("p");
+    computed = window.getComputedStyle(document.documentElement, "");
+    for (key$1 in computed) {
+      if (!isNaN(key$1)) cache22[computed[key$1]] = computed[key$1];
+    }
+    noPrefill.forEach(function(x) {
+      return delete cache22[x];
+    });
+  }
+  var computed;
+  var key$1;
+  function supportedProperty17(prop, options) {
+    if (options === void 0) {
+      options = {};
+    }
+    if (!el) return prop;
+    if (cache22[prop] != null) {
+      return cache22[prop];
+    }
+    if (prop === "transition" || prop === "transform") {
+      options[prop] = prop in el.style;
+    }
+    for (var i = 0; i < propertyDetectors.length; i++) {
+      cache22[prop] = propertyDetectors[i](prop, el.style, options);
+      if (cache22[prop]) break;
+    }
+    try {
+      el.style[prop] = "";
+    } catch (err) {
+      return false;
+    }
+    return cache22[prop];
+  }
+  var cache$1 = {};
+  var transitionProperties = {
+    transition: 1,
+    "transition-property": 1,
+    "-webkit-transition": 1,
+    "-webkit-transition-property": 1
+  };
+  var transPropsRegExp = /(^\s*[\w-]+)|, (\s*[\w-]+)(?![^()]*\))/g;
+  var el$1;
+  function prefixTransitionCallback(match, p1, p2) {
+    if (p1 === "var") return "var";
+    if (p1 === "all") return "all";
+    if (p2 === "all") return ", all";
+    var prefixedValue = p1 ? supportedProperty17(p1) : ", " + supportedProperty17(p2);
+    if (!prefixedValue) return p1 || p2;
+    return prefixedValue;
+  }
+  if (module_default) el$1 = document.createElement("p");
+  function supportedValue(property, value) {
+    var prefixedValue = value;
+    if (!el$1 || property === "content") return value;
+    if (typeof prefixedValue !== "string" || !isNaN(parseInt(prefixedValue, 10))) {
+      return prefixedValue;
+    }
+    var cacheKey = property + prefixedValue;
+    if (cache$1[cacheKey] != null) {
+      return cache$1[cacheKey];
+    }
+    try {
+      el$1.style[property] = prefixedValue;
+    } catch (err) {
+      cache$1[cacheKey] = false;
+      return false;
+    }
+    if (transitionProperties[property]) {
+      prefixedValue = prefixedValue.replace(transPropsRegExp, prefixTransitionCallback);
+    } else if (el$1.style[property] === "") {
+      prefixedValue = prefix.css + prefixedValue;
+      if (prefixedValue === "-ms-flex") el$1.style[property] = "-ms-flexbox";
+      el$1.style[property] = prefixedValue;
+      if (el$1.style[property] === "") {
+        cache$1[cacheKey] = false;
+        return false;
+      }
+    }
+    el$1.style[property] = "";
+    cache$1[cacheKey] = prefixedValue;
+    return cache$1[cacheKey];
+  }
+  function jssVendorPrefixer() {
+    function onProcessRule3(rule) {
+      if (rule.type === "keyframes") {
+        var atRule = rule;
+        atRule.at = supportedKeyframes(atRule.at);
+      }
+    }
+    function prefixStyle(style2) {
+      for (var prop in style2) {
+        var value = style2[prop];
+        if (prop === "fallbacks" && Array.isArray(value)) {
+          style2[prop] = value.map(prefixStyle);
+          continue;
+        }
+        var changeProp = false;
+        var supportedProp = supportedProperty17(prop);
+        if (supportedProp && supportedProp !== prop) changeProp = true;
+        var changeValue = false;
+        var supportedValue$1 = supportedValue(supportedProp, toCssValue(value));
+        if (supportedValue$1 && supportedValue$1 !== value) changeValue = true;
+        if (changeProp || changeValue) {
+          if (changeProp) delete style2[prop];
+          style2[supportedProp || prop] = supportedValue$1 || value;
+        }
+      }
+      return style2;
+    }
+    function onProcessStyle2(style2, rule) {
+      if (rule.type !== "style") return style2;
+      return prefixStyle(style2);
+    }
+    function onChangeValue2(value, prop) {
+      return supportedValue(prop, toCssValue(value)) || value;
+    }
+    return {
+      onProcessRule: onProcessRule3,
+      onProcessStyle: onProcessStyle2,
+      onChangeValue: onChangeValue2
+    };
+  }
+  var jss_plugin_vendor_prefixer_esm_default = jssVendorPrefixer;
+  function jssPropsSort() {
+    var sort = function sort2(prop0, prop1) {
+      if (prop0.length === prop1.length) {
+        return prop0 > prop1 ? 1 : -1;
+      }
+      return prop0.length - prop1.length;
+    };
+    return {
+      onProcessStyle: function onProcessStyle2(style2, rule) {
+        if (rule.type !== "style") return style2;
+        var newStyle = {};
+        var props = Object.keys(style2).sort(sort);
+        for (var i = 0; i < props.length; i++) {
+          newStyle[props[i]] = style2[props[i]];
+        }
+        return newStyle;
+      }
+    };
+  }
+  var jss_plugin_props_sort_esm_default = jssPropsSort;
+  var create = function create2(options) {
+    if (options === void 0) {
+      options = {};
+    }
+    return {
+      plugins: [jss_plugin_rule_value_function_esm_default(), jss_plugin_rule_value_observable_esm_default(options.observable), jss_plugin_template_esm_default(), jss_plugin_global_esm_default(), jss_plugin_extend_esm_default(), jss_plugin_nested_esm_default(), jss_plugin_compose_esm_default(), jss_plugin_camel_case_esm_default(), jss_plugin_default_unit_esm_default(options.defaultUnit), jss_plugin_expand_esm_default(), jss_plugin_vendor_prefixer_esm_default(), jss_plugin_props_sort_esm_default()]
+    };
+  };
+  var jss_preset_default_esm_default = create;
+  var commonJsonFont = {
+    "font-family": `ui-monospace, "Cascadia Code",
+    "Source Code Pro", Menlo, Consolas, "DejaVu Sans Mono", monospace`
+  };
+  jss_esm_default.setup(jss_preset_default_esm_default());
+  function makeStyleSheet(theme2) {
+    const styles = {
+      jsonContainer: {
+        "background-color": theme2.bgColor ?? ""
+      },
+      jsonArray__content: { "margin-left": "0.5 em" },
+      jsonArray__empty: { color: "grey" },
+      jsonObject__trivia: { color: "grey" },
+      jsonObject__header: {
+        display: "flex",
+        gap: "0.5em"
+      },
+      jsonObject__header__name: {
+        ...theme2.jsonTitle,
+        "font-size": "1em",
+        "font-weight": 600,
+        "&:hover": {
+          cursor: "pointer",
+          "text-decoration": "underline"
+        }
+      },
+      jsonObject__header__toggle: {
+        ...theme2.jsonKey,
+        display: "flex",
+        "font-weight": 600,
+        "align-items": "center"
+      },
+      jsonObject__content: { "margin-left": "1.75em" },
+      jsonObject__content__item: { gap: "0.5em" },
+      jsonObject__content__item__online: { display: "flex", gap: "0.5em" },
+      jsonObject__content__item__key: {
+        ...theme2.jsonKey,
+        "user-select": "none",
+        "&:after": {
+          content: '":"',
+          color: "grey",
+          "margin-right": "0.5em"
+        }
+      },
+      jsonObject__keyButton: {
+        "&:hover": {
+          cursor: "pointer",
+          "text-decoration": "underline"
+        }
+      },
+      jsonString: {
+        ...theme2.jsonString,
+        "&::before": {
+          content: '"\\""'
+        },
+        "&::after": {
+          content: '"\\""'
+        },
+        ...commonJsonFont
+      },
+      jsonBool: { ...theme2.jsonBoolean, ...commonJsonFont },
+      jsonNull: { ...theme2.jsonNull, ...commonJsonFont },
+      jsonNumber: { ...theme2.jsonNumber, ...commonJsonFont },
+      jsonObject: commonJsonFont
+    };
+    return jss_esm_default.createStyleSheet(styles);
+  }
+  var defaultTheme2 = {
+    bgColor: "#1a1b26",
+    jsonTitle: { color: "#bb9af7" },
+    jsonKey: { color: "#7aa2f7" },
+    jsonString: { color: "#9ece6a" },
+    jsonBoolean: { color: "#c0caf5" },
+    jsonNumber: { color: "#ff9e64" },
+    jsonNull: { color: "#bb9af7" }
+  };
+  var defaultStyleSheet = makeStyleSheet(defaultTheme2);
+  function isJsonObject(value) {
+    return typeof value === "object" && value !== null && !Array.isArray(value);
+  }
+  function makeTrivia(styles, content2) {
+    return span(styles.jsonObject__trivia, content2);
+  }
+  function span(klass, text) {
+    const el2 = document.createElement("span");
+    el2.classList.add(klass);
+    if (text) {
+      el2.textContent = text;
+    }
+    return el2;
+  }
+  function div(klass, text) {
+    const el2 = document.createElement("div");
+    el2.classList.add(klass);
+    if (text) {
+      el2.textContent = text;
+    }
+    return el2;
+  }
+  var JsonViewKvPair = class {
+    constructor(key2, value, styles = defaultStyleSheet.classes, callback) {
+      this.styles = styles;
+      this.callback = callback;
+      this.key = key2;
+      this.value = value;
+    }
+    key;
+    value;
+    render(root2) {
+      const container = div(this.styles.jsonObject__content__item);
+      const key_element = span(
+        this.styles.jsonObject__content__item__key,
+        this.key
+      );
+      container.appendChild(key_element);
+      container.onmouseenter = () => {
+        if (this.value instanceof JsonViewObject) {
+          this.callback?.(this.value.object, "enter");
+        }
+      };
+      container.onmouseleave = () => {
+        if (this.value instanceof JsonViewObject) {
+          this.callback?.(this.value.object, "exit");
+        }
+      };
+      const value_container = span("jsonObject__content__item__value");
+      if (this.value instanceof JsonViewObject || this.value instanceof JsonViewArray) {
+        const is_object = this.value instanceof JsonViewObject;
+        const is_object_with_header_name = this.value instanceof JsonViewObject && this.value.header_name;
+        const is_array = !is_object;
+        const is_empty_array = this.value instanceof JsonViewArray && this.value.items.length === 0;
+        if (is_array && !is_empty_array || is_object && !is_object_with_header_name) {
+          const lbrace = makeTrivia(this.styles, is_object ? "{" : "[");
+          const rbrace = makeTrivia(this.styles, is_object ? "}" : "]");
+          value_container.appendChild(lbrace);
+          this.value.render(value_container, false);
+          value_container.appendChild(rbrace);
+        } else {
+          this.value.render(value_container);
+          value_container.style.display = "inline";
+        }
+        container.appendChild(value_container);
+        key_element.classList.add(this.styles.jsonObject__keyButton);
+        key_element.onclick = () => {
+          const val = this.value;
+          val.toggle();
+        };
+      } else {
+        this.value.render(value_container);
+        container.appendChild(value_container);
+      }
+      root2.appendChild(container);
+    }
+  };
+  var JsonViewObject = class {
+    constructor(object, styles = defaultStyleSheet.classes, callback) {
+      this.object = object;
+      this.styles = styles;
+      this.callback = callback;
+      const header_name = typeof object.__name === "string" ? object.__name : void 0;
+      const kv_pairs = Object.entries(object).filter(([key2]) => !key2.startsWith("__")).map(
+        ([key2, value]) => new JsonViewKvPair(
+          key2,
+          constructJsonViewItem(value, styles, callback),
+          styles,
+          callback
+        )
+      );
+      this.header_name = header_name;
+      this.kv_pairs = kv_pairs;
+      this.container_el = div(styles.jsonObject);
+      this.keyvalue_container_el = div(styles.jsonObject__content);
+      this.dotdotdot = span(styles.jsonObject__trivia, "...");
+    }
+    header_name;
+    /**
+     * Whether the object is currently open or closed.
+     */
+    is_open = true;
+    /**
+     * Key-value pairs in the JSON object.
+     */
+    kv_pairs;
+    /**
+     * The root element of the JSON object.
+     */
+    container_el;
+    /**
+     * The container element for the key-value pairs.
+     */
+    keyvalue_container_el;
+    /**
+     * The opening "{" element in the DOM of the JSON object.
+     */
+    open_brace_el = null;
+    /**
+     * The closing "}" element in the DOM of the JSON object.
+     */
+    close_brace_el = null;
+    /**
+     * The "+" or "-" element to toggle the object open or closed.
+     * This may not exist if the object has no header name.
+     */
+    toggle_div = null;
+    dotdotdot;
+    render(root2, braces = true) {
+      const container = this.container_el;
+      container.appendChild(this.dotdotdot);
+      this.dotdotdot.style.display = "none";
+      if (this.header_name) {
+        const header = div(this.styles.jsonObject__header);
+        this.toggle_div = span(this.styles.jsonObject__header__toggle, "-");
+        this.toggle_div.classList.add("open");
+        header.appendChild(this.toggle_div);
+        const header_name = span(
+          this.styles.jsonObject__header__name,
+          this.header_name
+        );
+        header_name.onclick = this.toggle.bind(this);
+        header_name.onmouseenter = () => this.callback?.(this.object, "enter");
+        header_name.onmouseleave = () => this.callback?.(this.object, "exit");
+        header.appendChild(header_name);
+        const lbrace = makeTrivia(this.styles, "{");
+        header.appendChild(lbrace);
+        this.open_brace_el = lbrace;
+        container.appendChild(header);
+      }
+      container.onmouseenter = () => this.callback?.(this.object, "enter");
+      container.onmouseleave = () => this.callback?.(this.object, "exit");
+      const kv_el = this.keyvalue_container_el;
+      if (braces && !this.open_brace_el) {
+        const lbrace = makeTrivia(this.styles, "{");
+        container.appendChild(lbrace);
+        this.open_brace_el = lbrace;
+      }
+      for (const kv_pair of this.kv_pairs) {
+        kv_pair.render(kv_el);
+      }
+      container.appendChild(kv_el);
+      if (braces || this.header_name) {
+        const rbrace = makeTrivia(this.styles, "}");
+        container.appendChild(rbrace);
+        this.close_brace_el = rbrace;
+      }
+      root2.appendChild(container);
+    }
+    /**
+     * Toggle the expanded/collapsed state of the object's node in the DOM.
+     */
+    toggle() {
+      this.is_open = !this.is_open;
+      if (!this.container_el) return;
+      if (this.header_name) {
+        if (this.open_brace_el)
+          this.open_brace_el.style.display = this.is_open ? "inline" : "none";
+        if (this.close_brace_el)
+          this.close_brace_el.style.display = this.is_open ? "inline" : "none";
+        this.keyvalue_container_el.style.display = this.is_open ? "block" : "none";
+        this.dotdotdot.style.display = "none";
+        if (this.toggle_div) {
+          this.toggle_div.textContent = this.is_open ? "-" : "+";
+        }
+        return;
+      }
+      this.container_el.style.display = this.is_open ? "block" : "inline";
+      this.keyvalue_container_el.style.display = this.is_open ? "block" : "none";
+      for (const child of Array.from(this.container_el.children)) {
+        if (child instanceof HTMLElement) {
+          child.style.display = this.is_open ? "block" : "none";
+        }
+      }
+      this.dotdotdot.style.display = this.is_open ? "none" : "inline";
+    }
+  };
+  var JsonViewArray = class {
+    constructor(array, styles = defaultStyleSheet.classes, callback) {
+      this.array = array;
+      this.styles = styles;
+      this.callback = callback;
+      this.dotdotdot = span(styles.jsonObject__trivia, "...");
+      this.items = array.map((x) => constructJsonViewItem(x, styles, callback));
+    }
+    items;
+    dotdotdot;
+    open_brace = null;
+    close_brace = null;
+    container_el = null;
+    root = null;
+    is_open = true;
+    render(root2, braces = true) {
+      this.root = root2;
+      if (this.items.length === 0) {
+        const container2 = span("jsonArray");
+        const empty2 = span(this.styles.jsonArray__empty, "[]");
+        container2.appendChild(empty2);
+        root2.appendChild(container2);
+        return;
+      }
+      const container = div("jsonArray");
+      if (braces) {
+        const lbrace = makeTrivia(this.styles, "[");
+        container.appendChild(lbrace);
+        this.open_brace = lbrace;
+      }
+      const items_container = div(this.styles.jsonArray__content);
+      items_container.onmouseenter = () => this.callback?.(this.array, "enter");
+      items_container.onmouseleave = () => this.callback?.(this.array, "exit");
+      for (const item of this.items) {
+        item.render(items_container);
+      }
+      container.appendChild(items_container);
+      if (braces) {
+        const rbrace = makeTrivia(this.styles, "]");
+        container.appendChild(rbrace);
+        this.close_brace = rbrace;
+      }
+      root2.appendChild(container);
+      this.container_el = container;
+    }
+    toggle() {
+      this.is_open = !this.is_open;
+      if (!this.container_el) return;
+      this.container_el.style.display = this.is_open ? "block" : "inline";
+      for (const child of this.container_el.children) {
+        if (child instanceof HTMLElement) {
+          child.style.display = this.is_open ? "block" : "none";
+        }
+      }
+      this.container_el.appendChild(this.dotdotdot);
+      this.dotdotdot.style.display = this.is_open ? "none" : "inline";
+    }
+  };
+  function escapeString(s) {
+    let new_s = "";
+    for (const ch of s) {
+      switch (ch) {
+        case "\n":
+          new_s += "\\n";
+          break;
+        case "\r":
+          new_s += "\\r";
+          break;
+        case "	":
+          new_s += "\\t";
+          break;
+        case '"':
+          new_s += '\\"';
+          break;
+        case "\\":
+          new_s += "\\\\";
+          break;
+        default:
+          new_s += ch;
+      }
+    }
+    return new_s;
+  }
+  var JsonViewPrimitive = class {
+    constructor(value, styles = defaultStyleSheet.classes) {
+      this.value = value;
+      this.styles = styles;
+      if (typeof this.value === "string") {
+        this.value = escapeString(this.value);
+      }
+    }
+    render(root2) {
+      const primitive = document.createElement("span");
+      switch (typeof this.value) {
+        case "string":
+          primitive.classList.add(this.styles.jsonString);
+          break;
+        case "number":
+          primitive.classList.add(this.styles.jsonNumber);
+          break;
+        case "boolean":
+          primitive.classList.add(this.styles.jsonBool);
+          break;
+        case "object":
+          primitive.classList.add(this.styles.jsonNull);
+        default: {
+        }
+      }
+      let rendered_value;
+      switch (typeof this.value) {
+        case "string":
+          rendered_value = this.value;
+          break;
+        case "boolean":
+          rendered_value = this.value ? "true" : "false";
+          break;
+        case "object":
+          rendered_value = "null";
+          break;
+        default:
+          rendered_value = this.value.toString();
+      }
+      primitive.textContent = rendered_value;
+      root2.appendChild(primitive);
+    }
+  };
+  function constructJsonViewItem(value, styles = defaultStyleSheet.classes, callback) {
+    if (typeof value === "object") {
+      if (Array.isArray(value)) return new JsonViewArray(value, styles, callback);
+      if (value !== null) return new JsonViewObject(value, styles, callback);
+    }
+    switch (typeof value) {
+      case "string":
+      case "number":
+      case "boolean":
+        return new JsonViewPrimitive(value, styles);
+      case "object":
+        if (value === null) return new JsonViewPrimitive(null, styles);
+      default:
+        throw new Error(`Unknown value type: ${typeof value}`);
+    }
+  }
+  function renderJson(json, root2, stylesheet, callback) {
+    const styles = stylesheet.classes;
+    root2.classList.add(styles.jsonContainer);
+    const viewItem = constructJsonViewItem(json, styles, callback);
+    viewItem.render(root2);
+  }
   var tokyoNight2 = {
     bgColor: "#1a1b26",
     jsonTitle: { color: "#bb9af7" },
@@ -27891,32 +27839,32 @@
     const keys2 = Object.keys(ast);
     if (keys2.length == 0) return null;
     if (keys2.length == 1) {
-      const key = keys2[0];
-      const value = ast[key];
+      const key2 = keys2[0];
+      const value = ast[key2];
       if (typeof value === "object" && !Array.isArray(value)) {
         const transformed_value = transformJsonAst(value);
         const transformed2 = {
           ...transformed_value,
-          __name: snakeCaseToPascalCase(key)
+          __name: snakeCaseToPascalCase(key2)
         };
         return transformed2;
       }
     }
     const transformed = {};
-    for (const key of keys2) {
-      const value = ast[key];
+    for (const key2 of keys2) {
+      const value = ast[key2];
       if (typeof value === "object" && value && !Array.isArray(value)) {
         const entries_of_value = Object.entries(value);
-        if (entries_of_value.length === 3 && value.data && value.data[key]) {
-          const transformed_value2 = transformJsonAst(value.data[key]);
-          transformed[key] = transformed_value2;
+        if (entries_of_value.length === 3 && value.data && value.data[key2]) {
+          const transformed_value2 = transformJsonAst(value.data[key2]);
+          transformed[key2] = transformed_value2;
           transformed_value2.__start = value.start;
           transformed_value2.__end = value.end;
           continue;
         }
       }
       const transformed_value = transformJsonAst(value);
-      transformed[key] = transformed_value;
+      transformed[key2] = transformed_value;
     }
     return transformed;
   }
@@ -28027,7 +27975,7 @@ async function parseAndRender() {
       ],
       parent: document.getElementById("editorRoot")
     });
-    const jsonViewStyles = makeStyleSheet(themes_default.tokyoNight);
+    const jsonViewStyles = styles_exports.makeStyleSheet(themes_default.tokyoNight);
     jsonViewStyles.attach();
     let default_source = "";
     let byte_offset_map = prepareByteOffsetMap(default_source);
@@ -28069,12 +28017,16 @@ async function parseAndRender() {
 })();
 /*! Bundled license information:
 
-jss/dist/jss.esm.js:
-  (**
-   * A better abstraction over CSS.
-   *
-   * @copyright Oleg Isonen (Slobodskoi) / Isonen 2014-present
-   * @website https://github.com/cssinjs/jss
-   * @license MIT
-   *)
+@jam-tools/json-tree-view/dist/index.js:
+  (*! Bundled license information:
+  
+  jss/dist/jss.esm.js:
+    (**
+     * A better abstraction over CSS.
+     *
+     * @copyright Oleg Isonen (Slobodskoi) / Isonen 2014-present
+     * @website https://github.com/cssinjs/jss
+     * @license MIT
+     *)
+  *)
 */

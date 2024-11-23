@@ -1,5 +1,4 @@
 import { Wasm } from "./wasm";
-import { isJsonObject, renderJson } from "./json-viewer/view";
 import { Decoration, EditorView, keymap } from "@codemirror/view";
 import { defaultKeymap, indentWithTab } from "@codemirror/commands";
 import { basicSetup } from "codemirror";
@@ -7,11 +6,11 @@ import { javascript as js_code_mirror } from "@codemirror/lang-javascript";
 import { tokyoNight } from "@uiw/codemirror-theme-tokyo-night";
 import { Range, StateEffect, StateField } from "@codemirror/state";
 import {
-  defaultStyleSheet,
-  defaultTheme,
-  makeStyleSheet,
-} from "./json-viewer/styles";
-import themes from "./json-viewer/themes";
+  renderJson,
+  styles,
+  themes,
+  isJsonObject,
+} from "@jam-tools/json-tree-view";
 
 // convert 'variable_declarator' to 'VariableDeclarator'
 function snakeCaseToPascalCase(snake_case: string): string {
@@ -234,7 +233,7 @@ async function main() {
     parent: document.getElementById("editorRoot")!,
   });
 
-  const jsonViewStyles = makeStyleSheet(themes.tokyoNight);
+  const jsonViewStyles = styles.makeStyleSheet(themes.tokyoNight);
   jsonViewStyles.attach();
 
   let default_source = "";
