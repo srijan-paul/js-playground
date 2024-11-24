@@ -27904,11 +27904,6 @@
   };
 
   // src/util.ts
-  function snakeCaseToPascalCase(snake_case) {
-    const words = snake_case.split("_");
-    const camel_case = words.map((word) => word[0].toUpperCase() + word.slice(1)).join("");
-    return camel_case;
-  }
   var debounce = (callback, wait = 50) => {
     let timeoutId = null;
     return (...args) => {
@@ -27920,6 +27915,7 @@
     if (typeof ast === "string") {
       if (ast === "true") return true;
       if (ast === "false") return false;
+      if (ast === "null") return null;
       const as_num = Number(ast);
       if (Number.isNaN(as_num)) return ast;
       return as_num;
@@ -27933,44 +27929,20 @@
       return ast.map(transformJsonAst);
     }
     if (ast == null) return null;
-    if (typeof ast.start == "number" && typeof ast.end === "number") {
-      if (ast.data.none) {
-        return null;
-      }
-      const o = transformJsonAst(ast.data);
-      o.__start = ast.start;
-      o.__end = ast.end;
-      return o;
-    }
-    const keys2 = Object.keys(ast);
-    if (keys2.length == 0) return null;
-    if (keys2.length == 1) {
-      const key2 = keys2[0];
-      const value = ast[key2];
-      if (typeof value === "object" && !Array.isArray(value)) {
-        const transformed_value = transformJsonAst(value);
-        const transformed2 = {
-          ...transformed_value,
-          __name: snakeCaseToPascalCase(key2)
-        };
-        return transformed2;
-      }
-    }
     const transformed = {};
-    for (const key2 of keys2) {
-      const value = ast[key2];
-      if (typeof value === "object" && value && !Array.isArray(value)) {
-        const entries_of_value = Object.entries(value);
-        if (entries_of_value.length === 3 && value.data && value.data[key2]) {
-          const transformed_value2 = transformJsonAst(value.data[key2]);
-          transformed[key2] = transformed_value2;
-          transformed_value2.__start = value.start;
-          transformed_value2.__end = value.end;
-          continue;
-        }
-      }
+    for (const [key2, value] of Object.entries(ast)) {
       const transformed_value = transformJsonAst(value);
       transformed[key2] = transformed_value;
+    }
+    if (typeof transformed.start == "number" && typeof transformed.end == "number") {
+      transformed.__start = transformed.start;
+      transformed.__end = transformed.end;
+      delete transformed.start;
+      delete transformed.end;
+    }
+    if (transformed.type) {
+      transformed.__name = transformed.type;
+      delete transformed.type;
     }
     return transformed;
   }
@@ -28063,7 +28035,7 @@ async function parseAndRender() {
   });
   var clear_highlight_effect = StateEffect.define();
   var highlight_color_dark = "background-color: rgba(255, 250, 112, 0.2)";
-  var highlight_color_light = "background-color: rgba(145, 240, 180, 0.5)";
+  var highlight_color_light = "background-color: rgba(230, 230, 140, 1)";
   var highlight_decoration_light = Decoration.mark({
     attributes: { style: highlight_color_light }
   });
