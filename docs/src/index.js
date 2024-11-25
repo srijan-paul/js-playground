@@ -10,48 +10,91 @@
       throw new Error(message);
     }
   }
-  var Wasm = class {
+  function strlen(buf, ptr) {
+    let len = 0;
+    while (buf[ptr + len] !== 0) len++;
+    return len;
+  }
+  function readWasmString(mem, ptr) {
+    const memory = new Uint8Array(mem.buffer);
+    const len = strlen(memory, ptr);
+    const utf8 = memory.slice(ptr, ptr + len);
+    const str_decoder = new TextDecoder();
+    return str_decoder.decode(utf8);
+  }
+  function memRead(mem, ptr) {
+    return new Uint8Array(mem.buffer)[ptr];
+  }
+  function readi32(mem, ptr) {
+    const memory = new DataView(mem.buffer);
+    return memory.getInt32(ptr, true);
+  }
+  function structClass(struct) {
+    return class {
+      constructor(wasm, addr) {
+        this.wasm = wasm;
+        this.addr = addr;
+        let offset = 0;
+        for (const [fieldName, fieldType] of struct) {
+          this.addr_of_field.set(fieldName, addr + offset);
+          offset += fieldType;
+        }
+        this.byte_length = offset;
+      }
+      addr_of_field = /* @__PURE__ */ new Map();
+      byte_length;
+      get(key2) {
+        const addr = this.addr_of_field.get(key2);
+        if (!addr) return null;
+        return readi32(this.wasm.memory, addr);
+      }
+    };
+  }
+  var Result = structClass([
+    ["json_ast", 4 /* ptr */],
+    ["error_message", 4 /* ptr */],
+    ["error_line", 4 /* i32 */],
+    ["error_column", 4 /* i32 */],
+    ["ok", 4 /* i32 */],
+    ["has_result", 4 /* i32 */]
+  ]);
+  var WasmAdapter = class {
     wasm;
+    ResultWasmSize;
     constructor(wasm_instance) {
-      assert(
-        wasm_instance.exports.alloc !== void 0,
-        "alloc not found in wasm instance"
-      );
-      assert(
-        wasm_instance.exports.free !== void 0,
-        "free not found in wasm instance"
-      );
-      assert(
-        wasm_instance.exports.parseModule !== void 0,
-        "parseModule not found in wasm instance"
-      );
-      assert(
-        wasm_instance.exports.memory !== void 0,
-        "memory not found in wasm instance"
-      );
+      const expected_props = [
+        "alloc",
+        "free",
+        "parseModule",
+        "parseScript",
+        "ResultWasmSize",
+        "ParseResultSize",
+        "memory",
+        "freeResult"
+      ];
+      for (const prop of expected_props) {
+        assert(
+          prop in wasm_instance.exports,
+          `${prop} not found in wasm instance`
+        );
+      }
       this.wasm = wasm_instance.exports;
+      this.ResultWasmSize = memRead(
+        this.wasm.memory,
+        this.wasm.ResultWasmSize.value
+      );
     }
     allocString(str) {
       const utf8 = toUtf8Bytes(str);
       const len = utf8.length;
       const wasm_buf_addr = this.wasm.alloc(len);
-      if (wasm_buf_addr == 0) {
-        return null;
-      }
+      if (wasm_buf_addr == 0) return null;
       const memory = new Uint8Array(this.wasm.memory.buffer);
       memory.set(utf8, wasm_buf_addr);
       return { ptr: wasm_buf_addr, len };
     }
     freeString(str) {
       this.wasm.free(str.ptr, str.len);
-    }
-    strlen(ptr) {
-      const memory = new Uint8Array(this.wasm.memory.buffer);
-      let len = 0;
-      while (memory[ptr + len] != 0) {
-        len++;
-      }
-      return len;
     }
     readWasmString(str) {
       const memory = new Uint8Array(this.wasm.memory.buffer);
@@ -61,19 +104,44 @@
     }
     parseModule(str) {
       const wasm_str = this.allocString(str);
-      if (wasm_str == null) {
+      if (wasm_str == null) return null;
+      const out_buf = this.wasm.alloc(this.ResultWasmSize);
+      this.wasm.parseModule(out_buf, wasm_str.ptr, wasm_str.len);
+      this.freeString(wasm_str);
+      if (out_buf == 0) return null;
+      const result2 = new Result(this.wasm, out_buf);
+      if (!result2.get("has_result")) {
+        this.wasm.freeResult(out_buf);
         return null;
       }
-      const parsed_str_addr = this.wasm.parseModule(wasm_str.ptr, wasm_str.len);
-      if (parsed_str_addr == 0) return null;
-      const parsed_str_len = this.strlen(parsed_str_addr);
-      const parsed_str = {
-        ptr: parsed_str_addr,
-        len: parsed_str_len
-      };
-      const parsed_js_str = this.readWasmString(parsed_str);
-      this.freeString(wasm_str);
-      return parsed_js_str;
+      if (!result2.get("ok")) {
+        const error_message_ptr = result2.get("error_message");
+        const error_line = result2.get("error_line");
+        const error_column = result2.get("error_column");
+        assert(
+          typeof error_message_ptr === "number",
+          "error_message is not a string"
+        );
+        assert(
+          typeof error_line === "number" && typeof error_column === "number",
+          "error_line and error_column must both be numbers"
+        );
+        this.wasm.freeResult(out_buf);
+        return {
+          success: false,
+          error_message: readWasmString(this.wasm.memory, error_message_ptr),
+          error_line,
+          error_column
+        };
+      }
+      const json_str_ptr = result2.get("json_ast");
+      if (!json_str_ptr) {
+        this.wasm.freeResult(out_buf);
+        return null;
+      }
+      const json_ast_str = readWasmString(this.wasm.memory, json_str_ptr);
+      this.wasm.freeResult(out_buf);
+      return { success: true, ast: json_ast_str };
     }
   };
 
@@ -28177,34 +28245,53 @@ async function parseAndRender() {
     }
     return { utf8Bytes, offsetMap };
   }
+  function renderError(root3, line, column, message) {
+    root3.innerHTML = "";
+    const error = document.createElement("div");
+    error.classList.add("playground__ast__error");
+    const location = document.createElement("span");
+    location.classList.add("playground__ast__error__location");
+    location.textContent = `[Ln ${line}, Col ${column}]: `;
+    const errorMessage = document.createElement("span");
+    errorMessage.classList.add("playground__ast__error__message");
+    errorMessage.textContent = message;
+    error.appendChild(location);
+    error.appendChild(errorMessage);
+    root3.appendChild(error);
+  }
   async function main() {
     initResizer();
     initNavbar();
     const jam_wasm_source = await fetch("jam_js.wasm");
     const jam_wasm_binary = await jam_wasm_source.arrayBuffer();
     const { instance } = await WebAssembly.instantiate(jam_wasm_binary);
-    const jam = new Wasm(instance);
+    const jam = new WasmAdapter(instance);
     let default_source = "";
     const renderCode = () => {
       updated_code = editor_view.state.doc.toString();
       if (updated_code == "" || updated_code == default_source) return;
       default_source = updated_code;
       byte_offset_map = prepareByteOffsetMap(updated_code);
-      const json_s = jam.parseModule(updated_code);
-      if (json_s == null) {
+      const result2 = jam.parseModule(updated_code);
+      if (result2 == null) {
         console.error("Failed to parse as module");
         return;
       }
-      parse_result = transformJsonAst(JSON.parse(json_s));
       if (root2 == null) {
         console.error("Root element not found");
         return;
       }
-      root2.innerHTML = "";
-      renderJson(parse_result, root2, jsonViewStyles, onJsonItemHover);
+      if (result2.success) {
+        root2.innerHTML = "";
+        parse_result = transformJsonAst(JSON.parse(result2.ast));
+        renderJson(parse_result, root2, jsonViewStyles, onJsonItemHover);
+        return;
+      }
+      const { error_line, error_column, error_message } = result2;
+      renderError(root2, error_line, error_column, error_message);
     };
-    const renderCodeDebounced = debounce(renderCode, 50);
-    setInterval(renderCodeDebounced, 100);
+    const renderCodeDebounced = debounce(renderCode, 35);
+    setInterval(renderCodeDebounced, 50);
   }
   main();
 })();
